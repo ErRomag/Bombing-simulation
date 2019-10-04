@@ -1,7 +1,9 @@
 import QtQuick 2.6
-import QtQuick.Window 2.2
+import QtQuick.Window 2.12
+
 
 Window {
+    id: mapWindow
     visible: true
     width: 800
     height: 650
