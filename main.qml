@@ -16,7 +16,7 @@ Window {
         anchors.fill: parent
 
         Button {
-            id: authorizationLauncher
+            id: openMap
             text: "Открыть карту"
             Layout.fillWidth: true
 
