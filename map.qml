@@ -27,7 +27,7 @@ Window {
             y: 50
             width: 25
             height: 25
-            color: "white";
+            color: "yellow";
             border.color: "red"
             border.width: 2
             antialiasing: true;
