@@ -1,6 +1,14 @@
-import QtQuick 2.0
-import QtQuick.Layouts 1.1
-import QtQuick.Controls 1.0
+//import QtQuick 2.0
+//import QtQuick.Layouts 1.1
+//import QtQuick.Controls 1.0
+//import QtQuick.Dialogs 1.1
+
+import QtQuick 2.2
+import QtQuick.Controls 1.2
+import QtQuick.Layouts 1.0
+import QtQuick.Dialogs 1.1
+import QtQuick.Window 2.1
+
 
 
 ApplicationWindow {
@@ -16,12 +24,26 @@ ApplicationWindow {
 
     title: "Моделирование бомбометания"
 
+    MessageDialog {
+        id: aboutBox
+        title: "О программе"
+        text: "Эта программа моделирует \nбомбардировку двумя самолетами-истрибителями \nзенитного ракетного комплекса"
+        icon: StandardIcon.Information
+    }
+
     menuBar: MenuBar {
 
         Menu {
-            title: "О программе"
+            id: helpMenu
+            title: qsTr("Справка")
+            MenuItem {
+                text: qsTr("О программе")
+                onTriggered: aboutBox.open()
+            }
         }
     }
+
+
 
     Item {
         id:leftItem
@@ -32,8 +54,10 @@ ApplicationWindow {
         //        anchors.left: mainWindow
 
         GroupBox {
+            id: leftGroupBox
+
             GridLayout{
-                id: leftGridLayot
+                id: leftGridLayout
                 columns: 2
 
                 Text {
@@ -157,34 +181,90 @@ ApplicationWindow {
         anchors.left: leftItem.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        anchors.leftMargin: -35
         width: 400
 
-        ColumnLayout {
-            spacing: 2
+        GroupBox {
+            id: centerGroupBox
 
-            Text {
-                Layout.alignment: Qt.AlignCenter
-                text: qsTr("Варианты вооружения")
-            }
-            GroupBox {
-                id: groupBox
+            ColumnLayout {
+                spacing: 3
 
-                ColumnLayout {
-                    ExclusiveGroup { id: tabPositionGroup }
-                    RadioButton {
-                        text: "Top"
-                        checked: true
-                        exclusiveGroup: tabPositionGroup
-                    }
-                    RadioButton {
-                        text: "Bottom"
-                        exclusiveGroup: tabPositionGroup
-                    }
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Варианты вооружения")
                 }
-            } // To GroupBox
-        }
 
-    }
+                GroupBox {
+                    id: groupBoxRadioButton
+                    width: 200
+
+                    ColumnLayout {
+                        id: columnLayoutRadioButton
+
+                        ExclusiveGroup { id: tabPositionGroup }
+
+                        RadioButton {
+                            text: qsTr("ОФАБ-100-120")
+                            id: ofab100
+                            checked: false
+                            exclusiveGroup: tabPositionGroup
+                        }
+
+                        RadioButton {
+                            text: qsTr("ОФАБ-250")
+                            id: ofab250
+                            checked: false
+                            exclusiveGroup: tabPositionGroup
+                        }
+
+                        RadioButton {
+                            text: qsTr("РБС-Ф025-33")
+                            id: rbs
+                            checked: false
+                            exclusiveGroup: tabPositionGroup
+                        }
+
+                        RadioButton {
+                            text: qsTr("РБК-250-А0.25")
+                            id: rbk250
+                            checked: false
+                            exclusiveGroup: tabPositionGroup
+                        }
+
+                        RadioButton {
+                            text: qsTr("РБК-500-А0.25")
+                            id: rbk500
+                            checked: false
+                            exclusiveGroup: tabPositionGroup
+                        }
+                    } // To ColumnLayoutRadioButton
+                } // To GroupBox
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Радиус поражения")
+                }
+
+                GridLayout {
+                    id: centerGridLayout
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Дальность до траверза КП, [м]")
+                    }
+
+                    TextField {
+                        id: rangeTfoTraverse // Дальность до траверза КП
+                        objectName: "rangeToTraverse"
+                        width: 250
+                    }
+
+
+                } // To GridLayout
+
+            } // To CloumnLayout
+        } // To MainGroupBox
+    } // To Item
 
 
 
@@ -200,7 +280,7 @@ ApplicationWindow {
     //            var browserWindow = component.createObject(this);
     //        }
     //    }
-}
+}  // To Window
 
 
 
