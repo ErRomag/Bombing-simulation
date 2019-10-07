@@ -5,6 +5,7 @@ import QtQuick.Controls 1.0
 
 
 ApplicationWindow {
+    id: mainWindow
 
     visible: true
     width: 800
@@ -15,31 +16,16 @@ ApplicationWindow {
 
         Menu {
             title: "О программе"
-
         }
     }
+
     Item {
         id:leftItem
+//        anchors.left: mainWindow
 
         GridLayout{
             id: leftGridLayot
             columns: 2
-
-            //            GridLayout {
-            //                id: leftGridLayoutOne
-            //                columns: 2
-            //                anchors.fill: leftItem
-
-            //                Text {
-            //                    text: qsTr("Количество АСП")
-            //                }
-
-            //                TextField {
-            //                    id: numberASP
-            //                    objectName: "numberASP"
-            //                    width: 250
-            //                }
-            //            } // To GridLayout
 
             Text {
                 Layout.alignment: Qt.AlignCenter
@@ -47,8 +33,8 @@ ApplicationWindow {
                 text: qsTr("Характеристики рассеивания")
             }
 
-
             Text {
+                Layout.alignment: Qt.AlignCenter
                 text: qsTr("Прицельное рассеивание, [м]")
             }
 
@@ -59,6 +45,7 @@ ApplicationWindow {
             }
 
             Text {
+                Layout.alignment: Qt.AlignCenter
                 text: qsTr("Техническое рассеивание, [м]")
             }
 
@@ -69,13 +56,103 @@ ApplicationWindow {
             }
 
             Text {
+                Layout.alignment: Qt.AlignCenter
                 text: qsTr("Рассеивание суббоеприпасов, [м]")
             }
 
             TextField {
-                id: ammunitionlDispersion // Рассеивание суббоеприпасов
+                id: ammunitionDispersion // Рассеивание суббоеприпасов
                 objectName: "ammunitionlDispersion"
                 width: 250
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                Layout.columnSpan: 2
+                text: qsTr("Режим бомбометания")
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Боевой маршрут центра пары")
+            }
+
+            TextField {
+                id: pairCenterCombatRoute // Боевой маршрут центра пары
+                objectName: "pairCenterCombatRoute"
+                width: 250
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Дальность до траверза КП, [м]")
+            }
+
+            TextField {
+                id: rangeToTraverse // Дальность до траверза КП
+                objectName: "rangeToTraverse"
+                width: 250
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Интервал строя, [м]")
+            }
+
+            TextField {
+                id: intervalRegime // Интервал строя
+                objectName: "intervalRegime"
+                width: 250
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Интервал серии, [м]")
+            }
+
+            TextField {
+                id: intervalSeries // Интервал серии
+                objectName: "intervalSeries"
+                width: 250
+            }
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Высота бомбометания, [м]")
+            }
+
+            TextField {
+                id: bombingAltitude // Высота бомбометания
+                objectName: "bombingAltitude"
+                width: 250
+            }
+
+
+            Text {
+                Layout.alignment: Qt.AlignCenter
+                text: qsTr("Количество АСП, [шт]")
+            }
+
+            TextField {
+                id: numberASP // Количество АСП
+                objectName: "bombingAltitude"
+                width: 250
+            }
+
+        } // To leftGridLayout
+
+        Item {
+            id:centerItem
+
+
+            ColumnLayout {
+                spacing: 2
+                            anchors.left: leftItem.right
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Варианты вооружения")
+                }
             }
 
         }
