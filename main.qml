@@ -1,15 +1,19 @@
 import QtQuick 2.0
-//import QtQuick.Window 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.0
 
 
 ApplicationWindow {
     id: mainWindow
-
     visible: true
+
     width: 800
     height: 650
+    maximumWidth: 800
+    maximumHeight: 650
+    x:400
+    y:300
+
     title: "Моделирование бомбометания"
 
     menuBar: MenuBar {
@@ -21,8 +25,13 @@ ApplicationWindow {
 
     Item {
         id:leftItem
-//        anchors.left: mainWindow
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 400
+        //        anchors.left: mainWindow
 
+       GroupBox {
         GridLayout{
             id: leftGridLayot
             columns: 2
@@ -140,26 +149,46 @@ ApplicationWindow {
             }
 
         } // To leftGridLayout
+       } // To GrouBox
+           }  // To Item
 
         Item {
             id:centerItem
-
+            anchors.left: leftItem.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: 400
 
             ColumnLayout {
                 spacing: 2
-                            anchors.left: leftItem.right
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
                     text: qsTr("Варианты вооружения")
                 }
+                GroupBox {
+                    id: groupBox
+
+                    ColumnLayout {
+                        ExclusiveGroup { id: tabPositionGroup }
+                        RadioButton {
+                            text: "Top"
+                            checked: true
+                            exclusiveGroup: tabPositionGroup
+                        }
+                        RadioButton {
+                            text: "Bottom"
+                            exclusiveGroup: tabPositionGroup
+                        }
+                    }
+                } // To GroupBox
             }
 
         }
 
 
 
-    }  // To Item
+
 
     //    Button {
     //        id: openMap

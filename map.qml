@@ -7,6 +7,8 @@ Window {
     visible: true
     width: 800
     height: 650
+    maximumWidth: 800
+    maximumHeight: 650
     title: qsTr("2D реализация бомбометания")
 
     Canvas {
