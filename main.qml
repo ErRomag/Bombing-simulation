@@ -27,7 +27,8 @@ ApplicationWindow {
     MessageDialog {
         id: aboutBox
         title: "О программе"
-        text: "Эта программа моделирует \nбомбардировку двумя самолетами-истрибителями \nзенитного ракетного комплекса"
+        informativeText :"ПО разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А."
+        text: "Эта программа моделирует бомбардировку двумя самолетами-истрибителями \nзенитного ракетного комплекса"
         icon: StandardIcon.Information
     }
 
@@ -42,8 +43,6 @@ ApplicationWindow {
             }
         }
     }
-
-
 
     Item {
         id:leftItem
