@@ -51,7 +51,7 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 300
+        width: 360
         //        anchors.left: mainWindow
 
         GroupBox {
@@ -182,6 +182,7 @@ ApplicationWindow {
         anchors.left: leftItem.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
+        //anchors.leftMargin: 10
         width: 300
 
         GroupBox {
