@@ -14,7 +14,7 @@ ApplicationWindow {
     id: mainWindow
     visible: true
 
-    property int windowWidth: 87
+    property int windowWidth: 870
     property int windowHeight: 380
 
     width: windowWidth
