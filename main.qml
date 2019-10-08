@@ -10,17 +10,21 @@ import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.1
 
 
-
 ApplicationWindow {
     id: mainWindow
     visible: true
 
-    width: 800
-    height: 350
-    maximumWidth: 800
-    minimumWidth: 800
-    maximumHeight: 350
-    minimumHeight: 350
+    property int windowWidth: 800
+    property int windowHeight: 380
+
+    width: windowWidth
+    maximumWidth: windowWidth
+    minimumWidth: windowWidth
+
+    height: windowHeight
+    maximumHeight: windowHeight
+    minimumHeight: windowHeight
+
     x:50
     y:50
 
@@ -51,8 +55,7 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 360
-        //        anchors.left: mainWindow
+        width: 380
 
         GroupBox {
             id: leftGroupBox
@@ -95,8 +98,8 @@ ApplicationWindow {
                 }
 
                 TextField {
-                    id: ammunitionDispersion // Рассеивание суббоеприпасов
-                    objectName: "ammunitionlDispersion"
+                    id: ammunitionDispersion // Рассеивание суббоеприпасов (ammunition)
+                    objectName: "ammunitionDispersion"
                     width: 250
                 }
 
@@ -112,8 +115,8 @@ ApplicationWindow {
                 }
 
                 TextField {
-                    id: pairCenterCombatRoute // Боевой маршрут центра пары
-                    objectName: "pairCenterCombatRoute"
+                    id: combatRouteCenterPair // Боевой маршрут центра пары
+                    objectName: "combatRouteCenterPair"
                     width: 250
                 }
 
@@ -173,6 +176,17 @@ ApplicationWindow {
                     width: 250
                 }
 
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("Количество суббоеприпасов СП, [шт]")
+                }
+
+                TextField {
+                    id: numberAmmunition // Количество суббоеприпасов СП, [шт]
+                    objectName: "numberAmmunition"
+                    width: 250
+                }
+
             } // To leftGridLayout
         } // To GrouBox
     }  // To Item
@@ -182,7 +196,6 @@ ApplicationWindow {
         anchors.left: leftItem.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        //anchors.leftMargin: 10
         width: 300
 
         GroupBox {
@@ -207,35 +220,35 @@ ApplicationWindow {
 
                         RadioButton {
                             text: qsTr("ОФАБ-100-120")
-                            id: ofab100
+                            id: ofab100  // ОФАБ 100
                             checked: false
                             exclusiveGroup: tabPositionGroup
                         }
 
                         RadioButton {
                             text: qsTr("ОФАБ-250")
-                            id: ofab250
+                            id: ofab250  // ОФАБ 250
                             checked: false
                             exclusiveGroup: tabPositionGroup
                         }
 
                         RadioButton {
                             text: qsTr("РБС-Ф025-33")
-                            id: rbs
+                            id: rbs  // РБС
                             checked: false
                             exclusiveGroup: tabPositionGroup
                         }
 
                         RadioButton {
                             text: qsTr("РБК-250-А0.25")
-                            id: rbk250
+                            id: rbk250  // РБК 250
                             checked: false
                             exclusiveGroup: tabPositionGroup
                         }
 
                         RadioButton {
                             text: qsTr("РБК-500-А0.25")
-                            id: rbk500
+                            id: rbk500  // РБК 500
                             checked: false
                             exclusiveGroup: tabPositionGroup
                         }
@@ -244,19 +257,76 @@ ApplicationWindow {
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    text: qsTr("Радиус поражения")
+                    text: qsTr("Радиусы поражения ФЭ")
                 }
 
                 GridLayout {
                     id: centerGridLayout
+                    columns: 2
+
                     Text {
                         Layout.alignment: Qt.AlignCenter
-                        text: qsTr("Дальность до траверза КП, [м]")
+                        text: qsTr("Радиус КП, [м]")
                     }
 
                     TextField {
-                        id: rangeTfoTraverse // Дальность до траверза КП
-                        objectName: "rangeToTraverse"
+                        id: radiusCP // Радиус КП, [м]  (command post)
+                        objectName: "radiusCP"
+                        width: 250
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Радиус КП1, КП2, [м]")
+                    }
+
+                    TextField {
+                        id: radiusCP12 // Радиус КП1, КП2, [м] (command post)
+                        objectName: "radiusCP12"
+                        width: 250
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Радиус СУ1, СУ2, СУ3 [м]")
+                    }
+
+                    TextField {
+                        id: radiusSC123 // Радиус СУ1, СУ2, СУ3 [м]  (system control)
+                        objectName: "radiusSC123"
+                        width: 250
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Радиус РЛС, РЛВ [м]")
+                    }
+
+                    TextField {
+                        id: radiusRLSV // Радиус РЛС, РЛВ [м]
+                        objectName: "radiusSC123"
+                        width: 250
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Радиус ЭГ1, ЭГ2 РЛВ [м]")
+                    }
+
+                    TextField {
+                        id: radiusEG12 // Радиус ЭГ1, ЭГ2 РЛВ [м]  (electric generator)
+                        objectName: "radiusEG12"
+                        width: 250
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Радиус кабели [м]")
+                    }
+
+                    TextField {
+                        id: radiusCable // Радиус кабели [м]
+                        objectName: "radiusCable"
                         width: 250
                     }
 
@@ -268,22 +338,19 @@ ApplicationWindow {
     } // To Item
 
 
+//        Button {
+//            x:500
+//            y:200
+//            id: openMap
+//            text: "Моделировать"
+//            //Layout.fillWidth: true
 
+//            onClicked: {
+//                var component = Qt.createComponent("map.qml");
+//                var browserWindow = component.createObject(this);
 
-
-        Button {
-            x:500
-            y:200
-            id: openMap
-            text: "Моделировать"
-            //Layout.fillWidth: true
-
-            onClicked: {
-                var component = Qt.createComponent("map.qml");
-                var browserWindow = component.createObject(this);
-
-            }
-        }
+//            }
+//        }
 }  // To Window
 
 
