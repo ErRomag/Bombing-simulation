@@ -17,6 +17,8 @@ ApplicationWindow {
     property int windowWidth: 870
     property int windowHeight: 380
 
+    property int maximumLenghtTextField: 6  // Максимальная длина символов в поле TextField
+
     width: windowWidth
     maximumWidth: windowWidth
     minimumWidth: windowWidth
@@ -34,7 +36,8 @@ ApplicationWindow {
         id: aboutBox
         title: "О программе"
         informativeText :"ПО разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А."
-        text: "Эта программа моделирует бомбардировку двумя самолетами-истрибителями \nзенитного ракетного комплекса"
+        text: "Эта программа моделирует бомбардировку двумя самолетами-истрибителями" +
+              "зенитного ракетного комплекса";
         icon: StandardIcon.Information
     }
 
@@ -79,6 +82,7 @@ ApplicationWindow {
                     id: aimDispersion // Прицельное рассеивание
                     objectName: "aimDispersion"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -90,6 +94,7 @@ ApplicationWindow {
                     id: technicalDispersion // Техническое рассеивание
                     objectName: "technicalDispersion"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -101,6 +106,7 @@ ApplicationWindow {
                     id: ammunitionDispersion // Рассеивание суббоеприпасов (ammunition)
                     objectName: "ammunitionDispersion"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -118,6 +124,7 @@ ApplicationWindow {
                     id: combatRouteCenterPair // Боевой маршрут центра пары
                     objectName: "combatRouteCenterPair"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -129,6 +136,7 @@ ApplicationWindow {
                     id: rangeToTraverse // Дальность до траверза КП
                     objectName: "rangeToTraverse"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -140,6 +148,7 @@ ApplicationWindow {
                     id: intervalRegime // Интервал строя
                     objectName: "intervalRegime"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -151,6 +160,7 @@ ApplicationWindow {
                     id: intervalSeries // Интервал серии
                     objectName: "intervalSeries"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -162,6 +172,7 @@ ApplicationWindow {
                     id: bombingAltitude // Высота бомбометания
                     objectName: "bombingAltitude"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
 
@@ -174,6 +185,7 @@ ApplicationWindow {
                     id: numberASP // Количество АСП
                     objectName: "bombingAltitude"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
                 Text {
@@ -185,6 +197,7 @@ ApplicationWindow {
                     id: numberAmmunition // Количество суббоеприпасов СП, [шт]
                     objectName: "numberAmmunition"
                     width: 250
+                    maximumLength: maximumLenghtTextField
                 }
 
             } // To leftGridLayout
@@ -274,6 +287,7 @@ ApplicationWindow {
                         id: radiusCP // Радиус КП, [м]  (command post)
                         objectName: "radiusCP"
                         width: 250
+                        maximumLength: maximumLenghtTextField
                     }
 
                     Text {
@@ -285,6 +299,7 @@ ApplicationWindow {
                         id: radiusCP12 // Радиус КП1, КП2, [м] (command post)
                         objectName: "radiusCP12"
                         width: 250
+                        maximumLength: maximumLenghtTextField
                     }
 
                     Text {
@@ -296,6 +311,7 @@ ApplicationWindow {
                         id: radiusSC123 // Радиус СУ1, СУ2, СУ3 [м]  (system control)
                         objectName: "radiusSC123"
                         width: 250
+                        maximumLength: maximumLenghtTextField
                     }
 
                     Text {
@@ -307,6 +323,7 @@ ApplicationWindow {
                         id: radiusRLSV // Радиус РЛС, РЛВ [м]
                         objectName: "radiusSC123"
                         width: 250
+                        maximumLength: maximumLenghtTextField
                     }
 
                     Text {
@@ -318,6 +335,7 @@ ApplicationWindow {
                         id: radiusEG12 // Радиус ЭГ1, ЭГ2 РЛВ [м]  (electric generator)
                         objectName: "radiusEG12"
                         width: 250
+                        maximumLength: maximumLenghtTextField
                     }
 
                     Text {
@@ -328,7 +346,8 @@ ApplicationWindow {
                     TextField {
                         id: radiusCable // Радиус кабели [м]
                         objectName: "radiusCable"
-                        width: 250
+                        width: 300
+                        maximumLength: maximumLenghtTextField
                     }
 
                 } // To GridLayout
@@ -350,79 +369,126 @@ ApplicationWindow {
                 id: rightGridlayout
                 columns: 2
 
-                Text {
-                    Layout.alignment: Qt.AlignCenter
-                    Layout.columnSpan: 2
-                    text: qsTr("Частота поподания по ФЭ")
-                }
+                //                Text {
+                //                    Layout.alignment: Qt.AlignCenter
+                //                    Layout.columnSpan: 2
+                //                    text: qsTr("Частота поподания по ФЭ")
+                //                }
+
+                //                Text {
+                //                    Layout.alignment: Qt.AlignCenter
+                //                    text: qsTr("W1")
+                //                }
+
+                //                TextField {
+                //                    id: w1
+                //                    objectName: "w1"
+                //                    width: 250
+                //                    maximumLength: maximumLenghtTextField
+                //                }
+
+                //                Text {
+                //                    Layout.alignment: Qt.AlignCenter
+                //                    text: qsTr("W2")
+                //                }
+
+                //                TextField {
+                //                    id: w2
+                //                    objectName: "w2"
+                //                    width: 250
+                //                    maximumLength: maximumLenghtTextField
+                //                }
+
+                //                Text {
+                //                    Layout.alignment: Qt.AlignCenter
+                //                    text: qsTr("W3")
+                //                }
+
+                //                TextField {
+                //                    id: w3
+                //                    objectName: "w3"
+                //                    width: 250
+                //                    maximumLength: maximumLenghtTextField
+                //                }
+
+                //                Text {
+                //                    Layout.alignment: Qt.AlignCenter
+                //                    text: qsTr("W4")
+                //                }
+
+                //                TextField {
+                //                    id: w4
+                //                    objectName: "w4"
+                //                    width: 250
+                //                    maximumLength: maximumLenghtTextField
+                //                }
+
+                //                Text {
+                //                    Layout.alignment: Qt.AlignCenter
+                //                    text: qsTr("W5")
+                //                }
+
+                                TextField {
+                                    id: w5
+                                    objectName: "w5"
+                                    width: 250
+                                    maximumLength: maximumLenghtTextField
+                                }
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W1")
+                    text: qsTr("W6")
+
                 }
 
-                TextField {
-                    id: w1
-                    objectName: "w1"
+                TextArea {
+                    id: textArea
+                    objectName: "textArea"
+                    wrapMode: TextArea.Wrap
+                    readOnly: true
                     width: 250
                 }
 
-                Text {
-                    Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W2")
-                }
-
-                TextField {
-                    id: w2
-                    objectName: "w2"
-                    width: 250
-                }
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W3")
+                    text: qsTr("W6")
+
                 }
 
-                TextField {
-                    id: w3
-                    objectName: "w3"
-                    width: 250
-                }
-
-                Text {
-                    Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W4")
-                }
-
-                TextField {
-                    id: w4
-                    objectName: "w4"
-                    width: 250
-                }
-
-                Text {
-                    Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W5")
-                }
-
-                TextField {
-                    id: w5
-                    objectName: "w5"
+                TextArea {
+                    id: textArgrea
+                    objectName: "textArea"
+                    wrapMode: TextArea.Wrap
+                    readOnly: true
                     width: 250
                 }
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
                     text: qsTr("W6")
+
                 }
 
-                TextField {
-                    id: w6
-                    objectName: "w6"
+                TextArea {
+                    id: textAr45grea
+                    objectName: "textArea"
+                    wrapMode: TextArea.Wrap
+                    readOnly: true
                     width: 250
                 }
 
-                Button {
+                //                Rectangle {
+                //                    width: 20
+                //                    border.color: "black"
+                //                    anchors.fill: parent
+                //                    TextArea {
+                //                        width:250
+
+                //                    }
+                //                }
+
+                /*                Button {
                     x:500
                     y:200
                     id: openMap
@@ -436,7 +502,7 @@ ApplicationWindow {
                         var browserWindow = component.createObject(this);
 
                     }
-                } // To Button
+                }*/ // To Button
 
             }  // To rightGridLayout
         } // To rightGroupBox
