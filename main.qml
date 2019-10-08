@@ -14,7 +14,7 @@ ApplicationWindow {
     id: mainWindow
     visible: true
 
-    property int windowWidth: 800
+    property int windowWidth: 87
     property int windowHeight: 380
 
     width: windowWidth
@@ -211,6 +211,7 @@ ApplicationWindow {
 
                 GroupBox {
                     id: groupBoxRadioButton
+                    Layout.alignment: Qt.AlignCenter
                     width: 200
 
                     ColumnLayout {
@@ -330,27 +331,117 @@ ApplicationWindow {
                         width: 250
                     }
 
-
                 } // To GridLayout
-
-            } // To CloumnLayout
+            } // To ColumnLayout
         } // To MainGroupBox
     } // To Item
 
+    Item {
+        id:rightItem
+        anchors.left: centerItem.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 300
 
-//        Button {
-//            x:500
-//            y:200
-//            id: openMap
-//            text: "Моделировать"
-//            //Layout.fillWidth: true
+        GroupBox {
+            id: rightGroupBox
 
-//            onClicked: {
-//                var component = Qt.createComponent("map.qml");
-//                var browserWindow = component.createObject(this);
+            GridLayout {
+                id: rightGridlayout
+                columns: 2
 
-//            }
-//        }
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.columnSpan: 2
+                    text: qsTr("Частота поподания по ФЭ")
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W1")
+                }
+
+                TextField {
+                    id: w1
+                    objectName: "w1"
+                    width: 250
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W2")
+                }
+
+                TextField {
+                    id: w2
+                    objectName: "w2"
+                    width: 250
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W3")
+                }
+
+                TextField {
+                    id: w3
+                    objectName: "w3"
+                    width: 250
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W4")
+                }
+
+                TextField {
+                    id: w4
+                    objectName: "w4"
+                    width: 250
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W5")
+                }
+
+                TextField {
+                    id: w5
+                    objectName: "w5"
+                    width: 250
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W6")
+                }
+
+                TextField {
+                    id: w6
+                    objectName: "w6"
+                    width: 250
+                }
+
+                Button {
+                    x:500
+                    y:200
+                    id: openMap
+                    text: "Моделировать"
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.columnSpan: 2
+                    //Layout.fillWidth: true
+
+                    onClicked: {
+                        var component = Qt.createComponent("map.qml");
+                        var browserWindow = component.createObject(this);
+
+                    }
+                } // To Button
+
+            }  // To rightGridLayout
+        } // To rightGroupBox
+    } // To rightItem
+
 }  // To Window
 
 
