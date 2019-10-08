@@ -16,11 +16,13 @@ ApplicationWindow {
     visible: true
 
     width: 800
-    height: 650
+    height: 350
     maximumWidth: 800
-    maximumHeight: 650
-    x:400
-    y:300
+    minimumWidth: 800
+    maximumHeight: 350
+    minimumHeight: 350
+    x:50
+    y:50
 
     title: "Моделирование бомбометания"
 
@@ -49,7 +51,7 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 400
+        width: 300
         //        anchors.left: mainWindow
 
         GroupBox {
@@ -180,8 +182,7 @@ ApplicationWindow {
         anchors.left: leftItem.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        anchors.leftMargin: -35
-        width: 400
+        width: 300
 
         GroupBox {
             id: centerGroupBox
@@ -269,16 +270,19 @@ ApplicationWindow {
 
 
 
-    //    Button {
-    //        id: openMap
-    //        text: "Открыть карту"
-    //        //Layout.fillWidth: true
+        Button {
+            x:500
+            y:200
+            id: openMap
+            text: "Моделировать"
+            //Layout.fillWidth: true
 
-    //        onClicked: {
-    //            var component = Qt.createComponent("map.qml");
-    //            var browserWindow = component.createObject(this);
-    //        }
-    //    }
+            onClicked: {
+                var component = Qt.createComponent("map.qml");
+                var browserWindow = component.createObject(this);
+
+            }
+        }
 }  // To Window
 
 
