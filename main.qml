@@ -153,7 +153,6 @@ ApplicationWindow {
                 ComboBox {
                     id: intervalRegime // Интервал строя
                     objectName: "intervalRegime"
-                    width: 500
                     model: [ "100", "200", "300" ]
                 }
 
@@ -177,7 +176,6 @@ ApplicationWindow {
                 ComboBox {
                     id: bombingAltitude // Высота бомбометания
                     objectName: "bombingAltitude"
-                    width: 250
                     model: [ "1500", "1700", "1900" ]
                 }
 
@@ -391,7 +389,6 @@ ApplicationWindow {
                 TextArea {
                     id: textAreaW1
                     objectName: "textAreaW1"
-                    //wrapMode: TextArea.Wrap
                     readOnly: true
                     Layout.fillHeight : false
                     Layout.fillWidth: false
@@ -407,7 +404,6 @@ ApplicationWindow {
                 TextArea {
                     id: textAreaW2
                     objectName: "textAreaW2"
-                    //wrapMode: TextArea.Wrap
                     readOnly: true
                     Layout.fillHeight : false
                     Layout.fillWidth: false
@@ -424,7 +420,6 @@ ApplicationWindow {
                 TextArea {
                     id: textAreaW3
                     objectName: "textAreaW3"
-                    //wrapMode: TextArea.Wrap
                     readOnly: true
                     Layout.fillHeight : false
                     Layout.fillWidth: false
@@ -440,7 +435,6 @@ ApplicationWindow {
                 TextArea {
                     id: textAreaW4
                     objectName: "textAreaW4"
-                    //wrapMode: TextArea.Wrap
                     readOnly: true
                     Layout.fillHeight : false
                     Layout.fillWidth: false
@@ -456,7 +450,6 @@ ApplicationWindow {
                 TextArea {
                     id: textAreaW5
                     objectName: "textAreaW5"
-                    //wrapMode: TextArea.Wrap
                     readOnly: true
                     Layout.fillHeight : false
                     Layout.fillWidth: false
@@ -473,7 +466,6 @@ ApplicationWindow {
                 TextArea {
                     id: textAreaW6
                     objectName: "textAreaW6"
-                    //wrapMode: TextArea.Wrap
                     readOnly: true
                     Layout.fillHeight : false
                     Layout.fillWidth: false
