@@ -14,8 +14,12 @@ ApplicationWindow {
     id: mainWindow
     visible: true
 
-    property int windowWidth: 870
-    property int windowHeight: 380
+    property int windowWidth: 714
+    property int windowHeight: 370
+
+    property int leftItemWidth: 315
+    property int centerItemWidth: 251
+    property int rightItemWidth: 148
 
     property int maximumLenghtTextField: 6  // Максимальная длина символов в поле TextField
 
@@ -58,10 +62,12 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 380
+        width: leftItemWidth
 
         GroupBox {
             id: leftGroupBox
+            anchors.top: leftItem.top
+            anchors.bottom: leftItem.bottom
 
             GridLayout{
                 id: leftGridLayout
@@ -144,11 +150,11 @@ ApplicationWindow {
                     text: qsTr("Интервал строя, [м]")
                 }
 
-                TextField {
+                ComboBox {
                     id: intervalRegime // Интервал строя
                     objectName: "intervalRegime"
-                    width: 250
-                    maximumLength: maximumLenghtTextField
+                    width: 500
+                    model: [ "100", "200", "300" ]
                 }
 
                 Text {
@@ -168,13 +174,12 @@ ApplicationWindow {
                     text: qsTr("Высота бомбометания, [м]")
                 }
 
-                TextField {
+                ComboBox {
                     id: bombingAltitude // Высота бомбометания
                     objectName: "bombingAltitude"
                     width: 250
-                    maximumLength: maximumLenghtTextField
+                    model: [ "1500", "1700", "1900" ]
                 }
-
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
@@ -209,10 +214,12 @@ ApplicationWindow {
         anchors.left: leftItem.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 300
+        width: centerItemWidth
 
         GroupBox {
             id: centerGroupBox
+            anchors.top: centerItem.top
+            anchors.bottom: centerItem.bottom
 
             ColumnLayout {
                 spacing: 3
@@ -358,6 +365,7 @@ ApplicationWindow {
     Item {
         id:rightItem
         anchors.left: centerItem.right
+        anchors.right: parent.right
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         width: 300
@@ -369,99 +377,91 @@ ApplicationWindow {
                 id: rightGridlayout
                 columns: 2
 
-                //                Text {
-                //                    Layout.alignment: Qt.AlignCenter
-                //                    Layout.columnSpan: 2
-                //                    text: qsTr("Частота поподания по ФЭ")
-                //                }
-
-                //                Text {
-                //                    Layout.alignment: Qt.AlignCenter
-                //                    text: qsTr("W1")
-                //                }
-
-                //                TextField {
-                //                    id: w1
-                //                    objectName: "w1"
-                //                    width: 250
-                //                    maximumLength: maximumLenghtTextField
-                //                }
-
-                //                Text {
-                //                    Layout.alignment: Qt.AlignCenter
-                //                    text: qsTr("W2")
-                //                }
-
-                //                TextField {
-                //                    id: w2
-                //                    objectName: "w2"
-                //                    width: 250
-                //                    maximumLength: maximumLenghtTextField
-                //                }
-
-                //                Text {
-                //                    Layout.alignment: Qt.AlignCenter
-                //                    text: qsTr("W3")
-                //                }
-
-                //                TextField {
-                //                    id: w3
-                //                    objectName: "w3"
-                //                    width: 250
-                //                    maximumLength: maximumLenghtTextField
-                //                }
-
-                //                Text {
-                //                    Layout.alignment: Qt.AlignCenter
-                //                    text: qsTr("W4")
-                //                }
-
-                //                TextField {
-                //                    id: w4
-                //                    objectName: "w4"
-                //                    width: 250
-                //                    maximumLength: maximumLenghtTextField
-                //                }
-
-                //                Text {
-                //                    Layout.alignment: Qt.AlignCenter
-                //                    text: qsTr("W5")
-                //                }
-
-                                TextField {
-                                    id: w5
-                                    objectName: "w5"
-                                    width: 250
-                                    maximumLength: maximumLenghtTextField
-                                }
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    Layout.columnSpan: 2
+                    text: qsTr("Частота поподания по ФЭ")
+                }
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W6")
-
+                    text: qsTr("W1")
                 }
 
                 TextArea {
-                    id: textArea
-                    objectName: "textArea"
-                    wrapMode: TextArea.Wrap
+                    id: textAreaW1
+                    objectName: "textAreaW1"
+                    //wrapMode: TextArea.Wrap
                     readOnly: true
-                    width: 250
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W2")
+                }
+
+                TextArea {
+                    id: textAreaW2
+                    objectName: "textAreaW2"
+                    //wrapMode: TextArea.Wrap
+                    readOnly: true
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
                 }
 
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
-                    text: qsTr("W6")
-
+                    text: qsTr("W3")
                 }
 
                 TextArea {
-                    id: textArgrea
-                    objectName: "textArea"
-                    wrapMode: TextArea.Wrap
+                    id: textAreaW3
+                    objectName: "textAreaW3"
+                    //wrapMode: TextArea.Wrap
                     readOnly: true
-                    width: 250
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W4")
+                }
+
+                TextArea {
+                    id: textAreaW4
+                    objectName: "textAreaW4"
+                    //wrapMode: TextArea.Wrap
+                    readOnly: true
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W5")
+                }
+
+                TextArea {
+                    id: textAreaW5
+                    objectName: "textAreaW5"
+                    //wrapMode: TextArea.Wrap
+                    readOnly: true
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
                 }
 
                 Text {
@@ -471,24 +471,17 @@ ApplicationWindow {
                 }
 
                 TextArea {
-                    id: textAr45grea
-                    objectName: "textArea"
-                    wrapMode: TextArea.Wrap
+                    id: textAreaW6
+                    objectName: "textAreaW6"
+                    //wrapMode: TextArea.Wrap
                     readOnly: true
-                    width: 250
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
                 }
 
-                //                Rectangle {
-                //                    width: 20
-                //                    border.color: "black"
-                //                    anchors.fill: parent
-                //                    TextArea {
-                //                        width:250
-
-                //                    }
-                //                }
-
-                /*                Button {
+                Button {
                     x:500
                     y:200
                     id: openMap
@@ -502,7 +495,7 @@ ApplicationWindow {
                         var browserWindow = component.createObject(this);
 
                     }
-                }*/ // To Button
+                } // To Button
 
             }  // To rightGridLayout
         } // To rightGroupBox
