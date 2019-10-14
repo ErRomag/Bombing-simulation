@@ -78,8 +78,6 @@ Window {
             width: 1
             height: 150
             color: "red"
-            x:objectEGU.Center
-            y:objectEGU.Center
             rotation: 35
         }
 
