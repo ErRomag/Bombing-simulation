@@ -42,7 +42,7 @@ ApplicationWindow {
         id: aboutBox
         title: "О программе"
         informativeText :"ПО разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А."
-        text: "Эта программа моделирует бомбардировку двумя самолетами-истрибителями" +
+        text: "Эта программа моделирует бомбардировку двумя самолетами-истребителями " +
               "зенитного ракетного комплекса";
         icon: StandardIcon.Information
     }
@@ -91,6 +91,7 @@ ApplicationWindow {
                     objectName: "aimDispersion"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+\.?\d*/}
                 }
 
                 Text {
@@ -103,6 +104,7 @@ ApplicationWindow {
                     objectName: "technicalDispersion"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+\.?\d*/}
                 }
 
                 Text {
@@ -115,6 +117,7 @@ ApplicationWindow {
                     objectName: "ammunitionDispersion"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+\.?\d*/}
                 }
 
                 Text {
@@ -133,6 +136,7 @@ ApplicationWindow {
                     objectName: "combatRouteCenterPair"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+\.?\d*/}
                 }
 
                 Text {
@@ -145,6 +149,7 @@ ApplicationWindow {
                     objectName: "rangeToTraverse"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+\.?\d*/}
                 }
 
                 Text {
@@ -168,6 +173,7 @@ ApplicationWindow {
                     objectName: "intervalSeries"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+\.?\d*/}
                 }
 
                 Text {
@@ -188,9 +194,10 @@ ApplicationWindow {
 
                 TextField {
                     id: numberASP // Количество АСП
-                    objectName: "bombingAltitude"
+                    objectName: "numberASP"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+/}
                 }
 
                 Text {
@@ -203,6 +210,7 @@ ApplicationWindow {
                     objectName: "numberAmmunition"
                     width: 250
                     maximumLength: maximumLenghtTextField
+                    validator: RegExpValidator {regExp: /\d+/}
                 }
 
             } // To leftGridLayout
@@ -231,6 +239,7 @@ ApplicationWindow {
 
                 GroupBox {
                     id: groupBoxRadioButton
+                    objectName: "groupBoxRadioButton"
                     Layout.alignment: Qt.AlignCenter
                     width: 200
 
@@ -295,6 +304,7 @@ ApplicationWindow {
                         objectName: "radiusCP"
                         width: 250
                         maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
                     }
 
                     Text {
@@ -307,6 +317,7 @@ ApplicationWindow {
                         objectName: "radiusCP12"
                         width: 250
                         maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
                     }
 
                     Text {
@@ -319,6 +330,7 @@ ApplicationWindow {
                         objectName: "radiusSC123"
                         width: 250
                         maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
                     }
 
                     Text {
@@ -328,9 +340,10 @@ ApplicationWindow {
 
                     TextField {
                         id: radiusRLSV // Радиус РЛС, РЛВ [м]
-                        objectName: "radiusSC123"
+                        objectName: "radiusRLSV"
                         width: 250
                         maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
                     }
 
                     Text {
@@ -343,6 +356,7 @@ ApplicationWindow {
                         objectName: "radiusEG12"
                         width: 250
                         maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
                     }
 
                     Text {
@@ -355,6 +369,7 @@ ApplicationWindow {
                         objectName: "radiusCable"
                         width: 300
                         maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
                     }
 
                 } // To GridLayout
@@ -380,7 +395,22 @@ ApplicationWindow {
                 Text {
                     Layout.alignment: Qt.AlignCenter
                     Layout.columnSpan: 2
-                    text: qsTr("Частота поподания по ФЭ")
+                    text: qsTr("Частота попадания по ФЭ")
+                }
+
+                Text {
+                    Layout.alignment: Qt.AlignCenter
+                    text: qsTr("W0")
+                }
+
+                TextArea {
+                    id: textAreaW0
+                    objectName: "textAreaW0"
+                    readOnly: true
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
                 }
 
                 Text {

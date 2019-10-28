@@ -35,4 +35,5 @@ DISTFILES += \
     map.qml
 
 HEADERS += \
-    calculationmodel.h
+    calculationmodel.h \
+    common.h
