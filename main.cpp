@@ -2,6 +2,8 @@
 #include <QQmlApplicationEngine>
 #include "calculationmodel.h"
 
+#include <QColor>
+
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

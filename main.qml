@@ -515,8 +515,8 @@ ApplicationWindow {
                     //Layout.fillWidth: true
 
                     onClicked: {
-                        //var component = Qt.createComponent("map.qml");
-                        //var browserWindow = component.createObject(this);
+                        var component = Qt.createComponent("map.qml");
+                        var browserWindow = component.createObject(this);
                         qmlSignal("");
 
                     }
