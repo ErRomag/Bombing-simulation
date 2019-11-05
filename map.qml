@@ -7,7 +7,7 @@ Window {
     visible: true
 
     property int mapWindowWidth: 700
-    property int mapWindowHeight: 580
+    property int mapWindowHeight: 600
 
     width: mapWindowWidth
     minimumWidth:mapWindowWidth
@@ -20,7 +20,7 @@ Window {
     x:50
     y:50
 
-    title: qsTr("2D реализация бомбометания")
+    title: qsTr("Реализация моделирования")
 
 
     Image {
@@ -32,16 +32,22 @@ Window {
     Rectangle {
         id:objectEGU
         objectName: "objectEGU"
-        x: 10
-        y: 220
+        x: 90
+        y: 270
         width: 25
         height: 25
-        color: "yellow";
-        border.color: "red"
-        border.width: 2
-        antialiasing: true;
+        color: "#7FFF00";
+        antialiasing: true
         rotation: 0
+    }
 
+    Text {
+        id: textObjectEGU
+        x:120
+        y:275
+        color: "#FFFFF0"
+        text: qsTr("ЭГ")
+        font.pixelSize: 14
     }
 
 
@@ -52,20 +58,210 @@ Window {
         y: 50
         width: 25
         height: 25
-        color: "yellow";
-        border.color: "red"
-        border.width: 2
-        antialiasing: true;
+        color: "#7FFF00";
+        antialiasing: true
         rotation: 35
     }
 
 
     Text {
         id: textObjectRLS
-        x:200
+        x:205
         y:50
-        color: "white"
+        color: "#FFFFF0"
         text: qsTr("РЛС")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectRLV
+        objectName: "objectRLV"
+        x: 130
+        y: 500
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 81
+    }
+
+
+    Text {
+        id: textObjectRLV
+        x: 160
+        y: 500
+        color: "#FFFFF0"
+        text: qsTr("РЛВ")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectKP
+        objectName: "objectKP"
+        x: 270
+        y: 280
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 8
+    }
+
+    Text {
+        id: textObjectKP
+        x:300
+        y:285
+        color: "#FFFFF0"
+        text: qsTr("КП")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectEG1
+        objectName: "objectEG1"
+        x: 540
+        y: 40
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 32
+    }
+
+    Text {
+        id: textObjectEG1
+        x:575
+        y:45
+        color: "#FFFFF0"
+        text: qsTr("ЭГ-1")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectKP1
+        objectName: "objectKP1"
+        x: 420
+        y: 110
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 15
+    }
+
+    Text {
+        id: textObjectKP1
+        x:450
+        y:115
+        color: "#FFFFF0"
+        text: qsTr("КП-1")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectSU1
+        objectName: "objectSU1"
+        x: 480
+        y: 220
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 20
+    }
+
+    Text {
+        id: textObjectSU1
+        x: 510
+        y: 230
+        color: "#FFFFF0"
+        text: qsTr("СУ-1")
+        font.pixelSize: 14
+    }
+
+
+    Rectangle {
+        id:objectSU2
+        objectName: "objectSU2"
+        x: 440
+        y: 350
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 0
+    }
+
+    Text {
+        id: textObjectSU2
+        x: 470
+        y: 355
+        color: "#FFFFF0"
+        text: qsTr("СУ-2")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectSU3
+        objectName: "objectSU3"
+        x: 550
+        y: 440
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 130
+    }
+
+    Text {
+        id: textObjectSU3
+        x: 585
+        y: 450
+        color: "#FFFFF0"
+        text: qsTr("СУ-3")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectKP2
+        objectName: "objectKP2"
+        x: 300
+        y: 480
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 41
+    }
+
+    Text {
+        id: textObjectKP2
+        x: 335
+        y: 490
+        color: "#FFFFF0"
+        text: qsTr("КП-2")
+        font.pixelSize: 14
+    }
+
+    Rectangle {
+        id:objectEG2
+        objectName: "objectEG2"
+        x: 490
+        y: 530
+        width: 25
+        height: 25
+        color: "#7FFF00";
+        antialiasing: true
+        rotation: 13
+    }
+
+    Text {
+        id: textObjectEG2
+        x: 520
+        y: 535
+        color: "#FFFFF0"
+        text: qsTr("ЭГ-2")
+        font.pixelSize: 14
     }
 
 
@@ -78,7 +274,7 @@ Window {
         property real x2: 170
         property real y2: 50
 
-        color: "red"
+        color: "#FFFFF0"
         height: 1
         smooth: true;
 
