@@ -3,5 +3,8 @@
         <file>main.qml</file>
         <file>backgroundCanvas.jpg</file>
         <file>map.qml</file>
+        <file>bombingIcon.jpg</file>
+        <file>bombIco.ico</file>
+        <file>myapp.rc</file>
     </qresource>
 </RCC>
