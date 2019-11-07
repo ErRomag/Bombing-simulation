@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/bombingIcon.jpg"));
 
+    // Регестрируем типы radioButton, checkBox
     qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
 
     QQmlApplicationEngine engine;

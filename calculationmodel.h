@@ -13,7 +13,18 @@ public:
     explicit calculationModel(QObject *parent = nullptr);
 
     Q_PROPERTY(int RadioButton READ RadioButton WRITE setRadioButton NOTIFY RadioButtonChanged)
+    Q_PROPERTY(int numCheckBox READ numCheckBox WRITE setNumCheckBox NOTIFY NumCheckBoxChanged)
 
+    // Функции для CheckBox
+    int numCheckBox(){
+       return _numCheckBox;
+    }
+    void setNumCheckBox(int num){
+        _numCheckBox = num ;
+       emit  NumCheckBoxChanged();
+    }
+
+    // Функции для RadioButton
     int RadioButton(){
        return _radioButoon;
     }
@@ -24,6 +35,7 @@ public:
 
 signals:
     void RadioButtonChanged();
+    void NumCheckBoxChanged();
 
 public slots:
     void cppSlot(const QString &msg);
@@ -43,7 +55,6 @@ private:
     void evalDangerousExplosionsArea();
 
     void damageCalculation();
-    void readRadioButton();
 
     QMap<QString, QObject*> initMap; // textFields map
     QMap<QString, QObject*> cbMap;   // comboBoxes map
@@ -55,6 +66,7 @@ private:
     void clrResMap();
 
     int _radioButoon{0};
+    int _numCheckBox{0};
 };
 
 #endif // CALCULATIONMODEL_H

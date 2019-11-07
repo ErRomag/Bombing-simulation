@@ -301,19 +301,36 @@ void calculationModel::bindObjects()
     cbMap.insert(intrvlRgm, this->parent()->findChild<QObject*>(intrvlRgm));
     cbMap.insert(bmbngAlttd, this->parent()->findChild<QObject*>(bmbngAlttd));
 
-    int a;
+    int a, b;
 
     if (RadioButton() == 1) {
        a = 500;
+       qDebug() << "Функция:" << a;
     } else if (RadioButton() == 2) {
         a = 600;
+        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 3) {
         a = 700;
+        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 4) {
         a = 800;
+        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 5) {
         a = 900;
+        qDebug() << "Функция:" << a;
     }
+
+    if (numCheckBox() == 1) {
+        b = 100;
+        qDebug() << "Интервал строя:" << b;
+    } else if (numCheckBox() == 2) {
+        b = 200;
+        qDebug() << "Интервал строя:" << b;
+    } else if (numCheckBox() == 3) {
+        b = 300;
+        qDebug() << "Интервал строя:" << b;
+    }
+
 
 //    radioBox    = this->parent()->findChild<QGroupBox*>("groupBoxRadioButton"); // pls Roman
 

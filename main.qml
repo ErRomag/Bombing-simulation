@@ -167,6 +167,8 @@ ApplicationWindow {
                     id: intervalRegime // Интервал строя
                     objectName: "intervalRegime"
                     model: [ "100", "200", "300" ]
+                    onCurrentIndexChanged: kernel.numCheckBox
+
                 }
 
                 Text {
@@ -191,6 +193,9 @@ ApplicationWindow {
                     id: bombingAltitude // Высота бомбометания
                     objectName: "bombingAltitude"
                     model: [ "1500", "1700", "1900" ]
+
+                    // Тут поменять функцию
+                    onCurrentIndexChanged: kernel.numCheckBox
                 }
 
                 Text {
