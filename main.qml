@@ -8,6 +8,8 @@ import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.1
+//import Testclass 1.0
+import CalculationModel 1.0
 
 
 ApplicationWindow {
@@ -30,6 +32,10 @@ ApplicationWindow {
     height: windowHeight
     maximumHeight: windowHeight
     minimumHeight: windowHeight
+
+    CalculationModel {
+        id: kernel
+    }
 
     x:50
     y:50
@@ -246,41 +252,66 @@ ApplicationWindow {
                     ColumnLayout {
                         id: columnLayoutRadioButton
 
-                        ExclusiveGroup { id: tabPositionGroup }
+                       ExclusiveGroup { id: tabPositionGroup }
 
                         RadioButton {
                             text: qsTr("ОФАБ-100-120")
                             id: ofab100  // ОФАБ 100
+                            objectName: "ofab100"
                             checked: false
                             exclusiveGroup: tabPositionGroup
+
+                            onClicked: {
+                                kernel.RadioButton = 1
+                            }
                         }
 
                         RadioButton {
                             text: qsTr("ОФАБ-250")
                             id: ofab250  // ОФАБ 250
+                            objectName: "ofab250"
                             checked: false
                             exclusiveGroup: tabPositionGroup
+
+                            onClicked: {
+                                kernel.RadioButton = 2
+                            }
                         }
 
                         RadioButton {
                             text: qsTr("РБС-Ф025-33")
                             id: rbs  // РБС
+                            objectName: "rbs"
                             checked: false
                             exclusiveGroup: tabPositionGroup
+
+                            onClicked: {
+                                kernel.RadioButton = 3
+                            }
                         }
 
                         RadioButton {
                             text: qsTr("РБК-250-А0.25")
                             id: rbk250  // РБК 250
+                            objectName: "rbk250"
                             checked: false
                             exclusiveGroup: tabPositionGroup
+
+                            onClicked: {
+                                kernel.RadioButton = 4
+                            }
                         }
 
                         RadioButton {
                             text: qsTr("РБК-500-А0.25")
                             id: rbk500  // РБК 500
+                            objectName: "rbk500"
                             checked: false
                             exclusiveGroup: tabPositionGroup
+
+                            onClicked: {
+                                kernel.RadioButton = 5
+                            }
                         }
                     } // To ColumnLayoutRadioButton
                 } // To GroupBox

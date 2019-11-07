@@ -12,10 +12,24 @@ class calculationModel : public QObject
 public:
     explicit calculationModel(QObject *parent = nullptr);
 
+    Q_PROPERTY(int RadioButton READ RadioButton WRITE setRadioButton NOTIFY RadioButtonChanged)
+
+    int RadioButton(){
+       return _radioButoon;
+    }
+    void setRadioButton(int val){
+        _radioButoon = val ;
+       emit  RadioButtonChanged();
+    }
+
 signals:
+    void RadioButtonChanged();
 
 public slots:
     void cppSlot(const QString &msg);
+
+
+
 
 private:
     float FEopt[26][7]; /* массив параметров элементов (Functional Element) ЗРК [нулевые элементы не используются]
@@ -29,6 +43,7 @@ private:
     void evalDangerousExplosionsArea();
 
     void damageCalculation();
+    void readRadioButton();
 
     QMap<QString, QObject*> initMap; // textFields map
     QMap<QString, QObject*> cbMap;   // comboBoxes map
@@ -38,6 +53,8 @@ private:
     void bindObjects();
     void clrInitMap();
     void clrResMap();
+
+    int _radioButoon{0};
 };
 
 #endif // CALCULATIONMODEL_H

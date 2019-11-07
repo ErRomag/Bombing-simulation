@@ -1,5 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQmlEngine>
 #include "calculationmodel.h"
 #include <QIcon>
 
@@ -12,6 +14,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/bombingIcon.jpg"));
 
+    qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
+
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -22,13 +26,14 @@ int main(int argc, char *argv[])
     engine.load(url);
 
 
-    QObject* root = engine.rootObjects()[0];
-
-    calculationModel *calculationmodel = new calculationModel(root);
+  // QObject* root = engine.rootObjects()[0];
 
 
-    QObject::connect(root, SIGNAL(qmlSignal(QString)),
-                     calculationmodel, SLOT(cppSlot(QString)));
+    //calculationModel *calculationmodel = new calculationModel(root);
+
+
+//    QObject::connect(root, SIGNAL(qmlSignal(QString)),
+//                     calculationmodel, SLOT(cppSlot(QString)));
 
     return app.exec();
 }

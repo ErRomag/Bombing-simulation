@@ -6,7 +6,7 @@
 
 calculationModel::calculationModel(QObject *parent) : QObject(parent)
 {
-    bindObjects();
+   // bindObjects();
 }
 
 void calculationModel::cppSlot(const QString &msg)
@@ -14,8 +14,8 @@ void calculationModel::cppSlot(const QString &msg)
     Q_UNUSED(msg);
 
     initFEoptions(); // заполнили FEopt
-    evalDangerousExplosionsArea(); // заполнили DEA
-//    damageCalculation(); // посчитали    
+//    evalDangerousExplosionsArea(); // заполнили DEA
+   damageCalculation(); // посчитали
 }
 
 void calculationModel::initFEoptions()
@@ -300,6 +300,20 @@ void calculationModel::bindObjects()
 
     cbMap.insert(intrvlRgm, this->parent()->findChild<QObject*>(intrvlRgm));
     cbMap.insert(bmbngAlttd, this->parent()->findChild<QObject*>(bmbngAlttd));
+
+    int a;
+
+    if (RadioButton() == 1) {
+       a = 500;
+    } else if (RadioButton() == 2) {
+        a = 600;
+    } else if (RadioButton() == 3) {
+        a = 700;
+    } else if (RadioButton() == 4) {
+        a = 800;
+    } else if (RadioButton() == 5) {
+        a = 900;
+    }
 
 //    radioBox    = this->parent()->findChild<QGroupBox*>("groupBoxRadioButton"); // pls Roman
 
