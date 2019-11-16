@@ -553,7 +553,8 @@ ApplicationWindow {
                     onClicked: {
                         var component = Qt.createComponent("map.qml");
                         var browserWindow = component.createObject(this);
-                        qmlSignal("");
+                        //qmlSignal("");
+                        //kernel.cppSlot()
 
                     }
                 } // To Button

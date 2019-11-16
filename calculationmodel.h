@@ -9,11 +9,15 @@
 class calculationModel : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int RadioButton READ RadioButton WRITE setRadioButton NOTIFY RadioButtonChanged)
+    Q_PROPERTY(int numCheckBox READ numCheckBox WRITE setNumCheckBox NOTIFY NumCheckBoxChanged)
+
 public:
     explicit calculationModel(QObject *parent = nullptr);
 
-    Q_PROPERTY(int RadioButton READ RadioButton WRITE setRadioButton NOTIFY RadioButtonChanged)
-    Q_PROPERTY(int numCheckBox READ numCheckBox WRITE setNumCheckBox NOTIFY NumCheckBoxChanged)
+    void bindObjects();
+
+
 
     // Функции для CheckBox
     int numCheckBox(){
@@ -37,19 +41,21 @@ signals:
     void RadioButtonChanged();
     void NumCheckBoxChanged();
 
+
 public slots:
     void cppSlot(const QString &msg);
 
 
 
 
+
 private:
-    float FEopt[26][7]; /* массив параметров элементов (Functional Element) ЗРК [нулевые элементы не используются]
+    float FEopt[26][7]; /* массив параметров элементов (Functional Element) З� К [нулевые элементы не используются]
                           FE[i][j], где: i - номер функционального элемента;
                           j = {1(коорд. [x]); 2(коорд. [y]); 3(длина элемента [a]); 4(ширина элемента [b]);
                           5(угол [fi]); 6(радиус [r])}. */
     float DEA[26][9];   /* массив координат области опасных разрывов (Dangerous Explosion Area)
-                           элементов ЗРК [нулевые элементы не используются] */
+                           элементов З� К [нулевые элементы не используются] */
 
     void initFEoptions();
     void evalDangerousExplosionsArea();
@@ -61,9 +67,10 @@ private:
 //    QGroupBox* radioBox = nullptr;   // weapon radioBox
     QMap<quint8, QObject*> resMap;   // damage map
 
-    void bindObjects();
+
     void clrInitMap();
     void clrResMap();
+
 
     int _radioButoon{0};
     int _numCheckBox{0};

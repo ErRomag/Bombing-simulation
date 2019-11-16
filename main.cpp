@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/bombingIcon.jpg"));
 
-    // Регестрируем типы radioButton, checkBox
+    // � егестрируем типы radioButton, checkBox
     qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
 
     QQmlApplicationEngine engine;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     engine.load(url);
 
 
-  // QObject* root = engine.rootObjects()[0];
+//   QObject* root = engine.rootObjects()[0];
 
 
     //calculationModel *calculationmodel = new calculationModel(root);

@@ -122,14 +122,14 @@ var
     for (int i = 0; i <= 6; ++i)
         dukr[i] = 0;
 
-    for (int i = 1; i <= KR; ++i) //Перебор всех бомбометаний по ЗРК
+    for (int i = 1; i <= KR; ++i) //Перебор всех бомбометаний по З� К
     {
         for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
             FE[i] = true;
 
         for (int AreaNumber = 1; i <= 4; ++AreaNumber) //Перебор 4-х залпов
         {
-            //Реализация координат центров залпов (прицельное рассеивание)
+            //� еализация координат центров залпов (прицельное рассеивание)
 
     std::default_random_engine generator;
     std::normal_distribution<float> distribution(100,5);
@@ -147,7 +147,7 @@ var
               begin
               for k := 1 to kolsub do  // рассеивание суббоеприпасов
               begin       //2
-              RBK[k,1]:=Zalp_x+ L_ORS*(random-0.5); //Ребро квадрата
+              RBK[k,1]:=Zalp_x+ L_ORS*(random-0.5); //� ебро квадрата
               RBK[k,2]:=Zalp_y+ L_ORS*(random-0.5);
               for N_FE :=1 to 25 do //ФЭ
               if Destroy(RBK[k,1],RBK[k,2],
@@ -301,10 +301,14 @@ void calculationModel::bindObjects()
     cbMap.insert(intrvlRgm, this->parent()->findChild<QObject*>(intrvlRgm));
     cbMap.insert(bmbngAlttd, this->parent()->findChild<QObject*>(bmbngAlttd));
 
+    //QObject* textArea = this->parent()->findChild<QObject*>("textAreaW0");
+
     int a, b;
 
     if (RadioButton() == 1) {
        a = 500;
+       QString strResult = QString::number(a);
+      // textArea->setProperty("text", "=" + strResult);
        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 2) {
         a = 600;
