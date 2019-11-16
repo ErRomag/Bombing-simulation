@@ -3,18 +3,18 @@
 
 #define aimDisp "aimDispersion"             // Прицельное рассеивание
 #define techDisp "technicalDispersion"      // Техническое рассеивание
-#define ammoDisp "ammunitionDispersion"     // Рассеивание суббоеприпасов
+#define ammoDisp "ammunitionDispersion"     // � ассеивание суббоеприпасов
 #define cmbtRoute "combatRouteCenterPair"   // Боевой маршрут центра пары
 #define rngToTrvrs "rangeToTraverse"        // Дальность до траверза КП
 #define intrvlSer "intervalSeries"          // Интервал серии
 #define nmbASP "numberASP"                   // Количество АСП
 #define nmbAmmo "numberAmmunition"          // Количество суббоеприпасов СП, [шт]
-#define rCP "radiusCP"          // Радиус КП, [м]
-#define rCP12 "radiusCP12"      // Радиус КП1, КП2, [м]
-#define rSC123 "radiusSC123"    // Радиус СУ1, СУ2, СУ3 [м]
-#define rRLSV "radiusRLSV"      // Радиус РЛС, РЛВ [м]
-#define rEG12 "radiusEG12"      // Радиус ЭГ1, ЭГ2 РЛВ [м]
-#define rCable "radiusCable"    // Радиус кабели [м]
+#define rCP "radiusCP"          // � адиус КП, [м]
+#define rCP12 "radiusCP12"      // � адиус КП1, КП2, [м]
+#define rSC123 "radiusSC123"    // � адиус СУ1, СУ2, СУ3 [м]
+#define rRLSV "radiusRLSV"      // � адиус � ЛС, � ЛВ [м]
+#define rEG12 "radiusEG12"      // � адиус ЭГ1, ЭГ2 � ЛВ [м]
+#define rCable "radiusCable"    // � адиус кабели [м]
 
 #define intrvlRgm "intervalRegime"      // Интервал строя
 #define bmbngAlttd "bombingAltitude"    // Высота бомбометания

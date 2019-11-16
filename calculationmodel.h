@@ -11,11 +11,12 @@ class calculationModel : public QObject
     Q_OBJECT
     Q_PROPERTY(int RadioButton READ RadioButton WRITE setRadioButton NOTIFY RadioButtonChanged)
     Q_PROPERTY(int numCheckBox READ numCheckBox WRITE setNumCheckBox NOTIFY NumCheckBoxChanged)
+    Q_PROPERTY(float aimDispTextField)
 
 public:
     explicit calculationModel(QObject *parent = nullptr);
 
-    void bindObjects();
+    void bindObjects();  // ïðàëàëàëàëàëàëëà
 
 
 
