@@ -17,6 +17,8 @@ Window {
     maximumHeight: mapWindowHeight
     minimumHeight: mapWindowHeight
 
+    modality: Qt.ApplicationModal
+
     x:50
     y:50
 

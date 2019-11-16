@@ -11,6 +11,9 @@ class calculationModel : public QObject
     Q_OBJECT
     Q_PROPERTY(int RadioButton READ RadioButton WRITE setRadioButton NOTIFY RadioButtonChanged)
     Q_PROPERTY(int numCheckBox READ numCheckBox WRITE setNumCheckBox NOTIFY NumCheckBoxChanged)
+
+    Q_PROPERTY(float aimDispTextField READ aimDispTextField WRITE setAimDispTextField NOTIFY aimDispTextFieldChanged)
+
     Q_PROPERTY(float aimDispTextField)
 
 public:
@@ -38,10 +41,17 @@ public:
        emit  RadioButtonChanged();
     }
 
+    float aimDispTextField() const
+    {
+        return m_aimDispTextField;
+    }
+
 signals:
     void RadioButtonChanged();
     void NumCheckBoxChanged();
 
+
+    void aimDispTextFieldChanged(float aimDispTextField);
 
 public slots:
     void cppSlot(const QString &msg);
@@ -49,6 +59,16 @@ public slots:
 
 
 
+
+    void setAimDispTextField(float aimDispTextField)
+    {
+        qWarning("Floating point comparison needs context sanity check");
+        if (qFuzzyCompare(m_aimDispTextField, aimDispTextField))
+            return;
+
+        m_aimDispTextField = aimDispTextField;
+        emit aimDispTextFieldChanged(m_aimDispTextField);
+    }
 
 private:
     float FEopt[26][7]; /* массив параметров элементов (Functional Element) З� К [нулевые элементы не используются]
@@ -75,6 +95,7 @@ private:
 
     int _radioButoon{0};
     int _numCheckBox{0};
+    float m_aimDispTextField;
 };
 
 #endif // CALCULATIONMODEL_H

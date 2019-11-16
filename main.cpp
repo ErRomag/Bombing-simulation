@@ -3,6 +3,9 @@
 #include <QQmlContext>
 #include <QQmlEngine>
 #include "calculationmodel.h"
+
+#include "Backend.h"
+
 #include <QIcon>
 
 #include <QColor>
@@ -16,6 +19,8 @@ int main(int argc, char *argv[])
 
     // � егестрируем типы radioButton, checkBox
     qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
+
+    qmlRegisterType<Backend>("Backend", 1, 0, "Backend");
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

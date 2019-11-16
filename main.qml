@@ -11,6 +11,8 @@ import QtQuick.Window 2.1
 //import Testclass 1.0
 import CalculationModel 1.0
 
+import Backend 1.0
+
 
 ApplicationWindow {
     id: mainWindow
@@ -35,6 +37,10 @@ ApplicationWindow {
 
     CalculationModel {
         id: kernel
+    }
+
+    Backend {
+        id: backend
     }
 
     x:50
@@ -98,6 +104,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    onTextChanged: backend.setAimDispersionTextField(text)
                 }
 
                 Text {
@@ -111,6 +119,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    onTextChanged: backend.setTechnicalDispersionTextField(text)
                 }
 
                 Text {
@@ -124,6 +134,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    onTextChanged: backend.setAmmunitionDispersionTextField(text)
                 }
 
                 Text {
@@ -143,6 +155,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    onTextChanged: backend.setCombatRouteCenterPairTextField(text)
                 }
 
                 Text {
@@ -401,7 +415,7 @@ ApplicationWindow {
                     }
 
                     TextField {
-                        id: radiusCable // Радиус кабели [м]
+                        id: radiusCable // Радиус кабелей [м]
                         objectName: "radiusCable"
                         width: 300
                         maximumLength: maximumLenghtTextField
