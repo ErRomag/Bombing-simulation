@@ -53,9 +53,12 @@ ApplicationWindow {
     MessageDialog {
         id: aboutBox
         title: "О программе"
-        informativeText :"ПО разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А."
-        text: "Эта программа моделирует бомбардировку двумя самолетами-истребителями " +
-              "зенитного ракетного комплекса";
+        text: "Данное ПО моделирует бомбардировку двумя самолетами-истребителями\n" +
+              "зенитного ракетного комплекса.";
+
+        informativeText :"Разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А.\n" +
+                         "Иходный код проекта: https://github.com/ErRomag/Bombing-simulation"
+
         icon: StandardIcon.Information
     }
 
@@ -170,6 +173,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    onTextChanged: backend.setRangeToTraverseTextField(text)
                 }
 
                 Text {

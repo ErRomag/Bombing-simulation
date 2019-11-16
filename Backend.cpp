@@ -67,6 +67,24 @@ void Backend::setCombatRouteCenterPairTextField(QString combatRouteCenterPairTex
     emit combatRouteCenterPairTextFieldChanged(m_combatRouteCenterPairTextField);
 }
 
+// Связь для параметра "Дальность до траверза КП"
+QString Backend::rangeToTraverseTextField() const
+{
+    return m_rangeToTraverseTextField;
+}
+
+void Backend::setRangeToTraverseTextField(QString rangeToTraverseTextField)
+{
+    if (m_rangeToTraverseTextField == rangeToTraverseTextField)
+        return;
+
+    m_rangeToTraverseTextField = rangeToTraverseTextField;
+    emit rangeToTraverseTextFieldChanged(m_rangeToTraverseTextField);
+}
+
+
+
+
 // Функция инициализации переменных для вычислений
 void Backend::initialization()
 {
@@ -74,4 +92,5 @@ void Backend::initialization()
     technicalDispersion = m_technicalDispersionTextField.toFloat();
     ammunitionDispersion = m_ammunitionDispersionTextField.toFloat();
     combatRouteCenterPair = m_combatRouteCenterPairTextField.toFloat();
+    rangeToTraverse = m_rangeToTraverseTextField.toFloat();
 }
