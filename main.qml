@@ -19,7 +19,7 @@ ApplicationWindow {
     visible: true
 
     property int windowWidth: 714
-    property int windowHeight: 370
+    property int windowHeight: 380
 
     property int leftItemWidth: 315
     property int centerItemWidth: 251
@@ -185,6 +185,12 @@ ApplicationWindow {
                 ComboBox {
                     id: intervalRegime // Интервал строя
                     objectName: "intervalRegime"
+
+                    Layout.fillHeight : false
+                    Layout.fillWidth: false
+                    Layout.maximumHeight : 25
+                    Layout.maximumWidth: 105
+
                     model: [ "100", "200", "300" ]
 
                     onCurrentIndexChanged: backend.setIntervalRegimeComboBox(currentIndex)
@@ -226,11 +232,13 @@ ApplicationWindow {
                 TextField {
                     id: numberASP // Количество АСП
                     objectName: "numberASP"
+                    readOnly: true
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+/}
 
-                    onTextChanged: backend.setNumberASPTextField(text)
+                    text: backend.numberASPTextField
+                    //onTextChanged: backend.setNumberASPTextField(text)
                 }
 
                 Text {
@@ -244,6 +252,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+/}
+
+                    onTextChanged: backend.setNumberAmmunitionTextField(text)
                 }
 
             } // To leftGridLayout
@@ -285,12 +295,14 @@ ApplicationWindow {
                             text: qsTr("ОФАБ-100-120")
                             id: ofab100  // ОФАБ 100
                             objectName: "ofab100"
-                            checked: false
+                            checked: true
                             exclusiveGroup: tabPositionGroup
 
-                            onClicked: {
-                                kernel.RadioButton = 1
-                            }
+                            onCheckedChanged: backend.setIndexRadioButton(0)
+
+//                            onClicked: {
+//                                backend.setIndexRadioButton(0)
+//                            }
                         }
 
                         RadioButton {
@@ -300,9 +312,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onClicked: {
-                                kernel.RadioButton = 2
-                            }
+                            onCheckedChanged: backend.setIndexRadioButton(1)
+
+//                            onClicked: {
+//                                backend.setIndexRadioButton(1)
+//                            }
                         }
 
                         RadioButton {
@@ -312,9 +326,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onClicked: {
-                                kernel.RadioButton = 3
-                            }
+                            onCheckedChanged: backend.setIndexRadioButton(2)
+
+//                            onClicked: {
+//                                backend.setIndexRadioButton(2)
+//                            }
                         }
 
                         RadioButton {
@@ -324,9 +340,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onClicked: {
-                                kernel.RadioButton = 4
-                            }
+                            onCheckedChanged: backend.setIndexRadioButton(3)
+
+//                            onClicked: {
+//                                backend.setIndexRadioButton(3)
+//                            }
                         }
 
                         RadioButton {
@@ -336,12 +354,16 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onClicked: {
-                                kernel.RadioButton = 5
-                            }
+                            onCheckedChanged: backend.setIndexRadioButton(4)
+
+//                            onClicked: {
+//                                backend.setIndexRadioButton(4)
+//                            }
                         }
                     } // To ColumnLayoutRadioButton
                 } // To GroupBox
+
+
 
                 Text {
                     Layout.alignment: Qt.AlignCenter
@@ -360,9 +382,12 @@ ApplicationWindow {
                     TextField {
                         id: radiusCP // Радиус КП, [м]  (command post)
                         objectName: "radiusCP"
+                        readOnly: true
                         width: 250
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+//
+                        text: backend.radiusCPTextField
                     }
 
                     Text {
@@ -373,9 +398,12 @@ ApplicationWindow {
                     TextField {
                         id: radiusCP12 // Радиус КП1, КП2, [м] (command post)
                         objectName: "radiusCP12"
+                        readOnly: true
                         width: 250
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                        text: backend.radiusCP12TextField
                     }
 
                     Text {
@@ -386,9 +414,12 @@ ApplicationWindow {
                     TextField {
                         id: radiusSC123 // Радиус СУ1, СУ2, СУ3 [м]  (system control)
                         objectName: "radiusSC123"
+                        readOnly: true
                         width: 250
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                        text: backend.radiusSC123TextField
                     }
 
                     Text {
@@ -399,35 +430,58 @@ ApplicationWindow {
                     TextField {
                         id: radiusRLSV // Радиус РЛС, РЛВ [м]
                         objectName: "radiusRLSV"
+                        readOnly: true
                         width: 250
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                        text: backend.radiusRLSVTextField
                     }
 
                     Text {
                         Layout.alignment: Qt.AlignCenter
-                        text: qsTr("Радиус ЭГ1, ЭГ2 РЛВ [м]")
+                        text: qsTr("Радиус ЭГ1, ЭГ2 [м]")
                     }
 
                     TextField {
                         id: radiusEG12 // Радиус ЭГ1, ЭГ2 РЛВ [м]  (electric generator)
                         objectName: "radiusEG12"
+                        readOnly: true
                         width: 250
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                        text: backend.radiusEG12TextField
                     }
 
                     Text {
                         Layout.alignment: Qt.AlignCenter
-                        text: qsTr("Радиус кабели [м]")
+                        text: qsTr("Радиус кабелей [м]")
                     }
 
                     TextField {
                         id: radiusCable // Радиус кабелей [м]
                         objectName: "radiusCable"
+                        readOnly: true
                         width: 300
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                        text: backend.radiusCableTextField
+                    }
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Количество реализаций")
+                    }
+
+                    TextField {
+                        id: numberRealization// Количество реализаций
+                        width: 300
+                        maximumLength: maximumLenghtTextField
+                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                        onTextChanged: backend.setNumberRealizationTextField(text)
                     }
 
                 } // To GridLayout
