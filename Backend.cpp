@@ -5,6 +5,7 @@ Backend::Backend(QObject *parent) : QObject(parent)
 {
 
 }
+// ��������� ����� ������
 
 // Описание связки C++ слоя и QML оболочки
 
@@ -38,7 +39,7 @@ void Backend::setTechnicalDispersionTextField(QString technicalDispersionTextFie
     emit technicalDispersionTextFieldChanged(m_technicalDispersionTextField);
 }
 
-// Связь для параметра "Рассеивание суббоеприпасов"
+// Связь для параметра "� ассеивание суббоеприпасов"
 QString Backend::ammunitionDispersionTextField() const
 {
     return m_ammunitionDispersionTextField;
@@ -173,7 +174,7 @@ void Backend::setIndexRadioButton(int indexRadioButton)
     emit indexRadioButtonChanged(m_indexRadioButton);
 }
 
-// Связь для параметра "Радиус поражения КП"
+// Связь для параметра "� адиус поражения КП"
 QString Backend::radiusCPTextField() const
 {
     return m_radiusCPTextField;
@@ -188,7 +189,7 @@ void Backend::setRadiusCPTextField(QString radiusCPTextField)
     emit radiusCPTextFieldChanged(m_radiusCPTextField);
 }
 
-// Связь для параметра "Радиус поражения КП12"
+// Связь для параметра "� адиус поражения КП12"
 QString Backend::radiusCP12TextField() const
 {
     return m_radiusCP12TextField;
@@ -203,7 +204,7 @@ void Backend::setRadiusCP12TextField(QString radiusCP12TextField)
     emit radiusCP12TextFieldChanged(m_radiusCP12TextField);
 }
 
-// Связь для параметра "Радиус поражения СУ123"
+// Связь для параметра "� адиус поражения СУ123"
 QString Backend::radiusSC123TextField() const
 {
     return m_radiusSC123TextField;
@@ -218,7 +219,7 @@ void Backend::setRadiusSC123TextField(QString radiusSC123TextField)
     emit radiusSC123TextFieldChanged(m_radiusSC123TextField);
 }
 
-// Связь для параметра "Радиус поражения РЛС и РЛВ"
+// Связь для параметра "� адиус поражения � ЛС и � ЛВ"
 QString Backend::radiusRLSVTextField() const
 {
     return m_radiusRLSVTextField;
@@ -233,7 +234,7 @@ void Backend::setRadiusRLSVTextField(QString radiusRLSVTextField)
     emit radiusRLSVTextFieldChanged(m_radiusRLSVTextField);
 }
 
-// Связь для параметра "Радиус поражения ЭГ12"
+// Связь для параметра "� адиус поражения ЭГ12"
 QString Backend::radiusEG12TextField() const
 {
     return m_radiusEG12TextField;
@@ -248,7 +249,7 @@ void Backend::setRadiusEG12TextField(QString radiusEG12TextField)
     emit radiusEG12TextFieldChanged(m_radiusEG12TextField);
 }
 
-// Связь для параметра "Радиус поражения кабелей"
+// Связь для параметра "� адиус поражения кабелей"
 QString Backend::radiusCableTextField() const
 {
     return m_radiusCableTextField;
