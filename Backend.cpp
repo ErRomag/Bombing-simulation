@@ -278,6 +278,106 @@ void Backend::setNumberRealizationTextField(QString numberRealizationTextField)
     emit numberRealizationTextFieldChanged(m_numberRealizationTextField);
 }
 
+// Связь для параметров W1 - W6
+QString Backend::W0TextField() const
+{
+    return m_W0TextField;
+}
+
+QString Backend::W1TextField() const
+{
+    return m_W1TextField;
+}
+
+QString Backend::W2TextField() const
+{
+    return m_W2TextField;
+}
+
+QString Backend::W3TextField() const
+{
+    return m_W3TextField;
+}
+
+QString Backend::W4TextField() const
+{
+    return m_W4TextField;
+}
+
+QString Backend::W5TextField() const
+{
+    return m_W5TextField;
+}
+
+QString Backend::W6TextField() const
+{
+    return m_W6TextField;
+}
+
+void Backend::setW0TextField(QString W0TextField)
+{
+    if (m_W0TextField == W0TextField)
+        return;
+
+    m_W0TextField = W0TextField;
+    emit W0TextFieldChanged(m_W0TextField);
+}
+
+void Backend::setW1TextField(QString W1TextField)
+{
+    if (m_W1TextField == W1TextField)
+        return;
+
+    m_W1TextField = W1TextField;
+    emit W1TextFieldChanged(m_W1TextField);
+}
+
+void Backend::setW2TextField(QString W2TextField)
+{
+    if (m_W2TextField == W2TextField)
+        return;
+
+    m_W2TextField = W2TextField;
+    emit W2TextFieldChanged(m_W2TextField);
+}
+
+void Backend::setW3TextField(QString W3TextField)
+{
+    if (m_W3TextField == W3TextField)
+        return;
+
+    m_W3TextField = W3TextField;
+    emit W3TextFieldChanged(m_W3TextField);
+}
+
+void Backend::setW4TextField(QString W4TextField)
+{
+    if (m_W4TextField == W4TextField)
+        return;
+
+    m_W4TextField = W4TextField;
+    emit W4TextFieldChanged(m_W4TextField);
+}
+
+void Backend::setW5TextField(QString W5TextField)
+{
+    if (m_W5TextField == W5TextField)
+        return;
+
+    m_W5TextField = W5TextField;
+    emit W5TextFieldChanged(m_W5TextField);
+}
+
+void Backend::setW6TextField(QString W6TextField)
+{
+    if (m_W6TextField == W6TextField)
+        return;
+
+    m_W6TextField = W6TextField;
+    emit W6TextFieldChanged(m_W6TextField);
+}
+
+
 
 //----------------------------------------------------------
 
@@ -317,18 +417,16 @@ void Backend::initialization()  // Функция инициализации п�
 
     numberAmmunition = m_numberAmmunitionTextField.toFloat();
 
-    currentIndexRadioButton = m_indexRadioButton;     // Текущий индекс RadioButton
-
-    if (currentIndexRadioButton == 0) {
-        qDebug() << "currentIndexRadioButton" << currentIndexRadioButton;
-    } else if (currentIndexRadioButton == 1) {
-        qDebug() << "currentIndexRadioButton" << currentIndexRadioButton;
-    } else if (currentIndexRadioButton == 2) {
-        qDebug() << "currentIndexRadioButton" << currentIndexRadioButton;
-    } else if (currentIndexRadioButton == 3) {
-        qDebug() << "currentIndexRadioButton" << currentIndexRadioButton;
-    } else if (currentIndexRadioButton == 4) {
-        qDebug() << "currentIndexRadioButton" << currentIndexRadioButton;
+    if (m_indexRadioButton == 1) {
+        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+    } else if (m_indexRadioButton == 2) {
+        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+    } else if (m_indexRadioButton == 3) {
+        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+    } else if (m_indexRadioButton == 4) {
+        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+    } else if (m_indexRadioButton == 5) {
+        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
     }
 
     // Например вот так можно передать в поле для радиуса КП значение
@@ -351,6 +449,26 @@ void Backend::initialization()  // Функция инициализации п�
     setRadiusCableTextField(QString::number(radiusCable));
 
     numberRealization = m_numberRealizationTextField.toFloat();
-    qDebug() << "numberRealization" << numberRealization;
+
+    W0 = 0.85;
+    setW0TextField(QString::number(W0));
+
+    W1 = 0.85;
+    setW1TextField(QString::number(W1));
+
+    W2 = 0.85;
+    setW2TextField(QString::number(W2));
+
+    W3 = 0.85;
+    setW3TextField(QString::number(W3));
+
+    W4 = 0.85;
+    setW4TextField(QString::number(W4));
+
+    W5 = 0.85;
+    setW5TextField(QString::number(W5));
+
+    W6 = 0.85;
+    setW6TextField(QString::number(W6));
 
 }

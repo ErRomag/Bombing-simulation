@@ -62,6 +62,13 @@ ApplicationWindow {
         icon: StandardIcon.Information
     }
 
+    MessageDialog {
+        id: errorRadioButton
+        title: "Ошибка"
+        text: "Выберете вариант вооружения.\n";
+        icon: StandardIcon.Critical
+    }
+
     menuBar: MenuBar {
 
         Menu {
@@ -260,6 +267,8 @@ ApplicationWindow {
         } // To GrouBox
     }  // To Item
 
+    property int indexRadioButtonQML: 0
+
     Item {
         id:centerItem
         anchors.left: leftItem.right
@@ -289,20 +298,20 @@ ApplicationWindow {
                     ColumnLayout {
                         id: columnLayoutRadioButton
 
-                       ExclusiveGroup { id: tabPositionGroup }
+                        ExclusiveGroup { id: tabPositionGroup }
 
                         RadioButton {
                             text: qsTr("ОФАБ-100-120")
                             id: ofab100  // ОФАБ 100
                             objectName: "ofab100"
-                            checked: true
+                            checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onCheckedChanged: backend.setIndexRadioButton(0)
-
-//                            onClicked: {
-//                                backend.setIndexRadioButton(0)
-//                            }
+                            onClicked: {
+                                indexRadioButtonQML = 1
+                                backend.indexRadioButton = indexRadioButtonQML
+                                //backend.setIndexRadioButton(1)
+                            }
                         }
 
                         RadioButton {
@@ -312,11 +321,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onCheckedChanged: backend.setIndexRadioButton(1)
-
-//                            onClicked: {
-//                                backend.setIndexRadioButton(1)
-//                            }
+                            onClicked: {
+                                indexRadioButtonQML = 2
+                                backend.indexRadioButton = indexRadioButtonQML
+                                //backend.setIndexRadioButton(2)
+                            }
                         }
 
                         RadioButton {
@@ -326,11 +335,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onCheckedChanged: backend.setIndexRadioButton(2)
-
-//                            onClicked: {
-//                                backend.setIndexRadioButton(2)
-//                            }
+                            onClicked: {
+                                indexRadioButtonQML = 3
+                                backend.indexRadioButton = indexRadioButtonQML
+                                //backend.setIndexRadioButton(3)
+                            }
                         }
 
                         RadioButton {
@@ -340,11 +349,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onCheckedChanged: backend.setIndexRadioButton(3)
-
-//                            onClicked: {
-//                                backend.setIndexRadioButton(3)
-//                            }
+                            onClicked: {
+                                indexRadioButtonQML = 4
+                                backend.indexRadioButton = indexRadioButtonQML
+                                //backend.setIndexRadioButton(4)
+                            }
                         }
 
                         RadioButton {
@@ -354,11 +363,11 @@ ApplicationWindow {
                             checked: false
                             exclusiveGroup: tabPositionGroup
 
-                            onCheckedChanged: backend.setIndexRadioButton(4)
-
-//                            onClicked: {
-//                                backend.setIndexRadioButton(4)
-//                            }
+                            onClicked: {
+                                indexRadioButtonQML = 5
+                                backend.indexRadioButton = indexRadioButtonQML
+                                //backend.setIndexRadioButton(5)
+                            }
                         }
                     } // To ColumnLayoutRadioButton
                 } // To GroupBox
@@ -386,7 +395,7 @@ ApplicationWindow {
                         width: 250
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-//
+                        //
                         text: backend.radiusCPTextField
                     }
 
@@ -480,6 +489,7 @@ ApplicationWindow {
                         width: 300
                         maximumLength: maximumLenghtTextField
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                        text: "1"
 
                         onTextChanged: backend.setNumberRealizationTextField(text)
                     }
@@ -523,6 +533,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W0TextField
                 }
 
                 Text {
@@ -538,6 +550,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W1TextField
                 }
 
                 Text {
@@ -553,6 +567,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W2TextField
                 }
 
 
@@ -569,6 +585,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W3TextField
                 }
 
                 Text {
@@ -584,6 +602,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W4TextField
                 }
 
                 Text {
@@ -599,6 +619,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W5TextField
                 }
 
                 Text {
@@ -615,6 +637,8 @@ ApplicationWindow {
                     Layout.fillWidth: false
                     Layout.maximumHeight : 25
                     Layout.maximumWidth: 105
+
+                    text: backend.W6TextField
                 }
 
                 Button {
@@ -627,11 +651,14 @@ ApplicationWindow {
                     //Layout.fillWidth: true
 
                     onClicked: {
-                        var component = Qt.createComponent("map.qml");
-                        var browserWindow = component.createObject(this);
-                        backend.initialization()
-                        //qmlSignal("");
-                        //kernel.cppSlot()
+
+                        if (indexRadioButtonQML === 0) {
+                            errorRadioButton.open()
+                        } else {
+                            backend.initialization()
+                            var component = Qt.createComponent("map.qml");
+                            var browserWindow = component.createObject(this);
+                        }
 
                     }
                 } // To Button

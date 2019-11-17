@@ -63,6 +63,13 @@ class Backend : public QObject
     Q_PROPERTY(QString numberRealizationTextField READ numberRealizationTextField
                WRITE setNumberRealizationTextField NOTIFY numberRealizationTextFieldChanged)          // Находим параметр "Количество реализаций"
 
+    Q_PROPERTY(QString W0TextField READ W0TextField WRITE setW0TextField NOTIFY W0TextFieldChanged)   // Находим W0 - W6
+    Q_PROPERTY(QString W1TextField READ W1TextField WRITE setW1TextField NOTIFY W1TextFieldChanged)
+    Q_PROPERTY(QString W2TextField READ W2TextField WRITE setW2TextField NOTIFY W2TextFieldChanged)
+    Q_PROPERTY(QString W3TextField READ W3TextField WRITE setW3TextField NOTIFY W3TextFieldChanged)
+    Q_PROPERTY(QString W4TextField READ W4TextField WRITE setW4TextField NOTIFY W4TextFieldChanged)
+    Q_PROPERTY(QString W5TextField READ W5TextField WRITE setW5TextField NOTIFY W5TextFieldChanged)
+    Q_PROPERTY(QString W6TextField READ W6TextField WRITE setW6TextField NOTIFY W6TextFieldChanged)
 
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -87,18 +94,15 @@ public:
     QString radiusCableTextField() const;            // Функция чтения параметра "Радиус поражения кабелей"
     QString numberRealizationTextField() const;      // Функция чтения параметра "Количество реализаций"
 
+    QString W0TextField() const;                     // Функции чтения параметров W0 - W6
+    QString W1TextField() const;
+    QString W2TextField() const;
+    QString W3TextField() const;
+    QString W4TextField() const;
+    QString W5TextField() const;
+    QString W6TextField() const;
 
     Q_INVOKABLE void initialization();               // Функция инициализации переменных для вычислений
-
-
-
-
-
-
-
-
-
-
 
 signals:
 
@@ -122,6 +126,14 @@ signals:
     void radiusCableTextFieldChanged(QString radiusCableTextField);                      // Функция изменения параметра "Радиус поражения кабелей"
     void numberRealizationTextFieldChanged(QString numberRealizationTextField);          // Функция изменения параметра "Количество реализаций"
 
+    void W0TextFieldChanged(QString W0TextField);                                        // Функции изменения параметров W0 - W6
+    void W1TextFieldChanged(QString W1TextField);
+    void W2TextFieldChanged(QString W2TextField);
+    void W3TextFieldChanged(QString W3TextField);
+    void W4TextFieldChanged(QString W4TextField);
+    void W5TextFieldChanged(QString W5TextField);
+    void W6TextFieldChanged(QString W6TextField);
+
 public slots:
 
     void setAimDispersionTextField(QString aimDispersionTextField);                  // Функция установки параметра "Прицельного рассеивания"
@@ -144,37 +156,40 @@ public slots:
     void setRadiusCableTextField(QString radiusCableTextField);                      // Функция установки параметра "Радиус поражения кабелей"
     void setNumberRealizationTextField(QString numberRealizationTextField);          // Функция установки параметра "Количество реализаций"
 
-
-
-
-
+    void setW0TextField(QString W0TextField);                                        // Функции установки параметров W0 - W6
+    void setW1TextField(QString W1TextField);
+    void setW2TextField(QString W2TextField);
+    void setW3TextField(QString W3TextField);
+    void setW4TextField(QString W4TextField);
+    void setW5TextField(QString W5TextField);
+    void setW6TextField(QString W6TextField);
 
 private:
 
-    // Объявление используемых переменных
-    float aimDispersion;           // Параметр "Прицельное рассеивание"
-    float technicalDispersion;     // Параметр "Техническое рассеивание"
-    float ammunitionDispersion;    // Параметр "Рассеивание суббоеприпасов"
-    float combatRouteCenterPair;   // Параметр "Боевой маршрут центра пары"
-    float rangeToTraverse;         // Параметр "Дальность до траверза КП"
-    float intervalRegime;          // Параметр "Интервал строя"
-    int indexIntervalRegime;       // Параметр "Индекс интервала строя"
-    float intervalSeries;          // Параметр "Интервал серии"
-    float bombingAltitude;         // Параметр "Высота бомбометания"
-    int indexBombingAltitude;      // Параметр "Индекс высоты бомбометания"
-    double numberASP;              // Параметр "Количество АСП"
-    float numberAmmunition;        // Параметр "Количество суббоеприпасов"
-    int currentIndexRadioButton;   // Параметр "Индекс типа вооружения"
+    // Используемые переменные
+    float aimDispersion;               // Параметр "Прицельное рассеивание"
+    float technicalDispersion;         // Параметр "Техническое рассеивание"
+    float ammunitionDispersion;        // Параметр "Рассеивание суббоеприпасов"
+    float combatRouteCenterPair;       // Параметр "Боевой маршрут центра пары"
+    float rangeToTraverse;             // Параметр "Дальность до траверза КП"
+    float intervalRegime;              // Параметр "Интервал строя"
+    int indexIntervalRegime;           // Параметр "Индекс интервала строя"
+    float intervalSeries;              // Параметр "Интервал серии"
+    float bombingAltitude;             // Параметр "Высота бомбометания"
+    int indexBombingAltitude;          // Параметр "Индекс высоты бомбометания"
+    float numberASP;                   // Параметр "Количество АСП"
+    float numberAmmunition;            // Параметр "Количество суббоеприпасов"
+    int currentIndexRadioButton;       // Параметр "Индекс типа вооружения"
 
-    double radiusCP;               // Параметр "Радиус поражения КП"
-    double radiusCP12;             // Параметр "Радиус поражения КП12"
-    double radiusSC123;            // Параметр "Радиус поражения СУ123"
-    double radiusRLSV;             // Параметр "Радиус поражения РЛС и РЛВ"
-    double radiusEG12;             // Параметр "Радиус поражения ЭГ12"
-    double radiusCable;            // Параметр "Радиус поражения кабелей"
-    float numberRealization;       // Параметр "Количество реализаций"
+    float radiusCP;                    // Параметр "Радиус поражения КП"
+    float radiusCP12;                  // Параметр "Радиус поражения КП12"
+    float radiusSC123;                 // Параметр "Радиус поражения СУ123"
+    float radiusRLSV;                  // Параметр "Радиус поражения РЛС и РЛВ"
+    float radiusEG12;                  // Параметр "Радиус поражения ЭГ12"
+    float radiusCable;                 // Параметр "Радиус поражения кабелей"
+    float numberRealization;           // Параметр "Количество реализаций"
 
-
+    float W0, W1, W2, W3, W4, W5, W6;  // Параметры W1 - W6
 
     QString m_aimDispersionTextField;
     QString m_technicalDispersionTextField;
@@ -195,6 +210,15 @@ private:
     QString m_radiusEG12TextField;
     QString m_radiusCableTextField;
     QString m_numberRealizationTextField;
+
+    QString m_W0TextField;
+    QString m_W1TextField;
+    QString m_W2TextField;
+    QString m_W3TextField;
+    QString m_W4TextField;
+    QString m_W5TextField;
+    QString m_W6TextField;
+
 };
 
 #endif // BACKEND_H
