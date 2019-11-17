@@ -1,4 +1,5 @@
 #include "Backend.h"
+#include <QDebug>
 
 Backend::Backend(QObject *parent) : QObject(parent)
 {
@@ -82,9 +83,67 @@ void Backend::setRangeToTraverseTextField(QString rangeToTraverseTextField)
     emit rangeToTraverseTextFieldChanged(m_rangeToTraverseTextField);
 }
 
+// Связь для параметра "Интервал строя"
+int Backend::intervalRegimeComboBox() const
+{
+    return m_intervalRegimeComboBox;
+}
 
+void Backend::setIntervalRegimeComboBox(int intervalRegimeComboBox)
+{
+    if (m_intervalRegimeComboBox == intervalRegimeComboBox)
+        return;
 
+    m_intervalRegimeComboBox = intervalRegimeComboBox;
+    emit intervalRegimeComboBoxChanged(m_intervalRegimeComboBox);
+}
 
+// Связь для параметра "Интервал серии"
+QString Backend::intervalSeriesTextField() const
+{
+    return m_intervalSeriesTextField;
+}
+
+void Backend::setIntervalSeriesTextField(QString intervalSeriesTextField)
+{
+    if (m_intervalSeriesTextField == intervalSeriesTextField)
+        return;
+
+    m_intervalSeriesTextField = intervalSeriesTextField;
+    emit intervalSeriesTextFieldChanged(m_intervalSeriesTextField);
+}
+
+// Связь для параметра "Высота бомбометания"
+int Backend::bombingAltitudeComboBox() const
+{
+    return m_bombingAltitudeComboBox;
+}
+
+void Backend::setBombingAltitudeComboBox(int bombingAltitudeComboBox)
+{
+    if (m_bombingAltitudeComboBox == bombingAltitudeComboBox)
+        return;
+
+    m_bombingAltitudeComboBox = bombingAltitudeComboBox;
+    emit bombingAltitudeComboBoxChanged(m_bombingAltitudeComboBox);
+}
+
+// Связь для параметра "Количество АСП"
+QString Backend::numberASPTextField() const
+{
+    return m_numberASPTextField;
+}
+
+void Backend::setNumberASPTextField(QString numberASPTextField)
+{
+    if (m_numberASPTextField == numberASPTextField)
+        return;
+
+    m_numberASPTextField = numberASPTextField;
+    emit numberASPTextFieldChanged(m_numberASPTextField);
+}
+
+//----------------------------------------------------------
 // Функция инициализации переменных для вычислений
 void Backend::initialization()
 {
@@ -93,4 +152,29 @@ void Backend::initialization()
     ammunitionDispersion = m_ammunitionDispersionTextField.toFloat();
     combatRouteCenterPair = m_combatRouteCenterPairTextField.toFloat();
     rangeToTraverse = m_rangeToTraverseTextField.toFloat();
+
+    indexIntervalRegime = m_intervalRegimeComboBox;  // Текущий индекс intervalRegimeCheckBox
+
+    if (indexIntervalRegime == 0) {
+        intervalRegime = 100;
+    } else if (indexIntervalRegime == 1) {
+        intervalRegime = 200;
+    } else if (indexIntervalRegime == 2) {
+        intervalRegime = 300;
+    }
+
+    intervalSeries = m_intervalSeriesTextField.toFloat();
+
+    indexBombingAltitude = m_bombingAltitudeComboBox;  // Текущий индекс BombingAltitude
+
+    if (indexBombingAltitude == 0) {
+        bombingAltitude = 1000;
+    } else if (indexBombingAltitude == 1) {
+        bombingAltitude = 1500;
+    } else if (indexBombingAltitude == 2) {
+        bombingAltitude = 2000;
+    }
+
+    numberASP = m_numberASPTextField.toFloat();
+
 }

@@ -26,7 +26,17 @@ class Backend : public QObject
     Q_PROPERTY(QString rangeToTraverseTextField READ rangeToTraverseTextField
                WRITE setRangeToTraverseTextField NOTIFY rangeToTraverseTextFieldChanged)              // Находим параметр "Дальность до траверза КП"
 
-    Q_INVOKABLE void initialization(); // Функция инициализации переменных для вычислений
+    Q_PROPERTY(int intervalRegimeComboBox READ intervalRegimeComboBox
+               WRITE setIntervalRegimeComboBox NOTIFY intervalRegimeComboBoxChanged)                  // Находим параметр "Интервал строя"
+
+    Q_PROPERTY(QString intervalSeriesTextField READ intervalSeriesTextField
+               WRITE setIntervalSeriesTextField NOTIFY intervalSeriesTextFieldChanged)                // Находим параметр "Интервал серии"
+
+    Q_PROPERTY(int  bombingAltitudeComboBox READ bombingAltitudeComboBox
+               WRITE setBombingAltitudeComboBox NOTIFY bombingAltitudeComboBoxChanged)                // Находим параметр "Высота бомбометания"
+
+    Q_PROPERTY(QString numberASPTextField READ numberASPTextField
+               WRITE setNumberASPTextField NOTIFY numberASPTextFieldChanged)  // Находим параметр "Количество АСП"
 
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -36,6 +46,20 @@ public:
     QString ammunitionDispersionTextField() const;   // Функция чтения параметра "Рассеивание суббоеприпасов"
     QString combatRouteCenterPairTextField() const;  // Функция чтения параметра "Боевой маршрут центра пары"
     QString rangeToTraverseTextField() const;        // Функция чтения параметра "Дальность до траверза КП"
+    int intervalRegimeComboBox() const;              // Функция чтения параметра "Интервал строя"
+    QString intervalSeriesTextField() const;         // Функция чтения параметра "Интервал серии"
+    int bombingAltitudeComboBox() const;             // Функция чтения параметра "Высота бомбометания"
+    QString numberASPTextField() const;              // Функция чтения параметра "Количество АСП"
+
+    Q_INVOKABLE void initialization();               // Функция инициализации переменных для вычислений
+
+
+
+
+
+
+
+
 
 signals:
 
@@ -44,6 +68,12 @@ signals:
     void ammunitionDispersionTextFieldChanged(QString ammunitionDispersionTextField);    // Функция изменения параметра "Рассеивание суббоеприпасов"
     void combatRouteCenterPairTextFieldChanged(QString combatRouteCenterPairTextField);  // Функция изменения параметра "Боевой маршрут центра пары"
     void rangeToTraverseTextFieldChanged(QString rangeToTraverseTextField);              // Функция изменения параметра "Дальность до траверза КП"
+    void intervalRegimeComboBoxChanged(int intervalRegimeComboBox);                      // Функция изменения параметра "Интервал строя"
+    void intervalSeriesTextFieldChanged(QString intervalSeriesTextField);                // Функция изменения параметра "Интервал серии"
+    void bombingAltitudeComboBoxChanged(int bombingAltitudeComboBox);                    // Функция изменения параметра "Высота бомбометания"
+    void numberASPTextFieldChanged(QString numberASPTextField);                          // Функция изменения параметра "Количество АСП"
+
+
 
 public slots:
 
@@ -52,6 +82,14 @@ public slots:
     void setAmmunitionDispersionTextField(QString ammunitionDispersionTextField);    // Функция установки параметра "Рассеивание суббоеприпасов"
     void setCombatRouteCenterPairTextField(QString combatRouteCenterPairTextField);  // Функция установки параметра "Боевой маршрут центра пары"
     void setRangeToTraverseTextField(QString rangeToTraverseTextField);              // Функция установки параметра "Дальность до траверза КП"
+    void setIntervalRegimeComboBox(int intervalRegimeComboBox);                      // Функция установки параметра "Интервал строя"
+    void setIntervalSeriesTextField(QString intervalSeriesTextField);                // Функция установки параметра "Интервал серии"
+    void setBombingAltitudeComboBox(int bombingAltitudeComboBox);                    // Функция установки параметра "Высота бомбометания"
+    void setNumberASPTextField(QString numberASPTextField);                          // Функция установки параметра "Количество АСП"
+
+
+
+
 
 
 private:
@@ -63,11 +101,25 @@ private:
     float combatRouteCenterPair;   // Переменная для параметра "Боевой маршрут центра пары"
     float rangeToTraverse;         // Переменная для параметра "Дальность до траверза КП"
 
+    float intervalRegime;          // Переменная для параметра "Интервал строя"
+    int indexIntervalRegime;       // Переменная для параметра "Индекс интервала строя"
+
+    float intervalSeries;          // Переменная для параметра "Интервал серии"
+
+    float bombingAltitude;         // Переменная для параметра "Высота бомбометания"
+    int indexBombingAltitude;      // Переменная для параметра "Индекс высоты бомбометания"
+
+    float numberASP;               // Переменная для параметра "Количество АСП"
+
     QString m_aimDispersionTextField;
     QString m_technicalDispersionTextField;
     QString m_ammunitionDispersionTextField;
     QString m_combatRouteCenterPairTextField;
     QString m_rangeToTraverseTextField;
+    int m_intervalRegimeComboBox;
+    QString m_intervalSeriesTextField;
+    int m_bombingAltitudeComboBox;
+    QString m_numberASPTextField;
 };
 
 #endif // BACKEND_H

@@ -186,8 +186,8 @@ ApplicationWindow {
                     id: intervalRegime // Интервал строя
                     objectName: "intervalRegime"
                     model: [ "100", "200", "300" ]
-                    onCurrentIndexChanged: kernel.numCheckBox
 
+                    onCurrentIndexChanged: backend.setIntervalRegimeComboBox(currentIndex)
                 }
 
                 Text {
@@ -201,6 +201,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    onTextChanged: backend.setIntervalSeriesTextField(text)
                 }
 
                 Text {
@@ -211,10 +213,9 @@ ApplicationWindow {
                 ComboBox {
                     id: bombingAltitude // Высота бомбометания
                     objectName: "bombingAltitude"
-                    model: [ "1500", "1700", "1900" ]
+                    model: [ "1000", "1500", "2000" ]
 
-                    // Тут поменять функцию
-                    onCurrentIndexChanged: kernel.numCheckBox
+                    onCurrentIndexChanged: backend.setBombingAltitudeComboBox(currentIndex)
                 }
 
                 Text {
@@ -228,6 +229,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+/}
+
+                    onTextChanged: backend.setNumberASPTextField(text)
                 }
 
                 Text {
@@ -572,6 +575,7 @@ ApplicationWindow {
                     onClicked: {
                         var component = Qt.createComponent("map.qml");
                         var browserWindow = component.createObject(this);
+                        backend.initialization()
                         //qmlSignal("");
                         //kernel.cppSlot()
 
