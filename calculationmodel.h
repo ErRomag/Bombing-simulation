@@ -19,11 +19,11 @@ class calculationModel : public QObject
 public:
     explicit calculationModel(QObject *parent = nullptr);
 
-    void bindObjects();  // пралалалалалалла
+    void bindObjects();  //
 
 
 
-    // Р¤СѓРЅРєС†РёРё РґР»СЏ CheckBox
+    // Функции для CheckBox
     int numCheckBox(){
        return _numCheckBox;
     }
@@ -32,7 +32,7 @@ public:
        emit  NumCheckBoxChanged();
     }
 
-    // Р¤СѓРЅРєС†РёРё РґР»СЏ RadioButton
+    // Функции для RadioButton
     int RadioButton(){
        return _radioButoon;
     }
@@ -71,12 +71,12 @@ public slots:
     }
 
 private:
-    float FEopt[26][7]; /* РјР°СЃСЃРёРІ РїР°СЂР°РјРµС‚СЂРѕРІ СЌР»РµРјРµРЅС‚РѕРІ (Functional Element) Р—Р Рљ [РЅСѓР»РµРІС‹Рµ СЌР»РµРјРµРЅС‚С‹ РЅРµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ]
-                          FE[i][j], РіРґРµ: i - РЅРѕРјРµСЂ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°;
-                          j = {1(РєРѕРѕСЂРґ. [x]); 2(РєРѕРѕСЂРґ. [y]); 3(РґР»РёРЅР° СЌР»РµРјРµРЅС‚Р° [a]); 4(С€РёСЂРёРЅР° СЌР»РµРјРµРЅС‚Р° [b]);
-                          5(СѓРіРѕР» [fi]); 6(СЂР°РґРёСѓСЃ [r])}. */
-    float DEA[26][9];   /* РјР°СЃСЃРёРІ РєРѕРѕСЂРґРёРЅР°С‚ РѕР±Р»Р°СЃС‚Рё РѕРїР°СЃРЅС‹С… СЂР°Р·СЂС‹РІРѕРІ (Dangerous Explosion Area)
-                           СЌР»РµРјРµРЅС‚РѕРІ Р—Р Рљ [РЅСѓР»РµРІС‹Рµ СЌР»РµРјРµРЅС‚С‹ РЅРµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ] */
+    float FEopt[26][7]; /* массив параметров элементов (Functional Element) ЗРК [нулевые элементы не используются]
+                          FE[i][j], где: i - номер функционального элемента;
+                          j = {1(коорд. [x]); 2(коорд. [y]); 3(длина элемента [a]); 4(ширина элемента [b]);
+                          5(угол [fi]); 6(радиус [r])}. */
+    float DEA[26][9];   /* массив координат области опасных разрывов (Dangerous Explosion Area)
+                           элементов ЗРК [нулевые элементы не используются] */
 
     void initFEoptions();
     void evalDangerousExplosionsArea();

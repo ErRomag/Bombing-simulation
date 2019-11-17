@@ -1,22 +1,22 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#define aimDisp "aimDispersion"             // РџСЂРёС†РµР»СЊРЅРѕРµ СЂР°СЃСЃРµРёРІР°РЅРёРµ
-#define techDisp "technicalDispersion"      // РўРµС…РЅРёС‡РµСЃРєРѕРµ СЂР°СЃСЃРµРёРІР°РЅРёРµ
-#define ammoDisp "ammunitionDispersion"     // Р Р°СЃСЃРµРёРІР°РЅРёРµ СЃСѓР±Р±РѕРµРїСЂРёРїР°СЃРѕРІ
-#define cmbtRoute "combatRouteCenterPair"   // Р‘РѕРµРІРѕР№ РјР°СЂС€СЂСѓС‚ С†РµРЅС‚СЂР° РїР°СЂС‹
-#define rngToTrvrs "rangeToTraverse"        // Р”Р°Р»СЊРЅРѕСЃС‚СЊ РґРѕ С‚СЂР°РІРµСЂР·Р° РљРџ
-#define intrvlSer "intervalSeries"          // РРЅС‚РµСЂРІР°Р» СЃРµСЂРёРё
-#define nmbASP "numberASP"                  // РљРѕР»РёС‡РµСЃС‚РІРѕ РђРЎРџ
-#define nmbAmmo "numberAmmunition"          // РљРѕР»РёС‡РµСЃС‚РІРѕ СЃСѓР±Р±РѕРµРїСЂРёРїР°СЃРѕРІ РЎРџ, [С€С‚]
-#define rCP "radiusCP"                      // Р Р°РґРёСѓСЃ РљРџ, [Рј]
-#define rCP12 "radiusCP12"                  // Р Р°РґРёСѓСЃ РљРџ1, РљРџ2, [Рј]
-#define rSC123 "radiusSC123"                // Р Р°РґРёСѓСЃ РЎРЈ1, РЎРЈ2, РЎРЈ3 [Рј]
-#define rRLSV "radiusRLSV"                  // Р Р°РґРёСѓСЃ Р Р›РЎ, Р Р›Р’ [Рј]
-#define rEG12 "radiusEG12"                  // Р Р°РґРёСѓСЃ Р­Р“1, Р­Р“2 [Рј]
-#define rCable "radiusCable"                // Р Р°РґРёСѓСЃ РєР°Р±РµР»РµР№ [Рј]
-#define intrvlRgm "intervalRegime"          // РРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ
-#define bmbngAlttd "bombingAltitude"        // Р’С‹СЃРѕС‚Р° Р±РѕРјР±РѕРјРµС‚Р°РЅРёСЏ
+#define aimDisp "aimDispersion"             // Прицельное рассеивание
+#define techDisp "technicalDispersion"      // Техническое рассеивание
+#define ammoDisp "ammunitionDispersion"     // Рассеивание суббоеприпасов
+#define cmbtRoute "combatRouteCenterPair"   // Боевой маршрут центра пары
+#define rngToTrvrs "rangeToTraverse"        // Дальность до траверза КП
+#define intrvlSer "intervalSeries"          // Интервал серии
+#define nmbASP "numberASP"                  // Количество АСП
+#define nmbAmmo "numberAmmunition"          // Количество суббоеприпасов СП, [шт]
+#define rCP "radiusCP"                      // Радиус КП, [м]
+#define rCP12 "radiusCP12"                  // Радиус КП1, КП2, [м]
+#define rSC123 "radiusSC123"                // Радиус СУ1, СУ2, СУ3 [м]
+#define rRLSV "radiusRLSV"                  // Радиус РЛС, РЛВ [м]
+#define rEG12 "radiusEG12"                  // Радиус ЭГ1, ЭГ2 [м]
+#define rCable "radiusCable"                // Радиус кабелей [м]
+#define intrvlRgm "intervalRegime"          // Интервал строя
+#define bmbngAlttd "bombingAltitude"        // Высота бомбометания
 
 #define W0 0
 #define W1 1

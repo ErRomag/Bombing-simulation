@@ -5,11 +5,10 @@ Backend::Backend(QObject *parent) : QObject(parent)
 {
 
 }
-// Кодировка хуйня ебаная
 
-// РћРїРёСЃР°РЅРёРµ СЃРІСЏР·РєРё C++ СЃР»РѕСЏ Рё QML РѕР±РѕР»РѕС‡РєРё
+// Описание связки C++ слоя и QML оболочки
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РџСЂРёС†РµР»СЊРЅРѕРµ СЂР°СЃСЃРµРёРІР°РЅРёРµ"
+// Связь для параметра "Прицельное рассеивание"
 QString Backend::aimDispersionTextField() const
 {
     return m_aimDispersionTextField;
@@ -24,7 +23,7 @@ void Backend::setAimDispersionTextField(QString aimDispersionTextField)
     emit aimDispersionTextFieldChanged(m_aimDispersionTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РўРµС…РЅРёС‡РµСЃРєРѕРµ СЂР°СЃСЃРµРёРІР°РЅРёРµ"
+// Связь для параметра "Техническое рассеивание"
 QString Backend::technicalDispersionTextField() const
 {
     return m_technicalDispersionTextField;
@@ -39,7 +38,7 @@ void Backend::setTechnicalDispersionTextField(QString technicalDispersionTextFie
     emit technicalDispersionTextFieldChanged(m_technicalDispersionTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°СЃСЃРµРёРІР°РЅРёРµ СЃСѓР±Р±РѕРµРїСЂРёРїР°СЃРѕРІ"
+// Связь для параметра "? ассеивание суббоеприпасов"
 QString Backend::ammunitionDispersionTextField() const
 {
     return m_ammunitionDispersionTextField;
@@ -54,7 +53,7 @@ void Backend::setAmmunitionDispersionTextField(QString ammunitionDispersionTextF
     emit ammunitionDispersionTextFieldChanged(m_ammunitionDispersionTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р‘РѕРµРІРѕР№ РјР°СЂС€СЂСѓС‚ С†РµРЅС‚СЂР° РїР°СЂС‹"
+// Связь для параметра "Боевой маршрут центра пары"
 QString Backend::combatRouteCenterPairTextField() const
 {
     return m_combatRouteCenterPairTextField;
@@ -69,7 +68,7 @@ void Backend::setCombatRouteCenterPairTextField(QString combatRouteCenterPairTex
     emit combatRouteCenterPairTextFieldChanged(m_combatRouteCenterPairTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р”Р°Р»СЊРЅРѕСЃС‚СЊ РґРѕ С‚СЂР°РІРµСЂР·Р° РљРџ"
+// Связь для параметра "Дальность до траверза КП"
 QString Backend::rangeToTraverseTextField() const
 {
     return m_rangeToTraverseTextField;
@@ -84,7 +83,7 @@ void Backend::setRangeToTraverseTextField(QString rangeToTraverseTextField)
     emit rangeToTraverseTextFieldChanged(m_rangeToTraverseTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ"
+// Связь для параметра "Интервал строя"
 int Backend::intervalRegimeComboBox() const
 {
     return m_intervalRegimeComboBox;
@@ -99,7 +98,7 @@ void Backend::setIntervalRegimeComboBox(int intervalRegimeComboBox)
     emit intervalRegimeComboBoxChanged(m_intervalRegimeComboBox);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РРЅС‚РµСЂРІР°Р» СЃРµСЂРёРё"
+// Связь для параметра "Интервал серии"
 QString Backend::intervalSeriesTextField() const
 {
     return m_intervalSeriesTextField;
@@ -114,7 +113,7 @@ void Backend::setIntervalSeriesTextField(QString intervalSeriesTextField)
     emit intervalSeriesTextFieldChanged(m_intervalSeriesTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р’С‹СЃРѕС‚Р° Р±РѕРјР±РѕРјРµС‚Р°РЅРёСЏ"
+// Связь для параметра "Высота бомбометания"
 int Backend::bombingAltitudeComboBox() const
 {
     return m_bombingAltitudeComboBox;
@@ -129,7 +128,7 @@ void Backend::setBombingAltitudeComboBox(int bombingAltitudeComboBox)
     emit bombingAltitudeComboBoxChanged(m_bombingAltitudeComboBox);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РљРѕР»РёС‡РµСЃС‚РІРѕ РђРЎРџ"
+// Связь для параметра "Количество АСП"
 QString Backend::numberASPTextField() const
 {
     return m_numberASPTextField;
@@ -144,7 +143,7 @@ void Backend::setNumberASPTextField(QString numberASPTextField)
     emit numberASPTextFieldChanged(m_numberASPTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РљРѕР»РёС‡РµСЃС‚РІРѕ СЃСѓР±Р±РѕРµРїСЂРёРїР°СЃРѕРІ"
+// Связь для параметра "Количество суббоеприпасов"
 QString Backend::numberAmmunitionTextField() const
 {
     return m_numberAmmunitionTextField;
@@ -159,7 +158,7 @@ void Backend::setNumberAmmunitionTextField(QString numberAmmunitionTextField)
     emit numberAmmunitionTextFieldChanged(m_numberAmmunitionTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РўРёРї РІРѕРѕСЂСѓР¶РµРЅРёСЏ"
+// Связь для параметра "Тип вооружения"
 int Backend::indexRadioButton() const
 {
     return m_indexRadioButton;
@@ -174,7 +173,7 @@ void Backend::setIndexRadioButton(int indexRadioButton)
     emit indexRadioButtonChanged(m_indexRadioButton);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°РґРёСѓСЃ РїРѕСЂР°Р¶РµРЅРёСЏ РљРџ"
+// Связь для параметра "? адиус поражения КП"
 QString Backend::radiusCPTextField() const
 {
     return m_radiusCPTextField;
@@ -189,7 +188,7 @@ void Backend::setRadiusCPTextField(QString radiusCPTextField)
     emit radiusCPTextFieldChanged(m_radiusCPTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°РґРёСѓСЃ РїРѕСЂР°Р¶РµРЅРёСЏ РљРџ12"
+// Связь для параметра "? адиус поражения КП12"
 QString Backend::radiusCP12TextField() const
 {
     return m_radiusCP12TextField;
@@ -204,7 +203,7 @@ void Backend::setRadiusCP12TextField(QString radiusCP12TextField)
     emit radiusCP12TextFieldChanged(m_radiusCP12TextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°РґРёСѓСЃ РїРѕСЂР°Р¶РµРЅРёСЏ РЎРЈ123"
+// Связь для параметра "? адиус поражения СУ123"
 QString Backend::radiusSC123TextField() const
 {
     return m_radiusSC123TextField;
@@ -219,7 +218,7 @@ void Backend::setRadiusSC123TextField(QString radiusSC123TextField)
     emit radiusSC123TextFieldChanged(m_radiusSC123TextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°РґРёСѓСЃ РїРѕСЂР°Р¶РµРЅРёСЏ Р Р›РЎ Рё Р Р›Р’"
+// Связь для параметра "? адиус поражения ? ЛС и ? ЛВ"
 QString Backend::radiusRLSVTextField() const
 {
     return m_radiusRLSVTextField;
@@ -234,7 +233,7 @@ void Backend::setRadiusRLSVTextField(QString radiusRLSVTextField)
     emit radiusRLSVTextFieldChanged(m_radiusRLSVTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°РґРёСѓСЃ РїРѕСЂР°Р¶РµРЅРёСЏ Р­Р“12"
+// Связь для параметра "? адиус поражения ЭГ12"
 QString Backend::radiusEG12TextField() const
 {
     return m_radiusEG12TextField;
@@ -249,7 +248,7 @@ void Backend::setRadiusEG12TextField(QString radiusEG12TextField)
     emit radiusEG12TextFieldChanged(m_radiusEG12TextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "Р Р°РґРёСѓСЃ РїРѕСЂР°Р¶РµРЅРёСЏ РєР°Р±РµР»РµР№"
+// Связь для параметра "? адиус поражения кабелей"
 QString Backend::radiusCableTextField() const
 {
     return m_radiusCableTextField;
@@ -264,7 +263,7 @@ void Backend::setRadiusCableTextField(QString radiusCableTextField)
     emit radiusCableTextFieldChanged(m_radiusCableTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂР° "РљРѕР»РёС‡РµСЃС‚РІРѕ СЂРµР°Р»РёР·Р°С†РёР№"
+// Связь для параметра "Количество реализаций"
 QString Backend::numberRealizationTextField() const
 {
     return m_numberRealizationTextField;
@@ -279,7 +278,7 @@ void Backend::setNumberRealizationTextField(QString numberRealizationTextField)
     emit numberRealizationTextFieldChanged(m_numberRealizationTextField);
 }
 
-// РЎРІСЏР·СЊ РґР»СЏ РїР°СЂР°РјРµС‚СЂРѕРІ W1 - W6
+// Связь для параметров W1 - W6
 QString Backend::W0TextField() const
 {
     return m_W0TextField;
@@ -382,7 +381,7 @@ void Backend::setW6TextField(QString W6TextField)
 
 //----------------------------------------------------------
 
-void Backend::initialization()  // Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїРµСЂРµРјРµРЅРЅС‹С… РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёР№
+void Backend::initialization()  // Функция инициализации переменных для вычислений
 {
     aimDispersion = m_aimDispersionTextField.toFloat();
     technicalDispersion = m_technicalDispersionTextField.toFloat();
@@ -390,7 +389,7 @@ void Backend::initialization()  // Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїР
     combatRouteCenterPair = m_combatRouteCenterPairTextField.toFloat();
     rangeToTraverse = m_rangeToTraverseTextField.toFloat();
 
-    indexIntervalRegime = m_intervalRegimeComboBox;  // РўРµРєСѓС‰РёР№ РёРЅРґРµРєСЃ intervalRegimeCheckBox
+    indexIntervalRegime = m_intervalRegimeComboBox;  // Текущий индекс intervalRegimeCheckBox
 
     if (indexIntervalRegime == 0) {
         intervalRegime = 100;
@@ -402,7 +401,7 @@ void Backend::initialization()  // Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїР
 
     intervalSeries = m_intervalSeriesTextField.toFloat();
 
-    indexBombingAltitude = m_bombingAltitudeComboBox;  // РўРµРєСѓС‰РёР№ РёРЅРґРµРєСЃ BombingAltitude
+    indexBombingAltitude = m_bombingAltitudeComboBox;  // Текущий индекс BombingAltitude
 
     if (indexBombingAltitude == 0) {
         bombingAltitude = 1000;
@@ -412,7 +411,7 @@ void Backend::initialization()  // Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїР
         bombingAltitude = 2000;
     }
 
-    // РќР°РїСЂРёРјРµСЂ РІРѕС‚ С‚Р°Рє РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ РІ РїРѕР»Рµ РґР»СЏ РєРѕР»РёС‡РµСЃС‚РІР° РђРЎРџ
+    // Например вот так можно передать в поле для количества АСП
     numberASP = 10;
     setNumberASPTextField(QString::number(numberASP));
 
@@ -430,7 +429,7 @@ void Backend::initialization()  // Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·Р°С†РёРё РїР
         qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
     }
 
-    // РќР°РїСЂРёРјРµСЂ РІРѕС‚ С‚Р°Рє РјРѕР¶РЅРѕ РїРµСЂРµРґР°С‚СЊ РІ РїРѕР»Рµ РґР»СЏ СЂР°РґРёСѓСЃР° РљРџ Р·РЅР°С‡РµРЅРёРµ
+    // Например вот так можно передать в поле для радиуса КП значение
     radiusCP = 20.20;
     setRadiusCPTextField(QString::number(radiusCP));
 

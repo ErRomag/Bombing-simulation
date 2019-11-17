@@ -13,9 +13,9 @@ void calculationModel::cppSlot(const QString &msg)
 {
     Q_UNUSED(msg);
 
-    initFEoptions(); // Р·Р°РїРѕР»РЅРёР»Рё FEopt
-//    evalDangerousExplosionsArea(); // Р·Р°РїРѕР»РЅРёР»Рё DEA
-   damageCalculation(); // РїРѕСЃС‡РёС‚Р°Р»Рё
+    initFEoptions(); // заполнили FEopt
+//    evalDangerousExplosionsArea(); // заполнили DEA
+   damageCalculation(); // посчитали
 }
 
 void calculationModel::initFEoptions()
@@ -59,7 +59,7 @@ void calculationModel::evalDangerousExplosionsArea()
         deltaY1 = (FEopt[i][3] / 2 + FEopt[i][6]) * sin(fi_rad);
         deltaY2 = (FEopt[i][4] / 2 + FEopt[i][6]) * sin(M_PI / 2 - fi_rad);
 
-        //Р¦РµРЅС‚СЂС‹ РїСЂРёС†РµР»СЊРЅРѕРіРѕ СЂР°СЃСЃРµРёРІР°РЅРёСЏ
+        //Центры прицельного рассеивания
         DEA[i][1] = FEopt[i][1] - deltaX1 - deltaX2;
         DEA[i][2] = FEopt[i][2] + deltaY1 - deltaY2;
         DEA[i][3] = FEopt[i][1] + deltaX1 - deltaX2;
@@ -77,33 +77,33 @@ void calculationModel::damageCalculation()
 var
 */
     bool FE[26];
-    float aimPoint[5][3]; // РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё РїСЂРёС†РµР»РёРІР°РЅРёСЏ
+    float aimPoint[5][3]; // координаты точки прицеливания
     float RBK[101][3];     //
     bool F0,F1,F2,F3,F4,F5,F6,KP;
     int NumB, AreaNumber, N_ASP, N_FE;
 
     int i,j,k;
-    int KR = 2000;      //РєРѕР»РёС‡РµСЃС‚РІРѕ СЂРµР°Р»РёР·Р°С†РёР№
-    int i_str;   //РёРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ
-    int i_ser;   //РёРЅС‚РµСЂРІР°Р» СЃРµСЂРёРё
-    int height;  //РІС‹СЃРѕС‚Р° Р±РѕРјР±РѕРјРµС‚Р°РЅРёСЏ
+    int KR = 2000;      //количество реализаций
+    int i_str;   //интервал строя
+    int i_ser;   //интервал серии
+    int height;  //высота бомбометания
 
     float Zalp_X, Zalp_Y;
     float xfab,yfab;
 
     int durk[7];
 
-    //СЃС‡РёС‚С‹РІР°РµРј
-    //  kolASP:=StrToInt(MainForm.Edit11.Text);  //РљРѕР»-РІРѕ РђРЎРџ
-    //  height:=StrTOInt(MainForm.ComboBox2.text); // РІС‹СЃРѕС‚Р° Р±РѕРјР±РѕРјРµС‚Р°РЅРёСЏ
-    //  i_ser:=StrToINt(MainForm.Edit12.Text); // РёРЅС‚РµСЂРІР°Р» СЃРµСЂРёРё
-    //  i_str:=StrToInt(MainForm.Combobox4.Text); // РёРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ
+    //считываем
+    //  kolASP:=StrToInt(MainForm.Edit11.Text);  //Кол-во АСП
+    //  height:=StrTOInt(MainForm.ComboBox2.text); // высота бомбометания
+    //  i_ser:=StrToINt(MainForm.Edit12.Text); // интервал серии
+    //  i_str:=StrToInt(MainForm.Combobox4.Text); // интервал строя
 
-    //  if MainForm.Edit10.Text<>''   //РєРѕР»РёС‡РµСЃС‚РІРѕ Р±РѕРјР±РѕРјРµС‚Р°РЅРёР№
+    //  if MainForm.Edit10.Text<>''   //количество бомбометаний
     //    then KR:=StrToInt(MainForm.Edit10.Text)
     //    else KR:=2000;
 
-    //Р’С‹С‡РёСЃР»СЏРµРј С‚РѕС‡РєРё РїСЂС†РµР»РёРІР°РЅРёСЏ
+    //Вычисляем точки прцеливания
     aimPoint[1][1] = 96 - initMap[rngToTrvrs]->property("text").toFloat();
     aimPoint[1][2] = initMap[cmbtRoute]->property("text").toFloat()
             + initMap[intrvlRgm]->property("text").toFloat() / 2;
@@ -122,14 +122,14 @@ var
     for (int i = 0; i <= 6; ++i)
         dukr[i] = 0;
 
-    for (int i = 1; i <= KR; ++i) //РџРµСЂРµР±РѕСЂ РІСЃРµС… Р±РѕРјР±РѕРјРµС‚Р°РЅРёР№ РїРѕ Р—Р Рљ
+    for (int i = 1; i <= KR; ++i) //Перебор всех бомбометаний по ЗРК
     {
-        for (int j = 1; j <= 25; ++j) //Р¤РѕСЂРјРёСЂСѓРµРј РјР°СЃСЃРёРІ ElementZRK
+        for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
             FE[i] = true;
 
-        for (int AreaNumber = 1; i <= 4; ++AreaNumber) //РџРµСЂРµР±РѕСЂ 4-С… Р·Р°Р»РїРѕРІ
+        for (int AreaNumber = 1; i <= 4; ++AreaNumber) //Перебор 4-х залпов
         {
-            //Р РµР°Р»РёР·Р°С†РёСЏ РєРѕРѕСЂРґРёРЅР°С‚ С†РµРЅС‚СЂРѕРІ Р·Р°Р»РїРѕРІ (РїСЂРёС†РµР»СЊРЅРѕРµ СЂР°СЃСЃРµРёРІР°РЅРёРµ)
+            //Реализация координат центров залпов (прицельное рассеивание)
 
     std::default_random_engine generator;
     std::normal_distribution<float> distribution(100,5);
@@ -141,15 +141,15 @@ var
 
             std::default_random_engine generator;
             std::normal_distribution<double> distribution(5.0,2.0);
-              for N_ASP:=1 to round(kolASP/2) do  //РќРѕРјРµСЂ РђРЎРџ
+              for N_ASP:=1 to round(kolASP/2) do  //Номер АСП
               begin
-              if RBKd=true then //Р•СЃР»Рё РЅРµ РћР¤РђР‘
+              if RBKd=true then //Если не ОФАБ
               begin
-              for k := 1 to kolsub do  // СЂР°СЃСЃРµРёРІР°РЅРёРµ СЃСѓР±Р±РѕРµРїСЂРёРїР°СЃРѕРІ
+              for k := 1 to kolsub do  // рассеивание суббоеприпасов
               begin       //2
-              RBK[k,1]:=Zalp_x+ L_ORS*(random-0.5); //Р РµР±СЂРѕ РєРІР°РґСЂР°С‚Р°
+              RBK[k,1]:=Zalp_x+ L_ORS*(random-0.5); //Ребро квадрата
               RBK[k,2]:=Zalp_y+ L_ORS*(random-0.5);
-              for N_FE :=1 to 25 do //Р¤Р­
+              for N_FE :=1 to 25 do //ФЭ
               if Destroy(RBK[k,1],RBK[k,2],
               CoordFE[N_FE,1],
               CoordFE[N_FE,2],
@@ -160,7 +160,7 @@ var
               CoordFE[N_FE,7],
               CoordFE[N_FE,8])
               then
-              begin   //  Р•СЃР»Рё РїРѕРїР°Р»
+              begin   //  Если попал
               FE[N_FE]:=false;
               if i=1 then
               begin
@@ -176,7 +176,7 @@ var
               end
               else
               begin
-              if i=1 then //  Р•СЃР»Рё РЅРµ РїРѕРїР°Р»
+              if i=1 then //  Если не попал
               begin
               Form1.Image1.Canvas.Pen.Color:=clgreen;
               Form1.Image1.Canvas.Ellipse(round(RBK[k,1])-1,round(RBK[k,2])-1,round(RBK[k,1])+1,round(RBK[k,2])+1);
@@ -184,11 +184,11 @@ var
               end;
               end;
               end;
-              if RBKd=false then //Р•СЃР»Рё РћР¤РђР‘
+              if RBKd=false then //Если ОФАБ
               begin//4
               xfab:=RandG(Zalp_x,0.004*Height);
               yfab:=RandG(Zalp_y,0.004*Height);
-              for N_FE :=1 to 25 do //Р¤Р­
+              for N_FE :=1 to 25 do //ФЭ
               if Destroy(xfab,yfab,
               CoordFE[N_FE,1],
               CoordFE[N_FE,2],
@@ -200,7 +200,7 @@ var
               CoordFE[N_FE,8])
               then
               begin
-              begin    // Р•СЃР»Рё РїРѕРїР°Р»
+              begin    // Если попал
               FE[N_FE]:=false;
               if i=1 then
               begin
@@ -216,7 +216,7 @@ var
               end
               else
               begin
-              if i=1 then  //  Р•СЃР»Рё РЅРµ РїРѕРїР°Р»
+              if i=1 then  //  Если не попал
               begin
               Form1.Image1.Canvas.Pen.Color:=clgreen;
               Form1.Image1.Canvas.Ellipse(round(xfab)-1,round(yfab)-1,round(xfab)+1,round(yfab)+1);
@@ -226,7 +226,7 @@ var
     }
     }
 
-              // РЈРІРµР»РёС‡РёРІР°РµРј СЌР»РµРјРµРЅС‚С‹ РІ РјР°СЃСЃРёРІРµ dukr,СЃР»РµРґСѓСЏ Р·РЅР°С‡РµРЅРёСЏРј РёР· РјР°СЃСЃРёРІР° ElementZRK(2.25)
+              // Увеличиваем элементы в массиве dukr,следуя значениям из массива ElementZRK(2.25)
               F0:= FE[2] and FE[3] and FE[6] and FE[7] and FE[8] and
               ((FE[18] and FE[22] and FE[23] and FE[24]and FE[25] and FE[19]) or
               (FE[18] and FE[22] and FE[23] and FE[24]and FE[25] and not(FE[19])) or
@@ -309,30 +309,30 @@ void calculationModel::bindObjects()
        a = 500;
        QString strResult = QString::number(a);
       // textArea->setProperty("text", "=" + strResult);
-       qDebug() << "Р¤СѓРЅРєС†РёСЏ:" << a;
+       qDebug() << "Функция:" << a;
     } else if (RadioButton() == 2) {
         a = 600;
-        qDebug() << "Р¤СѓРЅРєС†РёСЏ:" << a;
+        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 3) {
         a = 700;
-        qDebug() << "Р¤СѓРЅРєС†РёСЏ:" << a;
+        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 4) {
         a = 800;
-        qDebug() << "Р¤СѓРЅРєС†РёСЏ:" << a;
+        qDebug() << "Функция:" << a;
     } else if (RadioButton() == 5) {
         a = 900;
-        qDebug() << "Р¤СѓРЅРєС†РёСЏ:" << a;
+        qDebug() << "Функция:" << a;
     }
 
     if (numCheckBox() == 1) {
         b = 100;
-        qDebug() << "РРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ:" << b;
+        qDebug() << "Интервал строя:" << b;
     } else if (numCheckBox() == 2) {
         b = 200;
-        qDebug() << "РРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ:" << b;
+        qDebug() << "Интервал строя:" << b;
     } else if (numCheckBox() == 3) {
         b = 300;
-        qDebug() << "РРЅС‚РµСЂРІР°Р» СЃС‚СЂРѕСЏ:" << b;
+        qDebug() << "Интервал строя:" << b;
     }
 
 
