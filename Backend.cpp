@@ -6,7 +6,10 @@ Backend::Backend(QObject *parent) : QObject(parent)
 
 }
 // ��������� ����� ������
+<<<<<<< HEAD
 // ���������� ������ ������� ��5���� ����
+=======
+>>>>>>> master
 
 //ebemsya s kodirovkoi sykablyat'
 
