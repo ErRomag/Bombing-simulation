@@ -14,8 +14,8 @@ void calculationModel::cppSlot(const QString &msg)
     Q_UNUSED(msg);
 
     initFEoptions(); // заполнили FEopt
-//    evalDangerousExplosionsArea(); // заполнили DEA
-   damageCalculation(); // посчитали
+    evalDangerousExplosionsArea(); // заполнили DEA
+    damageCalculation(); // посчитали
 }
 
 void calculationModel::initFEoptions()

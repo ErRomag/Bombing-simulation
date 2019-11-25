@@ -379,6 +379,278 @@ void Backend::setW6TextField(QString W6TextField)
     emit W6TextFieldChanged(m_W6TextField);
 }
 
+void Backend::initFEoptions()
+{
+    FEopt[1][1]=96;    FEopt[1][2]=224;   FEopt[1][3]=10;    FEopt[1][4]=3; FEopt[1][5]=15;    FEopt[1][6]=radiusCP;
+    FEopt[2][1]=339;   FEopt[2][2]=308;   FEopt[2][3]=10;    FEopt[2][4]=3; FEopt[2][5]=15;    FEopt[2][6]=radiusCP12;
+    FEopt[3][1]=316;   FEopt[3][2]=0;     FEopt[3][3]=10;    FEopt[3][4]=3; FEopt[3][5]=15;    FEopt[3][6]=radiusCP12;
+    FEopt[4][1]=171;   FEopt[4][2]=349;   FEopt[4][3]=10;    FEopt[4][4]=3; FEopt[4][5]=15;    FEopt[4][6]=radiusRLSV;
+    FEopt[5][1]=85;    FEopt[5][2]=103;   FEopt[5][3]=10;    FEopt[5][4]=3; FEopt[5][5]=15;    FEopt[5][6]=radiusRLSV;
+    FEopt[6][1]=310;   FEopt[6][2]=249;   FEopt[6][3]=8;     FEopt[6][4]=4; FEopt[6][5]=15;    FEopt[6][6]=radiusSC123;
+    FEopt[7][1]=270;   FEopt[7][2]=177;   FEopt[7][3]=8;     FEopt[7][4]=4; FEopt[7][5]=15;    FEopt[7][6]=radiusSC123;
+    FEopt[8][1]=268;   FEopt[8][2]=95;    FEopt[8][3]=8;     FEopt[8][4]=4; FEopt[8][5]=15;    FEopt[8][6]=radiusSC123;
+    FEopt[9][1]=0;     FEopt[9][2]=250;   FEopt[9][3]=6;     FEopt[9][4]=2; FEopt[9][5]=15;    FEopt[9][6]=radiusCable;
+    FEopt[10][1]=350;  FEopt[10][2]=321;  FEopt[10][3]=6;    FEopt[10][4]=2;FEopt[10][5]=15;   FEopt[10][6]=radiusEG12;
+    FEopt[11][1]=268;  FEopt[11][2]=12;   FEopt[11][3]=6;    FEopt[11][4]=2;FEopt[11][5]=15;   FEopt[11][6]=radiusEG12;
+    FEopt[12][1]=-70.6;FEopt[12][2]=125;  FEopt[12][3]=200;  FEopt[12][4]=0;FEopt[12][5]=45;   FEopt[12][6]=radiusCable;
+    FEopt[13][1]=96/2; FEopt[13][2]=237;  FEopt[13][3]=99.5; FEopt[13][4]=0;FEopt[13][5]=15.15;FEopt[13][6]=radiusCable;
+    FEopt[14][1]=85.5; FEopt[14][2]=299.5;FEopt[14][3]=197.5;FEopt[14][4]=0;FEopt[14][5]=150;  FEopt[14][6]=radiusCable;
+    FEopt[15][1]=42.5; FEopt[15][2]=176.5;FEopt[15][3]=169.8;FEopt[15][4]=0;FEopt[15][5]=60;   FEopt[15][6]=radiusCable;
+    FEopt[16][1]=133.5;FEopt[16][2]=286.5;FEopt[16][3]=145.8;FEopt[16][4]=0;FEopt[16][5]=121;  FEopt[16][6]=radiusCable;
+    FEopt[17][1]=90.5; FEopt[17][2]=163.5;FEopt[17][3]=121.5;FEopt[17][4]=0;FEopt[17][5]=95.5; FEopt[17][6]=radiusCable;
+    FEopt[18][1]=247.5;FEopt[18][2]=266;  FEopt[18][3]=314.4;FEopt[18][4]=0;FEopt[18][5]=164.5;FEopt[18][6]=radiusCable;
+    FEopt[19][1]=206;  FEopt[19][2]=112;  FEopt[19][3]=304;  FEopt[19][4]=0;FEopt[19][5]=45.5; FEopt[19][6]=radiusCable;
+    FEopt[20][1]=374.5;FEopt[20][2]=314.5;FEopt[20][3]=50.6; FEopt[20][4]=0;FEopt[20][5]=15;   FEopt[20][6]=radiusCable;
+    FEopt[21][1]=292;  FEopt[21][2]=6;    FEopt[21][3]=50;   FEopt[21][4]=0;FEopt[21][5]=15;   FEopt[21][6]=radiusCable;
+    FEopt[22][1]=354.5;FEopt[22][2]=278.5;FEopt[22][3]=106.8;FEopt[22][4]=0;FEopt[22][5]=146.5;FEopt[22][6]=radiusCable;
+    FEopt[23][1]=290;  FEopt[23][2]=213;  FEopt[23][3]=82.4; FEopt[23][4]=0;FEopt[23][5]=119.1;FEopt[23][6]=radiusCable;
+    FEopt[24][1]=269;  FEopt[24][2]=136;  FEopt[24][3]=84;   FEopt[24][4]=0;FEopt[24][5]=91.3; FEopt[24][6]=radiusCable;
+    FEopt[25][1]=292;  FEopt[25][2]=95/2; FEopt[25][3]=106.4;FEopt[25][4]=0;FEopt[25][5]=63.1; FEopt[25][6]=radiusCable;
+}
+
+void Backend::evalDangerousExplosionsArea()
+{
+    float fi_rad, deltaX1, deltaX2, deltaY1, deltaY2;
+
+    for (int i = 1; i <= 25; ++i)
+    {
+        fi_rad = FEopt[i][5] * M_PI/180;
+        deltaX1 = (FEopt[i][3] / 2 + FEopt[i][6]) * cos(fi_rad);
+        deltaX2 = (FEopt[i][4] / 2 + FEopt[i][6]) * cos(M_PI / 2 - fi_rad);
+        deltaY1 = (FEopt[i][3] / 2 + FEopt[i][6]) * sin(fi_rad);
+        deltaY2 = (FEopt[i][4] / 2 + FEopt[i][6]) * sin(M_PI / 2 - fi_rad);
+
+        //Центры прицельного рассеивания
+        DEA[i][1] = FEopt[i][1] - deltaX1 - deltaX2;
+        DEA[i][2] = FEopt[i][2] + deltaY1 - deltaY2;
+        DEA[i][3] = FEopt[i][1] + deltaX1 - deltaX2;
+        DEA[i][4] = FEopt[i][2] - deltaY1 - deltaY2;
+        DEA[i][5] = FEopt[i][1] + deltaX1 + deltaX2;
+        DEA[i][6] = FEopt[i][2] - deltaY1 + deltaY2;
+        DEA[i][7] = FEopt[i][1] - deltaX1 + deltaX2;
+        DEA[i][8] = FEopt[i][2] + deltaY1 + deltaY2;
+    }
+}
+
+void Backend::damageCalculation()
+{
+    bool FE[26];
+    float aimPoint[5][3]; // координаты точки прицеливания
+    float RBK[101][3];     //
+    bool F0,F1,F2,F3,F4,F5,F6,KP;
+
+    float Zalp_X, Zalp_Y;
+    float xfab,yfab;
+
+    int dukr[7] = {0, 0, 0, 0, 0, 0, 0};
+
+    //  if MainForm.Edit10.Text<>''   //количество бомбометаний
+    //    then KR:=StrToInt(MainForm.Edit10.Text)
+    //    else KR:=2000;
+
+    //Вычисляем точки прцеливания
+    aimPoint[1][1] = 96 - rangeToTraverse;
+    aimPoint[1][2] = combatRouteCenterPair + intervalRegime;
+    aimPoint[2][1] = 96 - rangeToTraverse  + intervalSeries;
+    aimPoint[2][2] = combatRouteCenterPair + intervalRegime;
+    aimPoint[3][1] = 96 - rangeToTraverse;
+    aimPoint[3][2] = combatRouteCenterPair - intervalRegime;
+    aimPoint[4][1] = 96 - rangeToTraverse  + intervalSeries;
+    aimPoint[4][2] = combatRouteCenterPair - intervalRegime;
+
+//    for (int i = 1; i < 5; ++i) { вывод массива точек прицеливания
+//        for (int j = 1; j < 3; ++j) {
+//            qDebug() << "aimPoint[" << i << "][" << j << "] = " << aimPoint[i][j];
+//        }
+//    }
+
+
+    std::mt19937 randomGenerator(time(0));
+    for (int NumB = 1; NumB <= numberRealization; ++NumB) //Перебор всех бомбометаний по ЗРК
+    {
+        for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+            FE[j] = true;
+
+        for (int AreaNumber = 1; AreaNumber <= 4; ++AreaNumber) //Перебор 4-х залпов
+        {
+            //Реализация координат центров залпов (прицельное рассеивание)
+            std::normal_distribution<float> ndX(aimPoint[AreaNumber][1], aimDispersion),
+                                            ndY(aimPoint[AreaNumber][2], aimDispersion);
+            Zalp_X = ndX(randomGenerator);
+            Zalp_Y = ndY(randomGenerator);
+
+            for (int N_ASP = 1; N_ASP <= round(numberASP/2); ++N_ASP) // номер АСП
+            {
+                if(RBKd == true) // если не ОФАБ
+                {
+                    for (int k = 1; k <= numberAmmunition; ++k) // рассеивание суббоеприпасов
+                    {
+                        std::uniform_real_distribution<float> udX(-20, 60), udY(-15, 15);
+                        // !!!!!!!!!!!!!!!!!!!!!!ammunitionDispersion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        RBK[k][1] = Zalp_X + udX(randomGenerator); //Ребро квадрата
+                        RBK[k][2] = Zalp_Y + udY(randomGenerator);
+                        //qDebug() << "RBK[" << k << "][1]" << RBK[k][1];
+                        //qDebug() << "RBK[" << k << "][2]" << RBK[k][2];
+                        for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
+                        {
+                            if(Destroy(RBK[k][1],RBK[k][2],
+                                       DEA[N_FE][1],
+                                       DEA[N_FE][2],
+                                       DEA[N_FE][3],
+                                       DEA[N_FE][4],
+                                       DEA[N_FE][5],
+                                       DEA[N_FE][6],
+                                       DEA[N_FE][7],
+                                       DEA[N_FE][8])) //  Если попал
+                            {
+                                FE[N_FE] = false;
+                                if(NumB==1)
+                                {
+                                    /*
+                                    Form1.Image4.Canvas.Pen.Color:=clred;
+                                    Form1.Image4.Canvas.Polygon([Point(round(CoordFE[N_FE,1]),round(CoordFE[N_FE,2])),
+                                    Point(round(CoordFE[N_FE,3]),round(CoordFE[N_FE,4])),
+                                    Point(round(CoordFE[N_FE,5]),round(CoordFE[N_FE,6])),
+                                    Point(round(CoordFE[N_FE,7]),round(CoordFE[N_FE,8]))]);;
+                                    Form1.Image4.Canvas.Pen.Color:=clyellow;
+                                    Form1.Image4.Canvas.Ellipse(round(RBK[k,1])-2,round(RBK[k,2])-2,round(RBK[k,1])+2,round(RBK[k,2])+2);
+                                    */
+                                }
+                            } else //  Если не попал
+                            {
+                                if(NumB==1)
+                                {
+                                    /*
+                                    Form1.Image1.Canvas.Pen.Color:=clgreen;
+                                    Form1.Image1.Canvas.Ellipse(round(RBK[k,1])-1,round(RBK[k,2])-1,round(RBK[k,1])+1,round(RBK[k,2])+1);
+                                    */
+                                }
+                            }
+                        }
+                    }
+                } else // если ОФАБ
+                {
+
+                    std::normal_distribution<float> ndX(Zalp_X, 0.004*bombingAltitude), ndY(Zalp_Y, 0.004*bombingAltitude);
+                    xfab = ndX(randomGenerator);
+                    yfab = ndY(randomGenerator);
+                    for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
+                    {
+                        if(Destroy(xfab, yfab,
+                                   DEA[N_FE][1],
+                                   DEA[N_FE][2],
+                                   DEA[N_FE][3],
+                                   DEA[N_FE][4],
+                                   DEA[N_FE][5],
+                                   DEA[N_FE][6],
+                                   DEA[N_FE][7],
+                                   DEA[N_FE][8])) // если попал
+                        {
+                            FE[N_FE] = false;
+                            if(NumB==1)
+                            {
+                                /*
+                                Form1.Image4.Canvas.pen.Color:=clred;
+                                Form1.Image4.Canvas.Polygon([Point(round(CoordFE[N_FE,1]),round(CoordFE[N_FE,2])),
+                                Point(round(CoordFE[N_FE,3]),round(CoordFE[N_FE,4])),
+                                Point(round(CoordFE[N_FE,5]),round(CoordFE[N_FE,6])),
+                                Point(round(CoordFE[N_FE,7]),round(CoordFE[N_FE,8]))]);;
+                                Form1.Image4.Canvas.Pen.Color:=clyellow;
+                                Form1.Image4.Canvas.Ellipse(round(xfab)-1,round(yfab)-1,round(xfab)+1,round(yfab)+1);
+                                */
+                            }
+                        } else // если не попал
+                        {
+                            if(NumB==1)
+                            {
+                                /*
+                                Form1.Image1.Canvas.Pen.Color = clgreen;
+                                Form1.Image1.Canvas.Ellipse(round(xfab)-1,round(yfab)-1,round(xfab)+1,round(yfab)+1);
+                                */
+                            }
+                        }
+                    }
+                        }
+                    }
+                }
+            }
+            /*
+
+
+
+    }
+
+              // Увеличиваем элементы в массиве dukr,следуя значениям из массива ElementZRK(2.25)
+              F0:= FE[2] and FE[3] and FE[6] and FE[7] and FE[8] and
+              ((FE[18] and FE[22] and FE[23] and FE[24]and FE[25] and FE[19]) or
+              (FE[18] and FE[22] and FE[23] and FE[24]and FE[25] and not(FE[19])) or
+              (FE[18] and FE[22] and FE[23] and FE[24]and not(FE[25]) and FE[19]) or
+              (FE[18] and FE[22] and FE[23] and not(FE[24])and FE[25] and FE[19]) or
+              (FE[18] and FE[22] and not(FE[23]) and FE[24]and FE[25] and FE[19]) or
+              (FE[18] and not(FE[22]) and FE[23] and FE[24]and FE[25] and FE[19]) or
+              (not(FE[18]) and FE[22] and FE[23] and FE[24]and FE[25] and FE[19]));
+
+              F1:=FE[2] and FE[3] and FE[18] and FE[19] and(FE[6] and FE[7] and FE[22] and FE[23] and
+              (not(FE[8])or not(FE[24])or not(FE[25])) or FE[6] and FE[8] and FE[22] and FE[25] and
+              (not(FE[7]) or not(FE[23]) or not(FE[24])) or FE[7] and FE[8] and FE[24] and FE[25]
+              and (not(FE[6]) or not(FE[22])or not(FE[23])));
+
+              F2:=FE[6] and FE[7] and FE[8] and FE[23] and FE[24] and (FE[2] and FE[18] and FE[22]and
+              (not(FE[3] or not(FE[19]) or not(FE[25])) or FE[3] and FE[19]and FE[25] and
+              (not(FE[2])or not(FE[18]) and FE[22])));
+
+              F3:=FE[2] and FE[3] and FE[18] and FE[19] and (FE[6] and FE[22] and
+              (not(FE[7]) or FE[23]) and (not(FE[8]) or not(FE[25])) and
+              (not(FE[6]) or FE[22])and (not(FE[7]) or not(FE[24])));
+
+              F4:=FE[7] and (FE[2] and FE[6] and FE[18] and FE[22] and FE[23] and
+              (not(FE[3]) or not(FE[19])) and (not(FE[8]) or not(FE[24])) or
+              FE[3] and FE[8]and FE[19]and FE[24]and FE[25]and
+              (not(FE[2]) or not(FE[18]))and (not(FE[6])or not(FE[23])));
+
+              F5:=FE[2] and FE[6] and FE[18] and FE[22]and (not(FE[3]) or not(FE[19]))and
+              (not(FE[2]) or not(FE[23])) or FE[3] and FE[8]and FE[19]and FE[25]and
+              (not(FE[2]) or not(FE[18]))and (not(FE[7]) or not(FE[23]));
+
+              F6:=(not(FE[2]) or not(FE[6]) or FE[18] or not(FE[22])) and
+              (not(FE[3]) or not(FE[8]) or not(FE[19]) or not(FE[25]));
+
+              KP:=FE[1] and FE[5] and FE[9] and FE[17]and
+              (FE[12] and FE[13] or FE[4]and FE[16] and(FE[13] or FE[14] or FE[15])) ;
+
+              if (KP and F0) then inc(dukr[0])
+              else if (KP and F1) then inc(dukr[1])
+              else if (KP and F2) then inc(dukr[2])
+              else if (KP and F3) then inc(dukr[3])
+              else if (KP and F4) then inc(dukr[4])
+              else if (KP and F5) then inc(dukr[5])
+              else if (F6 or not(kp)) then inc(dukr[6]);
+              end;
+    }
+              for (int i = 0; i <= 7; ++i)
+        {
+            float res = dukr[i] / numberRealization;
+            resMap[i]->setProperty("text", QString::number(res, 'g', 3));
+        }
+        */
+}
+
+bool Backend::Destroy(float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)
+{
+    int i = 0;
+
+    if(std::signbit((x-x2)/(x2-x1)-(y-y2)/(y2-y1))==std::signbit((x3-x2)/(x2-x1)-(y3-y2)/(y2-y1)))
+        i++;
+    if(std::signbit((x-x3)/(x3-x2)-(y-y3)/(y3-y2))==std::signbit((x4-x3)/(x3-x2)-(y4-y3)/(y3-y2)))
+        i++;
+    if(std::signbit((x-x4)/(x4-x3)-(y-y4)/(y4-y3))==std::signbit((x1-x4)/(x4-x3)-(y1-y4)/(y4-y3)))
+        i++;
+    if(std::signbit((x-x1)/(x1-x4)-(y-y1)/(y1-y4))==std::signbit((x2-x1)/(x1-x4)-(y2-y1)/(y1-y4)))
+        i++;
+    if(i==4) return true;
+    else return false;
+}
+
 
 
 //----------------------------------------------------------
@@ -420,15 +692,15 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
     numberAmmunition = m_numberAmmunitionTextField.toFloat();
 
     if (m_indexRadioButton == 1) {
-        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+        RBKd = false;
     } else if (m_indexRadioButton == 2) {
-        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+        RBKd = false;
     } else if (m_indexRadioButton == 3) {
-        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+        RBKd = true;
     } else if (m_indexRadioButton == 4) {
-        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+        RBKd = true;
     } else if (m_indexRadioButton == 5) {
-        qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
+        RBKd = true;
     }
 
     // Например вот так можно передать в поле для радиуса КП значение
@@ -452,6 +724,7 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
 
     numberRealization = m_numberRealizationTextField.toFloat();
 
+    /*
     W0 = 0.85;
     setW0TextField(QString::number(W0));
 
@@ -472,5 +745,18 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
 
     W6 = 0.85;
     setW6TextField(QString::number(W6));
+    */
 
+    // Основные вычисления
+    initFEoptions(); // заполнили массив FEopt
+    evalDangerousExplosionsArea(); // заполнили массив DEA
+
+    /* Вывод массива областей опасных разрывов
+    for (int i = 1; i < 26; ++i) {
+        for (int j = 1; j < 9; ++j) {
+            qDebug() << "DEA[" << i << "][" << j << "] = " << DEA[i][j];
+        }
+    } */
+    //Destroy(6, 0, -5, -5, 5, -5, 5, 5, -5, 5);
+    //damageCalculation(); // посчитали
 }

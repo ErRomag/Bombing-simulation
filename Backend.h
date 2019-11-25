@@ -2,6 +2,8 @@
 #define BACKEND_H
 
 #include <QObject>
+#include <random>
+#include <ctime>
 
 class Backend : public QObject
 {
@@ -166,6 +168,22 @@ public slots:
 
 private:
 
+    float FEopt[26][7]; /* массив параметров элементов (Functional Element) ЗРК [нулевые элементы не используются]
+                         * FE[i][j], где: i - номер функционального элемента;
+                         * j = {1(коорд. [x]); 2(коорд. [y]); 3(длина элемента [a]); 4(ширина элемента [b]);
+                         * 5(угол [fi]); 6(радиус [r])}. */
+    float DEA[26][9];   /* массив координат области опасных разрывов (Dangerous Explosion Area)
+                         * элементов ЗРК [нулевые элементы не используются] */
+    void initFEoptions();
+    void evalDangerousExplosionsArea();
+    void damageCalculation();
+
+    bool RBKd;
+
+    bool Destroy(float x,float y,float x1,
+                 float y1,float x2,float y2,
+                 float x3,float y3,float x4,float y4);
+
     // Используемые переменные
     float aimDispersion;               // Параметр "Прицельное рассеивание"
     float technicalDispersion;         // Параметр "Техническое рассеивание"
@@ -173,13 +191,13 @@ private:
     float combatRouteCenterPair;       // Параметр "Боевой маршрут центра пары"
     float rangeToTraverse;             // Параметр "Дальность до траверза КП"
     float intervalRegime;              // Параметр "Интервал строя"
-    int indexIntervalRegime;           // Параметр "Индекс интервала строя"
+    int   indexIntervalRegime;         // Параметр "Индекс интервала строя"
     float intervalSeries;              // Параметр "Интервал серии"
     float bombingAltitude;             // Параметр "Высота бомбометания"
-    int indexBombingAltitude;          // Параметр "Индекс высоты бомбометания"
+    int   indexBombingAltitude;        // Параметр "Индекс высоты бомбометания"
     float numberASP;                   // Параметр "Количество АСП"
     float numberAmmunition;            // Параметр "Количество суббоеприпасов"
-    int currentIndexRadioButton;       // Параметр "Индекс типа вооружения"
+    int   currentIndexRadioButton;     // Параметр "Индекс типа вооружения"
 
     float radiusCP;                    // Параметр "Радиус поражения КП"
     float radiusCP12;                  // Параметр "Радиус поражения КП12"
