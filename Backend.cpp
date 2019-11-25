@@ -5,17 +5,11 @@ Backend::Backend(QObject *parent) : QObject(parent)
 {
 
 }
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-<<<<<<< HEAD
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ5пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
-=======
->>>>>>> master
 
-//ebemsya s kodirovkoi sykablyat'
+// Описание связки C++ слоя и QML оболочки
 
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ C++ пїЅпїЅпїЅпїЅ пїЅ QML пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// Связь для параметра "Прицельное рассеивание"
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
 QString Backend::aimDispersionTextField() const
 {
     return m_aimDispersionTextField;
@@ -30,7 +24,7 @@ void Backend::setAimDispersionTextField(QString aimDispersionTextField)
     emit aimDispersionTextFieldChanged(m_aimDispersionTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Техническое рассеивание"
 QString Backend::technicalDispersionTextField() const
 {
     return m_technicalDispersionTextField;
@@ -45,7 +39,7 @@ void Backend::setTechnicalDispersionTextField(QString technicalDispersionTextFie
     emit technicalDispersionTextFieldChanged(m_technicalDispersionTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Рассеивание суббоеприпасов"
 QString Backend::ammunitionDispersionTextField() const
 {
     return m_ammunitionDispersionTextField;
@@ -60,7 +54,7 @@ void Backend::setAmmunitionDispersionTextField(QString ammunitionDispersionTextF
     emit ammunitionDispersionTextFieldChanged(m_ammunitionDispersionTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"
+// Связь для параметра "Боевой маршрут центра пары"
 QString Backend::combatRouteCenterPairTextField() const
 {
     return m_combatRouteCenterPairTextField;
@@ -75,7 +69,7 @@ void Backend::setCombatRouteCenterPairTextField(QString combatRouteCenterPairTex
     emit combatRouteCenterPairTextFieldChanged(m_combatRouteCenterPairTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ"
+// Связь для параметра "Дальность до траверза КП"
 QString Backend::rangeToTraverseTextField() const
 {
     return m_rangeToTraverseTextField;
@@ -90,7 +84,7 @@ void Backend::setRangeToTraverseTextField(QString rangeToTraverseTextField)
     emit rangeToTraverseTextFieldChanged(m_rangeToTraverseTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Интервал строя"
 int Backend::intervalRegimeComboBox() const
 {
     return m_intervalRegimeComboBox;
@@ -105,7 +99,7 @@ void Backend::setIntervalRegimeComboBox(int intervalRegimeComboBox)
     emit intervalRegimeComboBoxChanged(m_intervalRegimeComboBox);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Интервал серии"
 QString Backend::intervalSeriesTextField() const
 {
     return m_intervalSeriesTextField;
@@ -120,7 +114,7 @@ void Backend::setIntervalSeriesTextField(QString intervalSeriesTextField)
     emit intervalSeriesTextFieldChanged(m_intervalSeriesTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Высота бомбометания"
 int Backend::bombingAltitudeComboBox() const
 {
     return m_bombingAltitudeComboBox;
@@ -135,7 +129,7 @@ void Backend::setBombingAltitudeComboBox(int bombingAltitudeComboBox)
     emit bombingAltitudeComboBoxChanged(m_bombingAltitudeComboBox);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ"
+// Связь для параметра "Количество АСП"
 QString Backend::numberASPTextField() const
 {
     return m_numberASPTextField;
@@ -150,7 +144,7 @@ void Backend::setNumberASPTextField(QString numberASPTextField)
     emit numberASPTextFieldChanged(m_numberASPTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Количество суббоеприпасов"
 QString Backend::numberAmmunitionTextField() const
 {
     return m_numberAmmunitionTextField;
@@ -165,7 +159,7 @@ void Backend::setNumberAmmunitionTextField(QString numberAmmunitionTextField)
     emit numberAmmunitionTextFieldChanged(m_numberAmmunitionTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Тип вооружения"
 int Backend::indexRadioButton() const
 {
     return m_indexRadioButton;
@@ -180,7 +174,7 @@ void Backend::setIndexRadioButton(int indexRadioButton)
     emit indexRadioButtonChanged(m_indexRadioButton);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ"
+// Связь для параметра "Радиус поражения КП"
 QString Backend::radiusCPTextField() const
 {
     return m_radiusCPTextField;
@@ -195,7 +189,7 @@ void Backend::setRadiusCPTextField(QString radiusCPTextField)
     emit radiusCPTextFieldChanged(m_radiusCPTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ12"
+// Связь для параметра "Радиус поражения КП12"
 QString Backend::radiusCP12TextField() const
 {
     return m_radiusCP12TextField;
@@ -210,7 +204,7 @@ void Backend::setRadiusCP12TextField(QString radiusCP12TextField)
     emit radiusCP12TextFieldChanged(m_radiusCP12TextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ123"
+// Связь для параметра "Радиус поражения СУ123"
 QString Backend::radiusSC123TextField() const
 {
     return m_radiusSC123TextField;
@@ -225,7 +219,7 @@ void Backend::setRadiusSC123TextField(QString radiusSC123TextField)
     emit radiusSC123TextFieldChanged(m_radiusSC123TextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ? пїЅпїЅ пїЅ ? пїЅпїЅ"
+// Связь для параметра "Радиус поражения РЛС и РЛВ"
 QString Backend::radiusRLSVTextField() const
 {
     return m_radiusRLSVTextField;
@@ -240,7 +234,7 @@ void Backend::setRadiusRLSVTextField(QString radiusRLSVTextField)
     emit radiusRLSVTextFieldChanged(m_radiusRLSVTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ12"
+// Связь для параметра "Радиус поражения ЭГ12"
 QString Backend::radiusEG12TextField() const
 {
     return m_radiusEG12TextField;
@@ -255,7 +249,8 @@ void Backend::setRadiusEG12TextField(QString radiusEG12TextField)
     emit radiusEG12TextFieldChanged(m_radiusEG12TextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "? пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Радиус поражения кабелей"
+
 QString Backend::radiusCableTextField() const
 {
     return m_radiusCableTextField;
@@ -270,7 +265,7 @@ void Backend::setRadiusCableTextField(QString radiusCableTextField)
     emit radiusCableTextFieldChanged(m_radiusCableTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+// Связь для параметра "Количество реализаций"
 QString Backend::numberRealizationTextField() const
 {
     return m_numberRealizationTextField;
@@ -285,7 +280,7 @@ void Backend::setNumberRealizationTextField(QString numberRealizationTextField)
     emit numberRealizationTextFieldChanged(m_numberRealizationTextField);
 }
 
-// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ W1 - W6
+// Связь для параметров W1 - W6
 QString Backend::W0TextField() const
 {
     return m_W0TextField;
@@ -388,7 +383,7 @@ void Backend::setW6TextField(QString W6TextField)
 
 //----------------------------------------------------------
 
-void Backend::initialization()  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+void Backend::initialization()  // Функция инициализации переменных для вычислений
 {
     aimDispersion = m_aimDispersionTextField.toFloat();
     technicalDispersion = m_technicalDispersionTextField.toFloat();
@@ -396,7 +391,7 @@ void Backend::initialization()  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпї
     combatRouteCenterPair = m_combatRouteCenterPairTextField.toFloat();
     rangeToTraverse = m_rangeToTraverseTextField.toFloat();
 
-    indexIntervalRegime = m_intervalRegimeComboBox;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ intervalRegimeCheckBox
+    indexIntervalRegime = m_intervalRegimeComboBox;  // Текущий индекс intervalRegimeCheckBox
 
     if (indexIntervalRegime == 0) {
         intervalRegime = 100;
@@ -408,7 +403,7 @@ void Backend::initialization()  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпї
 
     intervalSeries = m_intervalSeriesTextField.toFloat();
 
-    indexBombingAltitude = m_bombingAltitudeComboBox;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BombingAltitude
+    indexBombingAltitude = m_bombingAltitudeComboBox;  // Текущий индекс BombingAltitude
 
     if (indexBombingAltitude == 0) {
         bombingAltitude = 1000;
@@ -418,7 +413,7 @@ void Backend::initialization()  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпї
         bombingAltitude = 2000;
     }
 
-    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+    // Например вот так можно передать в поле для количества АСП
     numberASP = 10;
     setNumberASPTextField(QString::number(numberASP));
 
@@ -436,7 +431,7 @@ void Backend::initialization()  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпї
         qDebug() << "currentIndexRadioButton" << m_indexRadioButton;
     }
 
-    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // Например вот так можно передать в поле для радиуса КП значение
     radiusCP = 20.20;
     setRadiusCPTextField(QString::number(radiusCP));
 
