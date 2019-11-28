@@ -5,6 +5,9 @@
 #include <random>
 #include <ctime>
 
+#define RED 100
+#define GREEN 101
+
 class Backend : public QObject
 {
     Q_OBJECT
@@ -188,7 +191,7 @@ private:
     bool F0,F1,F2,F3,F4,F5,F6,KP;
     int dukr[7] = {0, 0, 0, 0, 0, 0, 0};
     void test();
-    void solveFE();
+    void solveFE(bool test);
     void writeFE(int Nv);
 
     // Используемые переменные

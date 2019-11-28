@@ -6,11 +6,6 @@ Backend::Backend(QObject *parent) : QObject(parent)
 
 }
 
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-
-// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ5пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
-
-
 // Описание связки C++ слоя и QML оболочки
 
 // Связь для параметра "Прицельное рассеивание"
@@ -461,7 +456,7 @@ void Backend::damageCalculation()
     std::mt19937 randomGenerator(time(0));
     for (int NumB = 1; NumB <= numberRealization; ++NumB) //Перебор всех бомбометаний по ЗРК
     {
-        for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        for (int j = 1; j <= 25; ++j) //Формируем массив состояний элементов ЗРК
             FE[j] = true;
 
         for (int AreaNumber = 1; AreaNumber <= 4; ++AreaNumber) //Перебор 4-х залпов
@@ -495,19 +490,27 @@ void Backend::damageCalculation()
                                        DEA[N_FE][8])) //  Если попал
                             {
                                 FE[N_FE] = false;
-                                if(NumB==1)
+                                if(NumB==1) // не знаю зачем
                                 {
                                     /*
                                      * рисуем, что попали РБК
                                     */
+                                    QVector<float> message;
+                                    message.push_back(RBK[k][1]);
+                                    message.push_back(RBK[k][2]);
+                                    message.push_back(RED);
                                 }
                             } else //  Если не попал
                             {
-                                if(NumB==1)
+                                if(NumB==1) // не знаю зачем
                                 {
                                     /*
                                      * рисуем, что не попали РБК
                                     */
+                                    QVector<float> message;
+                                    message.push_back(RBK[k][1]);
+                                    message.push_back(RBK[k][2]);
+                                    message.push_back(GREEN);
                                 }
                             }
                         }
@@ -531,36 +534,38 @@ void Backend::damageCalculation()
                                    DEA[N_FE][8])) // если попал
                         {
                             FE[N_FE] = false;
-                            if(NumB==1)
+                            if(NumB==1) // не знаю зачем
                             {
                                 /*
                                  * рисуем, что попали ФАБом
                                 */
+                                QVector<float> message;
+                                message.push_back(xfab);
+                                message.push_back(yfab);
+                                message.push_back(RED);
                             }
                         } else // если не попал
                         {
-                            if(NumB==1)
+                            if(NumB==1) // не знаю зачем
                             {
                                 /*
                                  * рисуем, что не попали ФАБом
                                 */
+                                QVector<float> message;
+                                message.push_back(xfab);
+                                message.push_back(yfab);
+                                message.push_back(GREEN);
                             }
                         }
                     }
                 }
             }
         }
-        // Увеличиваем элементы в массиве dukr,следуя значениям из массива ElementZRK(2.25)
-
-        solveFE();
+        solveFE(0);
     }
 
-
-    test();
-
-
-
-
+    // Тест по графу
+    //test();
 
     float res = 10000 * (dukr[0] / numberRealization) / 100;
     W0 = res;
@@ -616,115 +621,115 @@ int Backend::sgn(float val)
 
 void Backend::test()
 {
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[19] = false;
-    solveFE();
+    solveFE(1);
     writeFE(1);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[25] = false;
-    solveFE();
+    solveFE(1);
     writeFE(2);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[23] = false;
-    solveFE();
+    solveFE(1);
     writeFE(3);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[24] = false;
-    solveFE();
+    solveFE(1);
     writeFE(4);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[18] = false;
-    solveFE();
+    solveFE(1);
     writeFE(5);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[22] = false;
-    solveFE();
+    solveFE(1);
     writeFE(6);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[8] = false;
-    solveFE();
+    solveFE(1);
     writeFE(71);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[24] = false;
     FE[25] = false;
-    solveFE();
+    solveFE(1);
     writeFE(72);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[7] = false;
-    solveFE();
+    solveFE(1);
     writeFE(81);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[23] = false;
     FE[24] = false;
-    solveFE();
+    solveFE(1);
     writeFE(82);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[6] = false;
-    solveFE();
+    solveFE(1);
     writeFE(91);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[22] = false;
     FE[23] = false;
-    solveFE();
+    solveFE(1);
     writeFE(92);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[3] = false;
-    solveFE();
+    solveFE(1);
     writeFE(101);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[19] = false;
     FE[25] = false;
-    solveFE();
+    solveFE(1);
     writeFE(102);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[2] = false;
-    solveFE();
+    solveFE(1);
     writeFE(111);
 
-    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+    for (int j = 1; j <= 25; ++j)
         FE[j] = true;
     FE[18] = false;
     FE[22] = false;
-    solveFE();
+    solveFE(1);
     writeFE(112);
 }
 
-void Backend::solveFE()
+void Backend::solveFE(bool test)
 {
-    for (int i = 0; i < 7; ++i) {
-        dukr[i] = 0;
-    }
-
-
+    if(test)
+        for (int i = 0; i < 7; ++i)
+        {
+            dukr[i] = 0;
+        }
 
     F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] &&
            ((FE[18] && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) ||
