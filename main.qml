@@ -233,13 +233,13 @@ ApplicationWindow {
                 TextField {
                     id: numberASP // Количество АСП
                     objectName: "numberASP"
-                    readOnly: true
+                    //readOnly: true
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+/}
 
-                    text: backend.numberASPTextField
-                    //onTextChanged: backend.setNumberASPTextField(text)
+                    //text: backend.numberASPTextField
+                    onTextChanged: backend.setNumberASPTextField(text)
                 }
 
                 Text {
@@ -650,8 +650,8 @@ ApplicationWindow {
                             errorRadioButton.open()
                         } else {
                             backend.initialization()
-                            var component = Qt.createComponent("map.qml");
-                            var browserWindow = component.createObject(this);
+                            //var component = Qt.createComponent("map.qml");
+                            //var browserWindow = component.createObject(this);
                         }
 
                     }

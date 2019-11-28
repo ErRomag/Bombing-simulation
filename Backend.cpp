@@ -6,6 +6,11 @@ Backend::Backend(QObject *parent) : QObject(parent)
 
 }
 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ5пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+
+
 // Описание связки C++ слоя и QML оболочки
 
 // Связь для параметра "Прицельное рассеивание"
@@ -546,78 +551,124 @@ void Backend::damageCalculation()
                 }
             }
         }
+        // Увеличиваем элементы в массиве dukr,следуя значениям из массива ElementZRK(2.25)
+
+        F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] &&
+               ((FE[18] && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) ||
+                (FE[18] && FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
+                (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
+                (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
+                (FE[18] && FE[22] && !(FE[23]) && FE[24]&& FE[25] && FE[19]) ||
+                (FE[18] && !(FE[22]) && FE[23] && FE[24]&& FE[25] && FE[19]) ||
+                (!(FE[18]) && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]));
+
+        F1 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[7] && FE[22] && FE[23] &&
+                (!(FE[8]) || (FE[8] && !(FE[24]) && !(FE[25])))) || (FE[6] && FE[8] && FE[22] && FE[25] &&
+                (!(FE[7]) || (FE[7] && !(FE[23]) && !(FE[24])))) || (FE[7] && FE[8] && FE[24] && FE[25]
+             && (!(FE[6]) || (FE[6] && !(FE[22]) && !(FE[23])))));
+
+        F2 = FE[6] && FE[23] && FE[7] && FE[24] && FE[8] && ((FE[2] && FE[18] && FE[22] &&
+                (!FE[3] || (FE[3] && !FE[19] && !(FE[25])))) || (FE[3] && FE[19] && FE[25] &&
+               ((!FE[2] || (FE[2] && !FE[18] && !FE[22])))));
+
+        F3 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[22] &&
+                (!(FE[7]) || (FE[7] && !FE[23])) && (!(FE[8]) || (FE[8] && !(FE[25])))) ||
+                (((FE[8]) && FE[25]) && (!(FE[6]) || (FE[6] && !(FE[22]))) && (!FE[7] || (FE[7] && !FE[24]))));
+
+        F4 = FE[7] && ((FE[2] && FE[6] && FE[18] && FE[22] && FE[23] &&
+                (!(FE[3]) || (FE[3] && !(FE[19]))) && (!(FE[8]) || (FE[8] && !(FE[24]))))  ||
+                ((FE[3] && FE[8]&& FE[19]&& FE[24]&& FE[25]&&
+                (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[6])|| (FE[6] && !(FE[23]))))));
+
+        F5 = (FE[2] && FE[6] && FE[18] && FE[22] && (!(FE[3]) || (FE[3] && !(FE[19]))) &&
+                (!(FE[7]) || (FE[7] && !(FE[23])))) || (FE[3] && FE[8] && FE[19] && FE[25]&&
+                (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[7]) || (FE[7] && !(FE[24]))));
+
+        F6 = (!(FE[2]) || (FE[2] && !(FE[6])) || (FE[2] && FE[6] && !FE[18]) || (FE[2] && FE[6] && FE[18] && !FE[22])) &&
+             (!(FE[3]) || (FE[3] && !(FE[8])) || (FE[3] && FE[8] && !(FE[19])) || (FE[3] && FE[8] && FE[19] &&!(FE[25])));
+
+        KP = FE[1] && FE[5] && FE[9] && FE[17] &&
+                ((FE[12] && FE[13]) ||
+                (FE[4] && FE[16] && (FE[13] || FE[14] || FE[15])));
+
+//        F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] && ((FE[18] &&
+//                FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) || (FE[18] &&
+//                FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
+//                (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
+//                (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
+//                (FE[18] && FE[22] && !(FE[23]) && FE[24]&& FE[25] && FE[19]) ||
+//                (FE[18] && !(FE[22]) && FE[23] && FE[24]&& FE[25] && FE[19]) ||
+//                (!(FE[18]) && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]));
+
+//        F1 =FE[2] && FE[3] && FE[18] && FE[19] &&(FE[6] && FE[7] && FE[22] && FE[23] &&
+//                (!(FE[8]) || !(FE[24]) || !(FE[25])) || FE[6] && FE[8] && FE[22] && FE[25] &&
+//                (!(FE[7]) || !(FE[23]) || !(FE[24])) || FE[7] && FE[8] && FE[24] && FE[25]
+//                && (!(FE[6]) || !(FE[22])|| !(FE[23])));
+
+//        F2 =FE[6] && FE[7] && FE[8] && FE[23] && FE[24] && (FE[2] && FE[18] && FE[22]&&
+//                (!(FE[3] || !(FE[19]) || !(FE[25])) || FE[3] && FE[19]&& FE[25] &&
+//                (!(FE[2])|| !(FE[18]) && FE[22])));
+
+//        F3 =FE[2] && FE[3] && FE[18] && FE[19] && (FE[6] && FE[22] &&
+//                (!(FE[7]) || FE[23]) && (!(FE[8]) || !(FE[25])) &&
+//                (!(FE[6]) || FE[22])&& (!(FE[7]) || !(FE[24])));
+
+//        F4 =FE[7] && (FE[2] && FE[6] && FE[18] && FE[22] && FE[23] &&
+//                (!(FE[3]) || !(FE[19])) && (!(FE[8]) || !(FE[24]))  ||
+//                FE[3] && FE[8]&& FE[19]&& FE[24]&& FE[25]&&
+//                (!(FE[2]) || !(FE[18]))&& (!(FE[6])|| !(FE[23]))) ;
+
+//        F5 =FE[2] && FE[6] && FE[18] && FE[22]&& (!(FE[3]) || !(FE[19]))&&
+//                (!(FE[2]) || !(FE[23])) || FE[3] && FE[8]&& FE[19]&& FE[25]&&
+//                (!(FE[2]) || !(FE[18]))&& (!(FE[7]) || !(FE[23]));
+
+//        F6 =(!(FE[2]) || !(FE[6]) || FE[18] || !(FE[22])) &&
+//                (!(FE[3]) || !(FE[8]) || !(FE[19]) || !(FE[25]));
+
+//        KP =FE[1] && FE[5] && FE[9] && FE[17]&&
+//                (FE[12] && FE[13] || FE[4]&& FE[16] &&(FE[13] || FE[14] || FE[15]));
+
+        if(KP && F0)
+            dukr[0]++;
+        else if (KP && F1)
+            dukr[1]++;
+        else if (KP && F2)
+            dukr[2]++;
+        else if (KP && F3)
+            dukr[3]++;
+        else if (KP && F4)
+            dukr[4]++;
+        else if (KP && F5)
+            dukr[5]++;
+        else if (F6 || !(KP))
+            dukr[6]++;
     }
 
 
 
-    // Увеличиваем элементы в массиве dukr,следуя значениям из массива ElementZRK(2.25)
 
-    F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] && ((FE[18] &&
-            FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) || (FE[18] &&
-            FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
-            (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
-            (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
-            (FE[18] && FE[22] && !(FE[23]) && FE[24]&& FE[25] && FE[19]) ||
-            (FE[18] && !(FE[22]) && FE[23] && FE[24]&& FE[25] && FE[19]) ||
-            (!(FE[18]) && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]));
-    F1 =FE[2] && FE[3] && FE[18] && FE[19] &&(FE[6] && FE[7] && FE[22] && FE[23] &&
-            (!(FE[8]) || !(FE[24]) || !(FE[25])) || FE[6] && FE[8] && FE[22] && FE[25] &&
-            (!(FE[7]) || !(FE[23]) || !(FE[24])) || FE[7] && FE[8] && FE[24] && FE[25]
-            && (!(FE[6]) || !(FE[22])|| !(FE[23])));
-    F2 =FE[6] && FE[7] && FE[8] && FE[23] && FE[24] && (FE[2] && FE[18] && FE[22]&&
-            (!(FE[3] || !(FE[19]) || !(FE[25])) || FE[3] && FE[19]&& FE[25] &&
-            (!(FE[2])|| !(FE[18]) && FE[22])));
-    F3 =FE[2] && FE[3] && FE[18] && FE[19] && (FE[6] && FE[22] &&
-            (!(FE[7]) || FE[23]) && (!(FE[8]) || !(FE[25])) &&
-            (!(FE[6]) || FE[22])&& (!(FE[7]) || !(FE[24])));
-    F4 =FE[7] && (FE[2] && FE[6] && FE[18] && FE[22] && FE[23] &&
-            (!(FE[3]) || !(FE[19])) && (!(FE[8]) || !(FE[24])) ||
-            FE[3] && FE[8]&& FE[19]&& FE[24]&& FE[25]&&
-            (!(FE[2]) || !(FE[18]))&& (!(FE[6])|| !(FE[23])));
-    F5 =FE[2] && FE[6] && FE[18] && FE[22]&& (!(FE[3]) || !(FE[19]))&&
-            (!(FE[2]) || !(FE[23])) || FE[3] && FE[8]&& FE[19]&& FE[25]&&
-            (!(FE[2]) || !(FE[18]))&& (!(FE[7]) || !(FE[23]));
-    F6 =(not(FE[2]) || not(FE[6]) || FE[18] || not(FE[22])) &&
-            (not(FE[3]) || not(FE[8]) || not(FE[19]) || not(FE[25]));
-    KP =FE[1] && FE[5] && FE[9] && FE[17]&&
-            (FE[12] && FE[13] || FE[4]&& FE[16] &&(FE[13] || FE[14] || FE[15])) ;
 
-    if(KP && F0)
-        dukr[0]++;
-    else if (KP && F1)
-        dukr[1]++;
-    else if (KP && F2)
-        dukr[2]++;
-    else if (KP && F3)
-        dukr[3]++;
-    else if (KP && F4)
-        dukr[4]++;
-    else if (KP && F5)
-        dukr[5]++;
-    else if (F6 || !(KP))
-        dukr[6]++;
-
-    float res = dukr[0] / numberRealization;
+    float res = 10000 * (dukr[0] / numberRealization) / 100;
     W0 = res;
-    setW0TextField(QString::number(W0));
-    res = dukr[1] / numberRealization;
+    setW0TextField(QString::number(W0)+'%');
+    res = 10000 * (dukr[1] / numberRealization) / 100;
     W1 = res;
-    setW1TextField(QString::number(W1));
-    res = dukr[2] / numberRealization;
+    setW1TextField(QString::number(W1)+'%');
+    res = 10000 * (dukr[2] / numberRealization) / 100;
     W2 = res;
-    setW2TextField(QString::number(W2));
-    res = dukr[3] / numberRealization;
+    setW2TextField(QString::number(W2)+'%');
+    res = 10000 * (dukr[3] / numberRealization) / 100;
     W3 = res;
-    setW3TextField(QString::number(W3));
-    res = dukr[4] / numberRealization;
+    setW3TextField(QString::number(W3)+'%');
+    res = 10000 * (dukr[4] / numberRealization) / 100;
     W4 = res;
-    setW4TextField(QString::number(W4));
-    res = dukr[5] / numberRealization;
+    setW4TextField(QString::number(W4)+'%');
+    res = 10000 * (dukr[5] / numberRealization) / 100;
     W5 = res;
-    setW5TextField(QString::number(W5));
-    res = dukr[6] / numberRealization;
+    setW5TextField(QString::number(W5)+'%');
+    res = 10000 * (dukr[6] / numberRealization) / 100;
     W6 = res;
-    setW6TextField(QString::number(W6));
+    setW6TextField(QString::number(W6)+'%');
 }
 
 
@@ -673,6 +724,8 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
 
     intervalSeries = m_intervalSeriesTextField.toFloat();
 
+    numberASP = m_numberASPTextField.toFloat();
+
     indexBombingAltitude = m_bombingAltitudeComboBox;  // Текущий индекс BombingAltitude
 
     if (indexBombingAltitude == 0) {
@@ -684,8 +737,8 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
     }
 
     // Например вот так можно передать в поле для количества АСП
-    numberASP = 10;
-    setNumberASPTextField(QString::number(numberASP));
+    //numberASP = 10;
+    //setNumberASPTextField(QString::number(numberASP));
 
     numberAmmunition = m_numberAmmunitionTextField.toFloat();
 
@@ -702,22 +755,22 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
     }
 
     // Например вот так можно передать в поле для радиуса КП значение
-    radiusCP = 20.20;
+    radiusCP = 23;
     setRadiusCPTextField(QString::number(radiusCP));
 
-    radiusCP12 = 30.30;
+    radiusCP12 = 23;
     setRadiusCP12TextField(QString::number(radiusCP12));
 
-    radiusSC123 = 40.40;
+    radiusSC123 = 23;
     setRadiusSC123TextField(QString::number(radiusSC123));
 
-    radiusRLSV = 50.50;
+    radiusRLSV = 24;
     setRadiusRLSVTextField(QString::number(radiusRLSV));
 
-    radiusEG12 = 60.60;
+    radiusEG12 = 20;
     setRadiusEG12TextField(QString::number(radiusEG12));
 
-    radiusCable = 70.70;
+    radiusCable = 3.4;
     setRadiusCableTextField(QString::number(radiusCable));
 
     numberRealization = m_numberRealizationTextField.toFloat();
