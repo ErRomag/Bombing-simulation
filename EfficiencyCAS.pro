@@ -15,7 +15,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         Backend.cpp \
-        calculationmodel.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -40,7 +39,6 @@ DISTFILES += \
 
 HEADERS += \
     Backend.h \
-    calculationmodel.h \
     common.h
 
 

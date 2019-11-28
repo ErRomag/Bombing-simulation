@@ -9,8 +9,6 @@ import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.1
 //import Testclass 1.0
-import CalculationModel 1.0
-
 import Backend 1.0
 
 
@@ -34,10 +32,6 @@ ApplicationWindow {
     height: windowHeight
     maximumHeight: windowHeight
     minimumHeight: windowHeight
-
-    CalculationModel {
-        id: kernel
-    }
 
     Backend {
         id: backend

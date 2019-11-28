@@ -2,7 +2,6 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQmlEngine>
-#include "calculationmodel.h"
 
 #include "Backend.h"
 
@@ -18,7 +17,7 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon(":/bombingIcon.jpg"));
 
     // Регистрируем типы radioButton, checkBox
-    qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
+    //qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
 
     qmlRegisterType<Backend>("Backend", 1, 0, "Backend");
 

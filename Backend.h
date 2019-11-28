@@ -183,6 +183,7 @@ private:
     bool Destroy(float x,float y,float x1,
                  float y1,float x2,float y2,
                  float x3,float y3,float x4,float y4);
+    int sgn(float val);
 
     // Используемые переменные
     float aimDispersion;               // Параметр "Прицельное рассеивание"
