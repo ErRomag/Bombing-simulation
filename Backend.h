@@ -184,6 +184,12 @@ private:
                  float y1,float x2,float y2,
                  float x3,float y3,float x4,float y4);
     int sgn(float val);
+    bool FE[26];
+    bool F0,F1,F2,F3,F4,F5,F6,KP;
+    int dukr[7] = {0, 0, 0, 0, 0, 0, 0};
+    void test();
+    void solveFE();
+    void writeFE(int Nv);
 
     // Используемые переменные
     float aimDispersion;               // Параметр "Прицельное рассеивание"

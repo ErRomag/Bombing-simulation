@@ -438,16 +438,15 @@ void Backend::evalDangerousExplosionsArea()
 }
 
 void Backend::damageCalculation()
-{
-    bool FE[26];
+{    
     float aimPoint[5][3]; // координаты точки прицеливания
     float RBK[101][3];     //
-    bool F0,F1,F2,F3,F4,F5,F6,KP;
-
     float Zalp_X, Zalp_Y;
     float xfab,yfab;
 
-    int dukr[7] = {0, 0, 0, 0, 0, 0, 0};
+    for (int i = 0; i < 7; ++i) {
+        dukr[i] = 0;
+    }
 
     //Вычисляем точки прцеливания
     aimPoint[1][1] = 96 - rangeToTraverse;
@@ -553,96 +552,11 @@ void Backend::damageCalculation()
         }
         // Увеличиваем элементы в массиве dukr,следуя значениям из массива ElementZRK(2.25)
 
-        F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] &&
-               ((FE[18] && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) ||
-                (FE[18] && FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
-                (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
-                (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
-                (FE[18] && FE[22] && !(FE[23]) && FE[24]&& FE[25] && FE[19]) ||
-                (FE[18] && !(FE[22]) && FE[23] && FE[24]&& FE[25] && FE[19]) ||
-                (!(FE[18]) && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]));
-
-        F1 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[7] && FE[22] && FE[23] &&
-                (!(FE[8]) || (FE[8] && !(FE[24]) && !(FE[25])))) || (FE[6] && FE[8] && FE[22] && FE[25] &&
-                (!(FE[7]) || (FE[7] && !(FE[23]) && !(FE[24])))) || (FE[7] && FE[8] && FE[24] && FE[25]
-             && (!(FE[6]) || (FE[6] && !(FE[22]) && !(FE[23])))));
-
-        F2 = FE[6] && FE[23] && FE[7] && FE[24] && FE[8] && ((FE[2] && FE[18] && FE[22] &&
-                (!FE[3] || (FE[3] && !FE[19] && !(FE[25])))) || (FE[3] && FE[19] && FE[25] &&
-               ((!FE[2] || (FE[2] && !FE[18] && !FE[22])))));
-
-        F3 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[22] &&
-                (!(FE[7]) || (FE[7] && !FE[23])) && (!(FE[8]) || (FE[8] && !(FE[25])))) ||
-                (((FE[8]) && FE[25]) && (!(FE[6]) || (FE[6] && !(FE[22]))) && (!FE[7] || (FE[7] && !FE[24]))));
-
-        F4 = FE[7] && ((FE[2] && FE[6] && FE[18] && FE[22] && FE[23] &&
-                (!(FE[3]) || (FE[3] && !(FE[19]))) && (!(FE[8]) || (FE[8] && !(FE[24]))))  ||
-                ((FE[3] && FE[8]&& FE[19]&& FE[24]&& FE[25]&&
-                (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[6])|| (FE[6] && !(FE[23]))))));
-
-        F5 = (FE[2] && FE[6] && FE[18] && FE[22] && (!(FE[3]) || (FE[3] && !(FE[19]))) &&
-                (!(FE[7]) || (FE[7] && !(FE[23])))) || (FE[3] && FE[8] && FE[19] && FE[25]&&
-                (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[7]) || (FE[7] && !(FE[24]))));
-
-        F6 = (!(FE[2]) || (FE[2] && !(FE[6])) || (FE[2] && FE[6] && !FE[18]) || (FE[2] && FE[6] && FE[18] && !FE[22])) &&
-             (!(FE[3]) || (FE[3] && !(FE[8])) || (FE[3] && FE[8] && !(FE[19])) || (FE[3] && FE[8] && FE[19] &&!(FE[25])));
-
-        KP = FE[1] && FE[5] && FE[9] && FE[17] &&
-                ((FE[12] && FE[13]) ||
-                (FE[4] && FE[16] && (FE[13] || FE[14] || FE[15])));
-
-//        F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] && ((FE[18] &&
-//                FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) || (FE[18] &&
-//                FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
-//                (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
-//                (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
-//                (FE[18] && FE[22] && !(FE[23]) && FE[24]&& FE[25] && FE[19]) ||
-//                (FE[18] && !(FE[22]) && FE[23] && FE[24]&& FE[25] && FE[19]) ||
-//                (!(FE[18]) && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]));
-
-//        F1 =FE[2] && FE[3] && FE[18] && FE[19] &&(FE[6] && FE[7] && FE[22] && FE[23] &&
-//                (!(FE[8]) || !(FE[24]) || !(FE[25])) || FE[6] && FE[8] && FE[22] && FE[25] &&
-//                (!(FE[7]) || !(FE[23]) || !(FE[24])) || FE[7] && FE[8] && FE[24] && FE[25]
-//                && (!(FE[6]) || !(FE[22])|| !(FE[23])));
-
-//        F2 =FE[6] && FE[7] && FE[8] && FE[23] && FE[24] && (FE[2] && FE[18] && FE[22]&&
-//                (!(FE[3] || !(FE[19]) || !(FE[25])) || FE[3] && FE[19]&& FE[25] &&
-//                (!(FE[2])|| !(FE[18]) && FE[22])));
-
-//        F3 =FE[2] && FE[3] && FE[18] && FE[19] && (FE[6] && FE[22] &&
-//                (!(FE[7]) || FE[23]) && (!(FE[8]) || !(FE[25])) &&
-//                (!(FE[6]) || FE[22])&& (!(FE[7]) || !(FE[24])));
-
-//        F4 =FE[7] && (FE[2] && FE[6] && FE[18] && FE[22] && FE[23] &&
-//                (!(FE[3]) || !(FE[19])) && (!(FE[8]) || !(FE[24]))  ||
-//                FE[3] && FE[8]&& FE[19]&& FE[24]&& FE[25]&&
-//                (!(FE[2]) || !(FE[18]))&& (!(FE[6])|| !(FE[23]))) ;
-
-//        F5 =FE[2] && FE[6] && FE[18] && FE[22]&& (!(FE[3]) || !(FE[19]))&&
-//                (!(FE[2]) || !(FE[23])) || FE[3] && FE[8]&& FE[19]&& FE[25]&&
-//                (!(FE[2]) || !(FE[18]))&& (!(FE[7]) || !(FE[23]));
-
-//        F6 =(!(FE[2]) || !(FE[6]) || FE[18] || !(FE[22])) &&
-//                (!(FE[3]) || !(FE[8]) || !(FE[19]) || !(FE[25]));
-
-//        KP =FE[1] && FE[5] && FE[9] && FE[17]&&
-//                (FE[12] && FE[13] || FE[4]&& FE[16] &&(FE[13] || FE[14] || FE[15]));
-
-        if(KP && F0)
-            dukr[0]++;
-        else if (KP && F1)
-            dukr[1]++;
-        else if (KP && F2)
-            dukr[2]++;
-        else if (KP && F3)
-            dukr[3]++;
-        else if (KP && F4)
-            dukr[4]++;
-        else if (KP && F5)
-            dukr[5]++;
-        else if (F6 || !(KP))
-            dukr[6]++;
+        solveFE();
     }
+
+
+    test();
 
 
 
@@ -698,6 +612,182 @@ int Backend::sgn(float val)
         return 0;
     if (val > 0)
         return 1;
+}
+
+void Backend::test()
+{
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[19] = false;
+    solveFE();
+    writeFE(1);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[25] = false;
+    solveFE();
+    writeFE(2);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[23] = false;
+    solveFE();
+    writeFE(3);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[24] = false;
+    solveFE();
+    writeFE(4);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[18] = false;
+    solveFE();
+    writeFE(5);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[22] = false;
+    solveFE();
+    writeFE(6);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[8] = false;
+    solveFE();
+    writeFE(71);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[24] = false;
+    FE[25] = false;
+    solveFE();
+    writeFE(72);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[7] = false;
+    solveFE();
+    writeFE(81);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[23] = false;
+    FE[24] = false;
+    solveFE();
+    writeFE(82);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[6] = false;
+    solveFE();
+    writeFE(91);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[22] = false;
+    FE[23] = false;
+    solveFE();
+    writeFE(92);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[3] = false;
+    solveFE();
+    writeFE(101);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[19] = false;
+    FE[25] = false;
+    solveFE();
+    writeFE(102);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[2] = false;
+    solveFE();
+    writeFE(111);
+
+    for (int j = 1; j <= 25; ++j) //Формируем массив ElementZRK
+        FE[j] = true;
+    FE[18] = false;
+    FE[22] = false;
+    solveFE();
+    writeFE(112);
+}
+
+void Backend::solveFE()
+{
+    for (int i = 0; i < 7; ++i) {
+        dukr[i] = 0;
+    }
+
+
+
+    F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] &&
+           ((FE[18] && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) ||
+            (FE[18] && FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
+            (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
+            (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
+            (FE[18] && FE[22] && !(FE[23]) && FE[24]&& FE[25] && FE[19]) ||
+            (FE[18] && !(FE[22]) && FE[23] && FE[24]&& FE[25] && FE[19]) ||
+            (!(FE[18]) && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]));
+
+    F1 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[7] && FE[22] && FE[23] &&
+            (!(FE[8]) || (FE[8] && !(FE[24]) && !(FE[25])))) || (FE[6] && FE[8] && FE[22] && FE[25] &&
+            (!(FE[7]) || (FE[7] && !(FE[23]) && !(FE[24])))) || (FE[7] && FE[8] && FE[24] && FE[25]
+         && (!(FE[6]) || (FE[6] && !(FE[22]) && !(FE[23])))));
+
+    F2 = FE[6] && FE[23] && FE[7] && FE[24] && FE[8] && ((FE[2] && FE[18] && FE[22] &&
+            (!FE[3] || (FE[3] && !FE[19] && !(FE[25])))) || (FE[3] && FE[19] && FE[25] &&
+           ((!FE[2] || (FE[2] && !FE[18] && !FE[22])))));
+
+    F3 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[22] &&
+            (!(FE[7]) || (FE[7] && !FE[23])) && (!(FE[8]) || (FE[8] && !(FE[25])))) ||
+            (((FE[8]) && FE[25]) && (!(FE[6]) || (FE[6] && !(FE[22]))) && (!FE[7] || (FE[7] && !FE[24]))));
+
+    F4 = FE[7] && ((FE[2] && FE[6] && FE[18] && FE[22] && FE[23] &&
+            (!(FE[3]) || (FE[3] && !(FE[19]))) && (!(FE[8]) || (FE[8] && !(FE[24]))))  ||
+            ((FE[3] && FE[8]&& FE[19]&& FE[24]&& FE[25]&&
+            (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[6])|| (FE[6] && !(FE[23]))))));
+
+    F5 = (FE[2] && FE[6] && FE[18] && FE[22] && (!(FE[3]) || (FE[3] && !(FE[19]))) &&
+            (!(FE[7]) || (FE[7] && !(FE[23])))) || (FE[3] && FE[8] && FE[19] && FE[25]&&
+            (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[7]) || (FE[7] && !(FE[24]))));
+
+    F6 = (!(FE[2]) || (FE[2] && !(FE[6])) || (FE[2] && FE[6] && !FE[18]) || (FE[2] && FE[6] && FE[18] && !FE[22])) &&
+         (!(FE[3]) || (FE[3] && !(FE[8])) || (FE[3] && FE[8] && !(FE[19])) || (FE[3] && FE[8] && FE[19] &&!(FE[25])));
+
+    KP = FE[1] && FE[5] && FE[9] && FE[17] &&
+            ((FE[12] && FE[13]) ||
+            (FE[4] && FE[16] && (FE[13] || FE[14] || FE[15])));
+
+    if(KP && F0)
+        dukr[0]++;
+    else if (KP && F1)
+        dukr[1]++;
+    else if (KP && F2)
+        dukr[2]++;
+    else if (KP && F3)
+        dukr[3]++;
+    else if (KP && F4)
+        dukr[4]++;
+    else if (KP && F5)
+        dukr[5]++;
+    else if (F6 || !(KP))
+        dukr[6]++;
+}
+
+void Backend::writeFE(int Nv)
+{
+    qDebug() << "Nv = " << Nv << endl;
+    for (int i = 0; i < 7; ++i)
+    {
+        qDebug() << "dukr[" << i << "] = " << dukr[i];
+    }
+    qDebug() << endl;
 }
 
 
