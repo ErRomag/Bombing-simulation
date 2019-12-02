@@ -438,6 +438,9 @@ void Backend::damageCalculation()
     float RBK[101][3];     //
     float Zalp_X, Zalp_Y;
     float xfab,yfab;
+    QVector<float> paintX;
+    QVector<float> paintY;
+    QVector<int> colorXY;
 
     for (int i = 0; i < 7; ++i) {
         dukr[i] = 0;
@@ -490,27 +493,19 @@ void Backend::damageCalculation()
                                        DEA[N_FE][8])) //  Если попал
                             {
                                 FE[N_FE] = false;
-                                if(NumB==1) // не знаю зачем
+                                if(NumB==1)
                                 {
-                                    /*
-                                     * рисуем, что попали РБК
-                                    */
-                                    QVector<float> message;
-                                    message.push_back(RBK[k][1]);
-                                    message.push_back(RBK[k][2]);
-                                    message.push_back(RED);
+                                    paintX.push_back(RBK[k][1]);
+                                    paintY.push_back(RBK[k][2]);
+                                    colorXY.push_back(Qt::red);
                                 }
                             } else //  Если не попал
                             {
-                                if(NumB==1) // не знаю зачем
+                                if(NumB==1)
                                 {
-                                    /*
-                                     * рисуем, что не попали РБК
-                                    */
-                                    QVector<float> message;
-                                    message.push_back(RBK[k][1]);
-                                    message.push_back(RBK[k][2]);
-                                    message.push_back(GREEN);
+                                    paintX.push_back(RBK[k][1]);
+                                    paintY.push_back(RBK[k][2]);
+                                    colorXY.push_back(Qt::green);
                                 }
                             }
                         }
@@ -534,27 +529,19 @@ void Backend::damageCalculation()
                                    DEA[N_FE][8])) // если попал
                         {
                             FE[N_FE] = false;
-                            if(NumB==1) // не знаю зачем
+                            if(NumB==1)
                             {
-                                /*
-                                 * рисуем, что попали ФАБом
-                                */
-                                QVector<float> message;
-                                message.push_back(xfab);
-                                message.push_back(yfab);
-                                message.push_back(RED);
+                                paintX.push_back(xfab);
+                                paintY.push_back(yfab);
+                                colorXY.push_back(Qt::red);
                             }
                         } else // если не попал
                         {
-                            if(NumB==1) // не знаю зачем
+                            if(NumB==1)
                             {
-                                /*
-                                 * рисуем, что не попали ФАБом
-                                */
-                                QVector<float> message;
-                                message.push_back(xfab);
-                                message.push_back(yfab);
-                                message.push_back(GREEN);
+                                paintX.push_back(xfab);
+                                paintY.push_back(yfab);
+                                colorXY.push_back(Qt::green);
                             }
                         }
                     }

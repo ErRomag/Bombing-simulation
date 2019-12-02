@@ -5,9 +5,6 @@
 #include <random>
 #include <ctime>
 
-#define RED 100
-#define GREEN 101
-
 class Backend : public QObject
 {
     Q_OBJECT
