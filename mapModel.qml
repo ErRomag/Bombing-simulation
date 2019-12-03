@@ -15,6 +15,8 @@ Window {
 
    property int maxNumberElement: backend.maxNumberElementX()
 
+   // property alias listModel: list
+
     width: mapWindowWidth
     minimumWidth:mapWindowWidth
     maximumWidth: mapWindowWidth
@@ -45,6 +47,7 @@ Window {
 
 
     function  createPole(){
+        deletBombRect();
         //console.log("--------------------------",maxNumberElement)
         var rectBomb = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
 
@@ -53,12 +56,31 @@ Window {
             var component = rectBomb.createObject(mapWindow);
             component.x = backend.VectCoordX[i];
             component.y = backend.VectCoordY[i];
-            //console.log(backend.VectCoordX[i]);
+
+            if (backend.VectorColor[i] === 7) {
+                component.color="red"  // если не попал, то зеленый
+            } else {
+                component.color="white"
+            }
+
+            //console.log(backend.VectorColor[i]);
+            //console.log(list.count);
+
             //component.x =(component.heigt*i)+20*i;
             //component.y= (component.width*i)+20*i;
-            component.color="blue"
+            //component.color="blue"
             list.append(component);
         }
+        console.log(list.count);
+    }
+
+
+    function deletBombRect() {
+        console.log("deletBombRect()")
+        for (var k = 0; k < list.count; k++) {
+            list.get(k).destroy();
+        }
+        list.clear();
     }
 
     Rectangle {

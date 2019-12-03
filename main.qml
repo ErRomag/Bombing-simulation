@@ -42,8 +42,6 @@ ApplicationWindow {
 
     title: "Моделирование бомбометания"
 
-    //signal qmlSignal(string msg)
-
     MessageDialog {
         id: aboutBox
         title: "О программе"
@@ -653,6 +651,7 @@ ApplicationWindow {
                             var component = Qt.createComponent("mapModel.qml");
                             var browserWindow = component.createObject(mainWindow);
                             browserWindow.createPole();
+
                         }
 
                     }

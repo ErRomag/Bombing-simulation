@@ -76,6 +76,7 @@ class Backend : public QObject
 
     Q_PROPERTY(QVector<int> VectCoordX READ VectCoordX WRITE setVectCoordX NOTIFY VectCoordXChanged)
     Q_PROPERTY(QVector<int> VectCoordY READ VectCoordY WRITE setVectCoordY NOTIFY VectCoordYChanged)
+    Q_PROPERTY(QVector<int> VectorColor READ VectorColor WRITE setVectorColor NOTIFY VectorColorChanged)
 
 
 
@@ -117,6 +118,7 @@ public:
 
 
 
+
     QVector<int> VectCoordX() const
     {
         return m_VectCoordX;
@@ -125,6 +127,11 @@ public:
     QVector<int> VectCoordY() const
     {
         return m_VectCoordY;
+    }
+
+    QVector<int> VectorColor() const
+    {
+        return m_VectorColor;
     }
 
 signals:
@@ -164,6 +171,8 @@ signals:
     void VectCoordXChanged(QVector<int> VectCoordX);
 
     void VectCoordYChanged(QVector<int> VectCoordY);
+
+    void VectorColorChanged(QVector<int> VectorColor);
 
 public slots:
 
@@ -215,6 +224,15 @@ public slots:
 
         m_VectCoordY = VectCoordY;
         emit VectCoordYChanged(VectCoordY);
+    }
+
+    void setVectorColor(QVector<int> VectorColor)
+    {
+        if (m_VectorColor == VectorColor)
+            return;
+
+        m_VectorColor = VectorColor;
+        emit VectorColorChanged(VectorColor);
     }
 
 private:
@@ -298,6 +316,7 @@ private:
 
     QVector<int> m_VectCoordX;
     QVector<int> m_VectCoordY;
+    QVector<int> m_VectorColor;
 };
 
 #endif // BACKEND_H

@@ -382,14 +382,14 @@ void Backend::setW6TextField(QString W6TextField)
 int Backend::maxNumberElementX()
 {
     //maxNumberX = m_VectCoordX.size();
-    qDebug()<<m_VectCoordX.count();
+    //qDebug()<<m_VectCoordX.count();
     return m_VectCoordX.count();
 }
 
 int Backend::maxNumberElementY()
 {
     //maxNumberY = m_VectCoordY.size();
-    qDebug()<<m_VectCoordY.count();
+    //qDebug()<<m_VectCoordY.count();
     return m_VectCoordY.count();
 }
 
@@ -453,10 +453,6 @@ void Backend::damageCalculation()
     float Zalp_X, Zalp_Y;
     float xfab,yfab;
 
-    QVector<float> paintX;
-    QVector<float> paintY;
-    QVector<int> colorXY;
-
     for (int i = 0; i < 7; ++i) {
         dukr[i] = 0;
     }
@@ -512,6 +508,7 @@ void Backend::damageCalculation()
                                 {
                                     m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                                     m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
+                                    m_VectorColor.push_back(Qt::red);
                                    // m_VectCoordX.push_back((int)RBK[k][1]);
                                     // m_VectCoordX.push_back(RBK[k][1]);
  //                                    paintX.push_back(RBK[k][1]);
@@ -525,6 +522,7 @@ void Backend::damageCalculation()
                                 {
                                     m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                                     m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
+                                    m_VectorColor.push_back(Qt::green);
                                    // m_VectCoordX.push_back(RBK[k][1]);
 //                                    paintX.push_back(RBK[k][1]);
 //                                    paintY.push_back(RBK[k][2]);
@@ -574,7 +572,8 @@ void Backend::damageCalculation()
             }
         }
         solveFE(0);
-        qDebug() << m_VectCoordX.count();
+        //qDebug() << m_VectorColor;
+        //qDebug() << m_VectCoordX.count();
     }
 
     // Тест по графу
