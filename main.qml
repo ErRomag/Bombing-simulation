@@ -42,7 +42,7 @@ ApplicationWindow {
 
     title: "Моделирование бомбометания"
 
-    signal qmlSignal(string msg)
+    //signal qmlSignal(string msg)
 
     MessageDialog {
         id: aboutBox

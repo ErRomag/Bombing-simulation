@@ -379,6 +379,20 @@ void Backend::setW6TextField(QString W6TextField)
     emit W6TextFieldChanged(m_W6TextField);
 }
 
+int Backend::maxNumberElementX()
+{
+    //maxNumberX = m_VectCoordX.size();
+    qDebug()<<m_VectCoordX.count();
+    return m_VectCoordX.count();
+}
+
+int Backend::maxNumberElementY()
+{
+    //maxNumberY = m_VectCoordY.size();
+    qDebug()<<m_VectCoordY.count();
+    return m_VectCoordY.count();
+}
+
 void Backend::initFEoptions()
 {
     FEopt[1][1]=96;    FEopt[1][2]=224;   FEopt[1][3]=10;    FEopt[1][4]=3; FEopt[1][5]=15;    FEopt[1][6]=radiusCP;
@@ -496,15 +510,21 @@ void Backend::damageCalculation()
                                 FE[N_FE] = false;
                                 if(NumB==1)
                                 {
-                                   // m_VectCoordX.push_back(RBK[k][1]);
-//                                    paintX.push_back(RBK[k][1]);
+                                    m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
+                                    m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
+                                   // m_VectCoordX.push_back((int)RBK[k][1]);
+                                    // m_VectCoordX.push_back(RBK[k][1]);
+ //                                    paintX.push_back(RBK[k][1]);
 //                                    paintY.push_back(RBK[k][2]);
 //                                    colorXY.push_back(Qt::red);
                                 }
+
                             } else //  Если не попал
                             {
                                 if(NumB==1)
                                 {
+                                    m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
+                                    m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
                                    // m_VectCoordX.push_back(RBK[k][1]);
 //                                    paintX.push_back(RBK[k][1]);
 //                                    paintY.push_back(RBK[k][2]);
@@ -554,9 +574,7 @@ void Backend::damageCalculation()
             }
         }
         solveFE(0);
-//        qDebug() << paintX << endl;
-//        qDebug() << paintY << endl;
-//        qDebug() << colorXY << endl;
+        qDebug() << m_VectCoordX.count();
     }
 
     // Тест по графу
@@ -871,3 +889,5 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
     evalDangerousExplosionsArea(); // заполнили массив DEA
     damageCalculation(); // посчитали урон
 }
+
+

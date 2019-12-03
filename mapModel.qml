@@ -9,8 +9,11 @@ Window {
     id: mapWindow
     visible: true
 
+    property  int n: 0
     property int mapWindowWidth: 700
     property int mapWindowHeight: 600
+
+   property int maxNumberElement: backend.maxNumberElementX()
 
     width: mapWindowWidth
     minimumWidth:mapWindowWidth
@@ -32,9 +35,6 @@ Window {
         id:list
     }
 
-    Backend {
-        id: backend
-    }
 
 
     Image {
@@ -44,19 +44,18 @@ Window {
     }
 
 
-
-    //    onActiveChanged: {
-    //        createPole();
-    //    }
-
     function  createPole(){
-        var re = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
+        //console.log("--------------------------",maxNumberElement)
+        var rectBomb = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
 
-        for (var i = 0; i < 10; i++) {
+        for (var i = 0; i < maxNumberElement; i++) {
 
-            var component = re.createObject(mapWindow);
-            component.x =(component.heigt*i)+20*i;
-            component.y= (component.width*i)+20*i;
+            var component = rectBomb.createObject(mapWindow);
+            component.x = backend.VectCoordX[i];
+            component.y = backend.VectCoordY[i];
+            //console.log(backend.VectCoordX[i]);
+            //component.x =(component.heigt*i)+20*i;
+            //component.y= (component.width*i)+20*i;
             component.color="blue"
             list.append(component);
         }

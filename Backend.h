@@ -4,6 +4,7 @@
 #include <QObject>
 #include <random>
 #include <ctime>
+#include <QVector>
 
 class Backend : public QObject
 {
@@ -73,6 +74,9 @@ class Backend : public QObject
     Q_PROPERTY(QString W5TextField READ W5TextField WRITE setW5TextField NOTIFY W5TextFieldChanged)
     Q_PROPERTY(QString W6TextField READ W6TextField WRITE setW6TextField NOTIFY W6TextFieldChanged)
 
+    Q_PROPERTY(QVector<int> VectCoordX READ VectCoordX WRITE setVectCoordX NOTIFY VectCoordXChanged)
+    Q_PROPERTY(QVector<int> VectCoordY READ VectCoordY WRITE setVectCoordY NOTIFY VectCoordYChanged)
+
 
 
 public:
@@ -108,7 +112,20 @@ public:
 
     Q_INVOKABLE void initialization();               // Функция инициализации переменных для вычислений
 
+    Q_INVOKABLE int maxNumberElementX();
+    Q_INVOKABLE int maxNumberElementY();
 
+
+
+    QVector<int> VectCoordX() const
+    {
+        return m_VectCoordX;
+    }
+
+    QVector<int> VectCoordY() const
+    {
+        return m_VectCoordY;
+    }
 
 signals:
 
@@ -142,6 +159,12 @@ signals:
 
 
 
+
+
+    void VectCoordXChanged(QVector<int> VectCoordX);
+
+    void VectCoordYChanged(QVector<int> VectCoordY);
+
 public slots:
 
     void setAimDispersionTextField(QString aimDispersionTextField);                  // Функция установки параметра "Прицельного рассеивания"
@@ -173,6 +196,26 @@ public slots:
     void setW6TextField(QString W6TextField);
 
 
+
+
+
+    void setVectCoordX(QVector<int> VectCoordX)
+    {
+        if (m_VectCoordX == VectCoordX)
+            return;
+
+        m_VectCoordX = VectCoordX;
+        emit VectCoordXChanged(VectCoordX);
+    }
+
+    void setVectCoordY(QVector<int> VectCoordY)
+    {
+        if (m_VectCoordY == VectCoordY)
+            return;
+
+        m_VectCoordY = VectCoordY;
+        emit VectCoordYChanged(VectCoordY);
+    }
 
 private:
 
@@ -253,6 +296,8 @@ private:
     QString m_W6TextField;
 
 
+    QVector<int> m_VectCoordX;
+    QVector<int> m_VectCoordY;
 };
 
 #endif // BACKEND_H
