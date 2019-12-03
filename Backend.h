@@ -115,6 +115,7 @@ public:
 
     Q_INVOKABLE int maxNumberElementX();
     Q_INVOKABLE int maxNumberElementY();
+    Q_INVOKABLE void clearVectorXYColor();
 
 
 

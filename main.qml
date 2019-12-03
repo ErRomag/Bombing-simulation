@@ -37,6 +37,16 @@ ApplicationWindow {
         id: backend
     }
 
+//    Connections {
+//        //target: mapWindow
+//        onDestroyed: {
+
+//            backend.clearVectorXYColor();
+//        }
+//    }
+
+
+
     x:50
     y:50
 
@@ -643,6 +653,7 @@ ApplicationWindow {
                     //Layout.fillWidth: true
 
                     onClicked: {
+                        backend.clearVectorXYColor();
 
                         if (indexRadioButtonQML === 0) {
                             errorRadioButton.open()
@@ -659,8 +670,19 @@ ApplicationWindow {
 
             }  // To rightGridLayout
         } // To rightGroupBox
+
+
     } // To rightItem
 
+//    Button {
+//        x:500
+//        y:300
+//        id: clear
+
+//        onClicked: {
+//            backend.clearVectorXYColor();
+//        }
+//    }
 }  // To Window
 
 

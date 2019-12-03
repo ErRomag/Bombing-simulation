@@ -393,6 +393,14 @@ int Backend::maxNumberElementY()
     return m_VectCoordY.count();
 }
 
+void Backend::clearVectorXYColor()
+{
+    m_VectCoordX.clear();
+    m_VectCoordY.clear();
+    m_VectorColor.clear();
+
+}
+
 void Backend::initFEoptions()
 {
     FEopt[1][1]=96;    FEopt[1][2]=224;   FEopt[1][3]=10;    FEopt[1][4]=3; FEopt[1][5]=15;    FEopt[1][6]=radiusCP;
