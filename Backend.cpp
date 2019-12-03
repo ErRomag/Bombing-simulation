@@ -517,11 +517,6 @@ void Backend::damageCalculation()
                                     m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                                     m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
                                     m_VectorColor.push_back(Qt::red);
-                                   // m_VectCoordX.push_back((int)RBK[k][1]);
-                                    // m_VectCoordX.push_back(RBK[k][1]);
- //                                    paintX.push_back(RBK[k][1]);
-//                                    paintY.push_back(RBK[k][2]);
-//                                    colorXY.push_back(Qt::red);
                                 }
 
                             } else //  Если не попал
@@ -531,10 +526,6 @@ void Backend::damageCalculation()
                                     m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                                     m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
                                     m_VectorColor.push_back(Qt::green);
-                                   // m_VectCoordX.push_back(RBK[k][1]);
-//                                    paintX.push_back(RBK[k][1]);
-//                                    paintY.push_back(RBK[k][2]);
-//                                    colorXY.push_back(Qt::green);
                                 }
                             }
                         }
@@ -560,19 +551,17 @@ void Backend::damageCalculation()
                             FE[N_FE] = false;
                             if(NumB==1)
                             {
-                               // VectCoordX().push_back(x_fab);
-                                //paintX.push_back(xfab);
-//                                paintY.push_back(yfab);
-//                                colorXY.push_back(Qt::red);
+                                m_VectCoordX.push_back(static_cast<int>(xfab));
+                                m_VectCoordY.push_back(static_cast<int>(yfab));
+                                m_VectorColor.push_back(Qt::red);
                             }
                         } else // если не попал
                         {
                             if(NumB==1)
                             {
-
-                                //VectCoordX().push_back(x_fab);
-//                                paintY.push_back(yfab);
-//                                colorXY.push_back(Qt::green);
+                                m_VectCoordX.push_back(static_cast<int>(xfab));
+                                m_VectCoordY.push_back(static_cast<int>(yfab));
+                                m_VectorColor.push_back(Qt::green);
                             }
                         }
                     }
@@ -580,7 +569,8 @@ void Backend::damageCalculation()
             }
         }
         solveFE(0);
-        //qDebug() << m_VectorColor;
+        qDebug() << m_VectorColor;
+        qDebug() << m_VectorColor.count();
         //qDebug() << m_VectCoordX.count();
     }
 
@@ -752,7 +742,7 @@ void Backend::solveFE(bool test)
         }
 
     F0 = FE[2] && FE[3] && FE[6] && FE[7] && FE[8] &&
-           ((FE[18] && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) ||
+            ((FE[18] && FE[22] && FE[23] && FE[24]&& FE[25] && FE[19]) ||
             (FE[18] && FE[22] && FE[23] && FE[24] && FE[25] && (! FE[19])) ||
             (FE[18] && FE[22] && FE[23] && FE[24]&& !(FE[25]) && FE[19]) ||
             (FE[18] && FE[22] && FE[23] && !(FE[24])&& FE[25] && FE[19]) ||
@@ -763,11 +753,11 @@ void Backend::solveFE(bool test)
     F1 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[7] && FE[22] && FE[23] &&
             (!(FE[8]) || (FE[8] && !(FE[24]) && !(FE[25])))) || (FE[6] && FE[8] && FE[22] && FE[25] &&
             (!(FE[7]) || (FE[7] && !(FE[23]) && !(FE[24])))) || (FE[7] && FE[8] && FE[24] && FE[25]
-         && (!(FE[6]) || (FE[6] && !(FE[22]) && !(FE[23])))));
+            && (!(FE[6]) || (FE[6] && !(FE[22]) && !(FE[23])))));
 
     F2 = FE[6] && FE[23] && FE[7] && FE[24] && FE[8] && ((FE[2] && FE[18] && FE[22] &&
             (!FE[3] || (FE[3] && !FE[19] && !(FE[25])))) || (FE[3] && FE[19] && FE[25] &&
-           ((!FE[2] || (FE[2] && !FE[18] && !FE[22])))));
+            ((!FE[2] || (FE[2] && !FE[18] && !FE[22])))));
 
     F3 = FE[2] && FE[3] && FE[18] && FE[19] && ((FE[6] && FE[22] &&
             (!(FE[7]) || (FE[7] && !FE[23])) && (!(FE[8]) || (FE[8] && !(FE[25])))) ||
@@ -783,7 +773,7 @@ void Backend::solveFE(bool test)
             (!(FE[2]) || (FE[2] && !(FE[18]))) && (!(FE[7]) || (FE[7] && !(FE[24]))));
 
     F6 = (!(FE[2]) || (FE[2] && !(FE[6])) || (FE[2] && FE[6] && !FE[18]) || (FE[2] && FE[6] && FE[18] && !FE[22])) &&
-         (!(FE[3]) || (FE[3] && !(FE[8])) || (FE[3] && FE[8] && !(FE[19])) || (FE[3] && FE[8] && FE[19] &&!(FE[25])));
+            (!(FE[3]) || (FE[3] && !(FE[8])) || (FE[3] && FE[8] && !(FE[19])) || (FE[3] && FE[8] && FE[19] &&!(FE[25])));
 
     KP = FE[1] && FE[5] && FE[9] && FE[17] &&
             ((FE[12] && FE[13]) ||

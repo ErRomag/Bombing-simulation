@@ -1,14 +1,9 @@
-//import QtQuick 2.0
-//import QtQuick.Layouts 1.1
-//import QtQuick.Controls 1.0
-//import QtQuick.Dialogs 1.1
-
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.1
 import QtQuick.Window 2.1
-//import Testclass 1.0
+
 import Backend 1.0
 
 
@@ -37,16 +32,6 @@ ApplicationWindow {
         id: backend
     }
 
-//    Connections {
-//        //target: mapWindow
-//        onDestroyed: {
-
-//            backend.clearVectorXYColor();
-//        }
-//    }
-
-
-
     x:50
     y:50
 
@@ -55,19 +40,19 @@ ApplicationWindow {
     MessageDialog {
         id: aboutBox
         title: "О программе"
-        text: "Данное ПО моделирует бомбардировку двумя самолетами-истребителями\n" +
-              "зенитного ракетного комплекса.";
+        text: "ПО моделирует бомбардировку двумя самолетами-истребителями\n" +
+              "зенитно-ракетного комплекса.";
 
-        informativeText :"Разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А.\n" +
+        informativeText :"Разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А. 2019\n" +
                          "Иходный код проекта: https://github.com/ErRomag/Bombing-simulation"
 
         icon: StandardIcon.Information
     }
 
     MessageDialog {
-        id: errorRadioButton
+        id: errorNULLTextFieldandRadioButton
         title: "Ошибка"
-        text: "Выберете вариант вооружения.\n";
+        text: "Проверьте все ли поля заполнены и выбран ли вариант вооружения.\n";
         icon: StandardIcon.Critical
     }
 
@@ -650,19 +635,22 @@ ApplicationWindow {
                     text: "Моделировать"
                     Layout.alignment: Qt.AlignCenter
                     Layout.columnSpan: 2
-                    //Layout.fillWidth: true
 
                     onClicked: {
-                        backend.clearVectorXYColor();
 
-                        if (indexRadioButtonQML === 0) {
-                            errorRadioButton.open()
+                        if(indexRadioButtonQML === 0 || aimDispersion.text === "" ||   technicalDispersion.text === "" ||
+                                                 ammunitionDispersion.text === "" || combatRouteCenterPair.text === "" ||
+                                                      rangeToTraverse.text === "" ||        intervalSeries.text === "" ||
+                                                    numberRealization.text === "") {
+
+                            errorNULLTextFieldandRadioButton.open()                  // Диалоговое окно при ошибке
+
                         } else {
-                            backend.initialization()
-                            var component = Qt.createComponent("mapModel.qml");
-                            var browserWindow = component.createObject(mainWindow);
-                            browserWindow.createPole();
-
+                            backend.clearVectorXYColor();                            // Очищение векторов
+                            backend.initialization();                                // Инициализация переменных с формы
+                            var component = Qt.createComponent("mapModel.qml");      // Создание модели карты
+                            var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
+                            browserWindow.createPole();                              // Отрисовка поля с бомбами (квадратиками)
                         }
 
                     }
@@ -674,15 +662,6 @@ ApplicationWindow {
 
     } // To rightItem
 
-//    Button {
-//        x:500
-//        y:300
-//        id: clear
-
-//        onClicked: {
-//            backend.clearVectorXYColor();
-//        }
-//    }
 }  // To Window
 
 
