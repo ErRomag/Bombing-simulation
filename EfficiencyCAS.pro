@@ -34,8 +34,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     backgroundCanvas.jpg \
     bombingIcon.jpg \
-    main.qml \
-    map.qml
+    main.qml
 
 HEADERS += \
     Backend.h \

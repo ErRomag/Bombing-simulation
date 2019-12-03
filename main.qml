@@ -650,8 +650,9 @@ ApplicationWindow {
                             errorRadioButton.open()
                         } else {
                             backend.initialization()
-                            //var component = Qt.createComponent("map.qml");
-                            //var browserWindow = component.createObject(this);
+                            var component = Qt.createComponent("mapModel.qml");
+                            var browserWindow = component.createObject(mainWindow);
+                            browserWindow.createPole();
                         }
 
                     }

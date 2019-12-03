@@ -2,8 +2,8 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>backgroundCanvas.jpg</file>
-        <file>map.qml</file>
+        <file>mapModel.qml</file>
         <file>bombingIcon.jpg</file>
-        <file>bombIco.ico</file>
+        <file>bombRect.qml</file>
     </qresource>
 </RCC>

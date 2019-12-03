@@ -438,6 +438,7 @@ void Backend::damageCalculation()
     float RBK[101][3];     //
     float Zalp_X, Zalp_Y;
     float xfab,yfab;
+
     QVector<float> paintX;
     QVector<float> paintY;
     QVector<int> colorXY;
@@ -495,17 +496,19 @@ void Backend::damageCalculation()
                                 FE[N_FE] = false;
                                 if(NumB==1)
                                 {
-                                    paintX.push_back(RBK[k][1]);
-                                    paintY.push_back(RBK[k][2]);
-                                    colorXY.push_back(Qt::red);
+                                   // m_VectCoordX.push_back(RBK[k][1]);
+//                                    paintX.push_back(RBK[k][1]);
+//                                    paintY.push_back(RBK[k][2]);
+//                                    colorXY.push_back(Qt::red);
                                 }
                             } else //  Если не попал
                             {
                                 if(NumB==1)
                                 {
-                                    paintX.push_back(RBK[k][1]);
-                                    paintY.push_back(RBK[k][2]);
-                                    colorXY.push_back(Qt::green);
+                                   // m_VectCoordX.push_back(RBK[k][1]);
+//                                    paintX.push_back(RBK[k][1]);
+//                                    paintY.push_back(RBK[k][2]);
+//                                    colorXY.push_back(Qt::green);
                                 }
                             }
                         }
@@ -531,17 +534,19 @@ void Backend::damageCalculation()
                             FE[N_FE] = false;
                             if(NumB==1)
                             {
-                                paintX.push_back(xfab);
-                                paintY.push_back(yfab);
-                                colorXY.push_back(Qt::red);
+                               // VectCoordX().push_back(x_fab);
+                                //paintX.push_back(xfab);
+//                                paintY.push_back(yfab);
+//                                colorXY.push_back(Qt::red);
                             }
                         } else // если не попал
                         {
                             if(NumB==1)
                             {
-                                paintX.push_back(xfab);
-                                paintY.push_back(yfab);
-                                colorXY.push_back(Qt::green);
+
+                                //VectCoordX().push_back(x_fab);
+//                                paintY.push_back(yfab);
+//                                colorXY.push_back(Qt::green);
                             }
                         }
                     }
@@ -549,6 +554,9 @@ void Backend::damageCalculation()
             }
         }
         solveFE(0);
+//        qDebug() << paintX << endl;
+//        qDebug() << paintY << endl;
+//        qDebug() << colorXY << endl;
     }
 
     // Тест по графу

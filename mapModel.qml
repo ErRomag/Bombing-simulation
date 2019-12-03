@@ -1,6 +1,9 @@
 ﻿import QtQuick 2.5
 import QtQuick.Window 2.0
 
+import QtQml.Models 2.1
+
+import Backend 1.0
 
 Window {
     id: mapWindow
@@ -24,11 +27,39 @@ Window {
 
     title: qsTr("Реализация моделирования")
 
+    ObjectModel{
+
+        id:list
+    }
+
+    Backend {
+        id: backend
+    }
+
 
     Image {
         anchors.fill: parent
         id: backgroundCanvas
         source: "qrc:/backgroundCanvas.jpg"
+    }
+
+
+
+    //    onActiveChanged: {
+    //        createPole();
+    //    }
+
+    function  createPole(){
+        var re = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
+
+        for (var i = 0; i < 10; i++) {
+
+            var component = re.createObject(mapWindow);
+            component.x =(component.heigt*i)+20*i;
+            component.y= (component.width*i)+20*i;
+            component.color="blue"
+            list.append(component);
+        }
     }
 
     Rectangle {
@@ -60,6 +91,7 @@ Window {
         y: 50
         width: 25
         height: 25
+        //color: "green"
         color: "#7FFF00";
         antialiasing: true
         rotation: 35
@@ -73,6 +105,30 @@ Window {
         color: "#FFFFF0"
         text: qsTr("РЛС")
         font.pixelSize: 14
+    }
+
+    //    Rectangle {
+    //        id: cableEGtoRLS
+    //        x: 135
+    //        y: 65
+    //        height: 213
+    //        width: 10
+    //        rotation: 20
+    //        border.color: "green"
+    //        border.width: 3
+    //        antialiasing: true
+    //        opacity:0.5
+
+    //    }
+    Item{
+        id: cableEGtoRLS
+        x: 135
+        y: 65
+        height: 213
+        width: 10
+        rotation: 20
+        antialiasing: true
+
     }
 
     Rectangle {
@@ -267,58 +323,57 @@ Window {
     }
 
 
+    //    Rectangle {
+    //        id: line
+    //        property real x1: 10
+    //        property real y1: 220
 
-    Rectangle {
-        id: line
-        property real x1: 10
-        property real y1: 220
+    //        property real x2: 170
+    //        property real y2: 50
 
-        property real x2: 170
-        property real y2: 50
+    //        color: "#FFFFF0"
+    //        height: 1
+    //        smooth: true;
 
-        color: "#FFFFF0"
-        height: 1
-        smooth: true;
+    //        x: x1
+    //        y: y1
 
-        x: x1
-        y: y1
+    //        transformOrigin: Item.Left;
 
-        transformOrigin: Item.Left;
+    //        width: getWidth(x1, y1, x2, y2);
+    //        rotation: getSlope(x1, y1, x2, y2);
 
-        width: getWidth(x1, y1, x2, y2);
-        rotation: getSlope(x1, y1, x2, y2);
+    //        function getWidth(sx1, sy1, sx2, sy2)
+    //        {
+    //            var w = Math.sqrt(Math.pow((sx2 - sx1), 2) + Math.pow((sy2 - sy1), 2));
+    //            return w;
+    //        }
 
-        function getWidth(sx1, sy1, sx2, sy2)
-        {
-            var w = Math.sqrt(Math.pow((sx2 - sx1), 2) + Math.pow((sy2 - sy1), 2));
-            return w;
-        }
+    //        function getSlope(sx1,sy1,sx2,sy2)
+    //        {
+    //            var a, m, d;
+    //            var b = sx2 - sx1;
+    //            if (b === 0) {
+    //                x = x + height
+    //                return 90;
+    //            }
+    //            a = sy2 - sy1;
+    //            m = a / b;
+    //            d = Math.atan(m) * 180 / Math.PI;
 
-        function getSlope(sx1,sy1,sx2,sy2)
-        {
-            var a, m, d;
-            var b = sx2 - sx1;
-            if (b === 0) {
-                x = x + height
-                return 90;
-            }
-            a = sy2 - sy1;
-            m = a / b;
-            d = Math.atan(m) * 180 / Math.PI;
+    //            if (a < 0 && b < 0)
+    //                return d + 180;
+    //            else if (a >= 0 && b >= 0)
+    //                return d;
+    //            else if (a < 0 && b >= 0)
+    //                return d;
+    //            else if (a >= 0 && b < 0)
+    //                return d + 180;
+    //            else
+    //                return 0;
+    //        }
 
-            if (a < 0 && b < 0)
-                return d + 180;
-            else if (a >= 0 && b >= 0)
-                return d;
-            else if (a < 0 && b >= 0)
-                return d;
-            else if (a >= 0 && b < 0)
-                return d + 180;
-            else
-                return 0;
-        }
-
-}
+    //    }
 
 }
 

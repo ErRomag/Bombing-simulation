@@ -73,6 +73,8 @@ class Backend : public QObject
     Q_PROPERTY(QString W5TextField READ W5TextField WRITE setW5TextField NOTIFY W5TextFieldChanged)
     Q_PROPERTY(QString W6TextField READ W6TextField WRITE setW6TextField NOTIFY W6TextFieldChanged)
 
+
+
 public:
     explicit Backend(QObject *parent = nullptr);
 
@@ -106,6 +108,8 @@ public:
 
     Q_INVOKABLE void initialization();               // Функция инициализации переменных для вычислений
 
+
+
 signals:
 
     void aimDispersionTextFieldChanged(QString aimDispersionTextField);                  // Функция изменения параметра "Прицельного рассеивания"
@@ -136,6 +140,8 @@ signals:
     void W5TextFieldChanged(QString W5TextField);
     void W6TextFieldChanged(QString W6TextField);
 
+
+
 public slots:
 
     void setAimDispersionTextField(QString aimDispersionTextField);                  // Функция установки параметра "Прицельного рассеивания"
@@ -165,6 +171,8 @@ public slots:
     void setW4TextField(QString W4TextField);
     void setW5TextField(QString W5TextField);
     void setW6TextField(QString W6TextField);
+
+
 
 private:
 
@@ -243,6 +251,7 @@ private:
     QString m_W4TextField;
     QString m_W5TextField;
     QString m_W6TextField;
+
 
 };
 
