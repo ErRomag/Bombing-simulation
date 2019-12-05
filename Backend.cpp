@@ -569,10 +569,29 @@ void Backend::damageCalculation()
                 }
             }
         }
+        // Romero
+
+        if(NumB == 1)
+        {
+            QVector<bool> functElem;
+            for (int i = 1; i < 26; ++i)
+            {
+                functElem.push_back(FE[i]);
+                qDebug() << functElem.at(i-1);
+            }
+        }
+        // risovalka(забирай functElem скорей увози на сто морей);
+
+        // Romero
+
         solveFE(0);
         m_ColorRLS = "#7FFF00";
         qDebug() << m_VectorColor;
         qDebug() << m_VectorColor.count();
+        for (int i = 1; i < 26; ++i) {
+             qDebug() << FE[i];
+        }
+
         //qDebug() << m_VectCoordX.count();
     }
 
