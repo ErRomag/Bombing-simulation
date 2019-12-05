@@ -334,6 +334,8 @@ private:
     QVector<int> m_VectCoordX;
     QVector<int> m_VectCoordY;
     QVector<int> m_VectorColor;
+    QList<int> listEllipse;
+    QVector<QList<int>> m_VectorEllipse;
     QString m_ColorRLS;
 };
 

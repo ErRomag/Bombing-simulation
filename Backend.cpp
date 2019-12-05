@@ -399,6 +399,8 @@ void Backend::clearVectorXYColor()
     m_VectCoordY.clear();
     m_VectorColor.clear();
 
+    listEllipse.clear();
+    m_VectorEllipse.clear();
 }
 
 void Backend::initFEoptions()
@@ -508,7 +510,8 @@ void Backend::damageCalculation()
                 {
                     for (int k = 1; k <= numberAmmunition; ++k) // рассеивание суббоеприпасов
                     {
-                        std::uniform_real_distribution<float> udX(-20, 60), udY(-15, 15);
+                        std::uniform_real_distribution<float> udX(-3*ammunitionDispersion, 3*ammunitionDispersion),
+                                udY(-ammunitionDispersion, ammunitionDispersion);
                         // !!!!!!!!!!!!!!!!!!!!!!ammunitionDispersion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         RBK[k][1] = Zalp_X + udX(randomGenerator); //Ребро квадрата
                         RBK[k][2] = Zalp_Y + udY(randomGenerator);
@@ -537,6 +540,19 @@ void Backend::damageCalculation()
                                 m_VectorColor.push_back(Qt::red);
                             else
                                 m_VectorColor.push_back(Qt::green);
+
+                            // эллипс рассеивания
+                            if(k == 1) // будет 4 эллипса для каждого залпа по одному
+                            {
+                                listEllipse.append(static_cast<int>(RBK[k][1])); // x
+                                listEllipse.append(static_cast<int>(RBK[k][2])); // y
+                                listEllipse.append(static_cast<int>(ammunitionDispersion*9)); // 3sigma
+                                listEllipse.append(static_cast<int>(ammunitionDispersion*3)); // 3sigma
+
+                                m_VectorEllipse.push_back(listEllipse);
+
+                                listEllipse.clear();
+                            }
                         }
                     }
                 } else // если ОФАБ
@@ -549,7 +565,6 @@ void Backend::damageCalculation()
                     bool flag = true;
                     for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
                     {
-
                         if(Destroy(xfab, yfab,
                                    DEA[N_FE][1],
                                    DEA[N_FE][2],
@@ -572,6 +587,19 @@ void Backend::damageCalculation()
                             m_VectorColor.push_back(Qt::red);
                         else
                             m_VectorColor.push_back(Qt::green);
+
+                        // эллипс рассеивания
+                        if(N_ASP == 1) // будет 4 эллипса для каждого залпа по одному
+                        {
+                            listEllipse.append(static_cast<int>(xfab)); // x
+                            listEllipse.append(static_cast<int>(yfab)); // y
+                            listEllipse.append(static_cast<int>(technicalDispersion*3)); // 3sigma
+                            listEllipse.append(static_cast<int>(technicalDispersion*3)); // 3sigma
+
+                            m_VectorEllipse.push_back(listEllipse);
+
+                            listEllipse.clear();
+                        }
                     }
                 }
             }
@@ -592,6 +620,7 @@ void Backend::damageCalculation()
 
     // Тест по графу
     //test();
+    qDebug() << m_VectorEllipse;
 
     float res = 10000 * (dukr[0] / numberRealization) / 100;
     W0 = res;
