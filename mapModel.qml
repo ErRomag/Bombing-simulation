@@ -116,8 +116,7 @@ Window {
         component1.y = backend.VectorEllipse[1]
         component1.width = backend.VectorEllipse[2];
         component1.height = backend.VectorEllipse[3];
-        component1.color="blue"
-        component1.radius = component1.width / 2
+        component1.radius = (component1.height / 2)
         listEllipse.append(component1);
 
         var component2 = rectEllipse.createObject(mapWindow);
@@ -125,8 +124,7 @@ Window {
         component2.y = backend.VectorEllipse[5]
         component2.width = backend.VectorEllipse[6];
         component2.height = backend.VectorEllipse[7];
-        component2.color="blue"
-        component2.radius = component2.width / 2
+        component2.radius = component2.height / 2
         listEllipse.append(component2);
 
         var component3 = rectEllipse.createObject(mapWindow);
@@ -134,8 +132,7 @@ Window {
         component3.y = backend.VectorEllipse[9]
         component3.width = backend.VectorEllipse[10];
         component3.height = backend.VectorEllipse[11];
-        component3.color="blue"
-        component3.radius = component3.width / 2
+        component3.radius = component3.height / 2
         listEllipse.append(component3);
 
         var component4 = rectEllipse.createObject(mapWindow);
@@ -143,8 +140,7 @@ Window {
         component4.y = backend.VectorEllipse[13]
         component4.width = backend.VectorEllipse[14];
         component4.height = backend.VectorEllipse[15];
-        component4.color="blue"
-        component4.radius = component4.width / 2
+        component4.radius = component4.height / 2
         listEllipse.append(component4)
 
         console.log(listEllipse.count)

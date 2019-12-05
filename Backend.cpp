@@ -603,7 +603,7 @@ void Backend::damageCalculation()
 
                             m_VectorEllipse.push_back(static_cast<int>(xfab));
                             m_VectorEllipse.push_back(static_cast<int>(yfab));
-                            m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*9));
+                            m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*3));
                             m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*3));
 
 //                            listEllipse.clear();
