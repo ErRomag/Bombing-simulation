@@ -1,3 +1,5 @@
+
+
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
@@ -637,6 +639,9 @@ ApplicationWindow {
                     Layout.columnSpan: 2
 
                     onClicked: {
+
+//                        var component = Qt.createComponent("mapModel.qml");      // Создание модели карты
+//                        var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
 
                         if(indexRadioButtonQML === 0 || aimDispersion.text === "" ||   technicalDispersion.text === "" ||
                                                  ammunitionDispersion.text === "" || combatRouteCenterPair.text === "" ||

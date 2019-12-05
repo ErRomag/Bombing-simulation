@@ -512,7 +512,8 @@ void Backend::damageCalculation()
                                        DEA[N_FE][8])) //  Если попал
                             {
                                 FE[N_FE] = false;
-                                if(NumB==1)
+
+                                if(NumB == 1)
                                 {
                                     m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                                     m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
@@ -521,7 +522,7 @@ void Backend::damageCalculation()
 
                             } else //  Если не попал
                             {
-                                if(NumB==1)
+                                if(NumB == 1)
                                 {
                                     m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                                     m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
@@ -569,6 +570,7 @@ void Backend::damageCalculation()
             }
         }
         solveFE(0);
+        m_ColorRLS = "#7FFF00";
         qDebug() << m_VectorColor;
         qDebug() << m_VectorColor.count();
         //qDebug() << m_VectCoordX.count();

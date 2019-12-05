@@ -78,7 +78,7 @@ class Backend : public QObject
     Q_PROPERTY(QVector<int> VectCoordY READ VectCoordY WRITE setVectCoordY NOTIFY VectCoordYChanged)
     Q_PROPERTY(QVector<int> VectorColor READ VectorColor WRITE setVectorColor NOTIFY VectorColorChanged)
 
-
+    Q_PROPERTY(QString ColorRLS READ ColorRLS WRITE setColorRLS NOTIFY ColorRLSChanged)
 
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -135,6 +135,11 @@ public:
         return m_VectorColor;
     }
 
+    QString ColorRLS() const
+    {
+        return m_ColorRLS;
+    }
+
 signals:
 
     void aimDispersionTextFieldChanged(QString aimDispersionTextField);                  // Функция изменения параметра "Прицельного рассеивания"
@@ -174,6 +179,8 @@ signals:
     void VectCoordYChanged(QVector<int> VectCoordY);
 
     void VectorColorChanged(QVector<int> VectorColor);
+
+    void ColorRLSChanged(QString ColorRLS);
 
 public slots:
 
@@ -234,6 +241,15 @@ public slots:
 
         m_VectorColor = VectorColor;
         emit VectorColorChanged(VectorColor);
+    }
+
+    void setColorRLS(QString ColorRLS)
+    {
+        if (m_ColorRLS == ColorRLS)
+            return;
+
+        m_ColorRLS = ColorRLS;
+        emit ColorRLSChanged(ColorRLS);
     }
 
 private:
@@ -318,6 +334,7 @@ private:
     QVector<int> m_VectCoordX;
     QVector<int> m_VectCoordY;
     QVector<int> m_VectorColor;
+    QString m_ColorRLS;
 };
 
 #endif // BACKEND_H
