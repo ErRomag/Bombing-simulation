@@ -37,20 +37,10 @@ Window {
         id:list
     }
 
-    //    Item {
-    //        id: it1
+    ObjectModel{
 
-    //        onClosing {
-
-    //        }
-    //    }
-
-
-
-    //    onClosing: {
-    //         backend.clearVectorXYColor();
-    //    }
-
+        id:listEllipse
+    }
 
     Image {
         anchors.fill: parent
@@ -70,6 +60,35 @@ Window {
 
             var component = rectBomb.createObject(mapWindow);
             component.x = backend.VectCoordX[i];
+            component.y = backend.VectCoordY[i];
+
+            if (backend.VectorColor[i] === 7) {
+                component.color="white"  // если не попал, то зеленый
+            } else {
+                component.color="red"
+            }
+
+            //console.log(backend.VectorColor[i]);
+            //console.log(list.count);
+
+            //component.x =(component.heigt*i)+20*i;
+            //component.y= (component.width*i)+20*i;
+            //component.color="blue"
+            list.append(component);
+        }
+    }
+
+    function createEllipse() {
+        //deletBombRect();
+
+        //clearVectorXYColor();
+        //console.log("--------------------------",maxNumberElement)
+        var rectEllipse = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
+
+        for (var i = 0; i < 3; i++) {  VectorEllipse
+
+            var component = rectEllips.createObject(mapWindow);
+            component.x = backend.VectorEllipse[0];
             component.y = backend.VectCoordY[i];
 
             if (backend.VectorColor[i] === 7) {

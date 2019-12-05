@@ -5,5 +5,6 @@
         <file>mapModel.qml</file>
         <file>bombingIcon.jpg</file>
         <file>bombRect.qml</file>
+        <file>Ellipse.qml</file>
     </qresource>
 </RCC>

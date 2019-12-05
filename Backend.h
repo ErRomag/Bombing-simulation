@@ -78,6 +78,8 @@ class Backend : public QObject
     Q_PROPERTY(QVector<int> VectCoordY READ VectCoordY WRITE setVectCoordY NOTIFY VectCoordYChanged)
     Q_PROPERTY(QVector<int> VectorColor READ VectorColor WRITE setVectorColor NOTIFY VectorColorChanged)
 
+    Q_PROPERTY(QVector<QList<int>> VectorEllipse VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
+
     Q_PROPERTY(QString ColorRLS READ ColorRLS WRITE setColorRLS NOTIFY ColorRLSChanged)
 
 public:
@@ -140,6 +142,11 @@ public:
         return m_ColorRLS;
     }
 
+    QVector<QList<int>> VectorEllipse() const
+    {
+        return m_VectorEllipse;
+    }
+
 signals:
 
     void aimDispersionTextFieldChanged(QString aimDispersionTextField);                  // Функция изменения параметра "Прицельного рассеивания"
@@ -181,6 +188,8 @@ signals:
     void VectorColorChanged(QVector<int> VectorColor);
 
     void ColorRLSChanged(QString ColorRLS);
+
+    void VectorEllipseChanged(QVector<QList<int>> VectorEllipse);
 
 public slots:
 
@@ -252,6 +261,15 @@ public slots:
         emit ColorRLSChanged(ColorRLS);
     }
 
+    void setVectorEllipse(QVector<QList<int>> VectorEllipse)
+    {
+        if (m_VectorEllipse == VectorEllipse)
+            return;
+
+        m_VectorEllipse = VectorEllipse;
+        emit VectorEllipseChanged(m_VectorEllipse);
+    }
+
 private:
 
     float FEopt[26][7]; /* массив параметров элементов (Functional Element) ЗРК [нулевые элементы не используются]
@@ -266,7 +284,7 @@ private:
 
     bool RBKd;
 
-    bool Destroy(float x,float y,float x1,
+    bool Destroy(float x, float y, float x1,
                  float y1,float x2,float y2,
                  float x3,float y3,float x4,float y4);
     int sgn(float val);
@@ -335,8 +353,9 @@ private:
     QVector<int> m_VectCoordY;
     QVector<int> m_VectorColor;
     QList<int> listEllipse;
-    QVector<QList<int>> m_VectorEllipse;
+    //QVector<QList<int>> m_VectorEllipse;
     QString m_ColorRLS;
+    QVector<QList<int>> m_VectorEllipse;
 };
 
 #endif // BACKEND_H
