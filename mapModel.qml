@@ -82,29 +82,49 @@ Window {
 
         var rectEllipse = Qt.createComponent("qrc:/Ellipse.qml"); // элемент - эллипс
 
-        for (var i = 0; i < 3; i++) {
 
-            var component = rectEllipse.createObject(mapWindow);
-//            component.x = backend.VectorEllipse[i].at(0);
-//            component.y = backend.VectorEllipse[i].at(1);
-//            component.width = backend.VectorEllipse[i].at(2);
-//            component.height = backend.VectorEllipse[i].at(3);
-            console.log(component.x, component.y)
+        var component = rectEllipse.createObject(mapWindow);
+        component.x = backend.VectorEllipse[0]
+        component.y = backend.VectorEllipse[1]
+        component.width = backend.VectorEllipse[2];
+        component.height = backend.VectorEllipse[3];
+
+        var component2 = rectEllipse.createObject(mapWindow);
+        component2.x = backend.VectorEllipse[4]
+        component2.y = backend.VectorEllipse[5]
+        component2.width = backend.VectorEllipse[6];
+        component2.height = backend.VectorEllipse[7];
+
+        var component3 = rectEllipse.createObject(mapWindow);
+        component3.x = backend.VectorEllipse[8]
+        component3.y = backend.VectorEllipse[9]
+        component3.width = backend.VectorEllipse[10];
+        component3.height = backend.VectorEllipse[11];
+
+        var component4 = rectEllipse.createObject(mapWindow);
+        component4.x = backend.VectorEllipse[12]
+        component4.y = backend.VectorEllipse[13]
+        component4.width = backend.VectorEllipse[14];
+        component4.height = backend.VectorEllipse[15];
+
+//        console.log(component.x, component.y);
 
 
-            // x backend.VectorEllipse.at(i).at(0)
-            // y backend.VectorEllipse.at(i).at(1)
-            // a backend.VectorEllipse.at(i).at(2)
-            // b backend.VectorEllipse.at(i).at(3)
 
-            //console.log(backend.VectorColor[i]);
-            //console.log(list.count);
 
-            //component.x =(component.heigt*i)+20*i;
-            //component.y= (component.width*i)+20*i;
-            //component.color="blue"
-            listEllipse.append(component);
-        }
+        // x backend.VectorEllipse.at(i).at(0)
+        // y backend.VectorEllipse.at(i).at(1)
+        // a backend.VectorEllipse.at(i).at(2)
+        // b backend.VectorEllipse.at(i).at(3)
+
+        //console.log(backend.VectorColor[i]);
+        //console.log(list.count);
+
+        //component.x =(component.heigt*i)+20*i;
+        //component.y= (component.width*i)+20*i;
+        //component.color="blue"
+        listEllipse.append(component);
+
     }
 
 

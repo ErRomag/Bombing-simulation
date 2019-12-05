@@ -545,14 +545,18 @@ void Backend::damageCalculation()
                             // эллипс рассеивания
                             if(k == 1) // будет 4 эллипса для каждого залпа по одному
                             {
-                                listEllipse.append(static_cast<int>(RBK[k][1])); // x
-                                listEllipse.append(static_cast<int>(RBK[k][2])); // y
-                                listEllipse.append(static_cast<int>(ammunitionDispersion*9)); // 3sigma
-                                listEllipse.append(static_cast<int>(ammunitionDispersion*3)); // 3sigma
+//                                listEllipse.append(static_cast<int>(RBK[k][1])); // x
+//                                listEllipse.append(static_cast<int>(RBK[k][2])); // y
+//                                listEllipse.append(static_cast<int>(ammunitionDispersion*9)); // 3sigma
+//                                listEllipse.append(static_cast<int>(ammunitionDispersion*3)); // 3sigma
 
-                                m_VectorEllipse.push_back(listEllipse);
+                                m_VectorEllipse.push_back(static_cast<int>(RBK[k][1]));
+                                m_VectorEllipse.push_back(static_cast<int>(RBK[k][2]));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*9));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*3));
 
-                                listEllipse.clear();
+
+//                                listEllipse.clear();
                             }
                         }
                     }
@@ -592,14 +596,17 @@ void Backend::damageCalculation()
                         // эллипс рассеивания
                         if(N_ASP == 1) // будет 4 эллипса для каждого залпа по одному
                         {
-                            listEllipse.append(static_cast<int>(xfab)); // x
-                            listEllipse.append(static_cast<int>(yfab)); // y
-                            listEllipse.append(static_cast<int>(technicalDispersion*3)); // 3sigma
-                            listEllipse.append(static_cast<int>(technicalDispersion*3)); // 3sigma
+//                            listEllipse.append(static_cast<int>(xfab)); // x
+//                            listEllipse.append(static_cast<int>(yfab)); // y
+//                            listEllipse.append(static_cast<int>(technicalDispersion*3)); // 3sigma
+//                            listEllipse.append(static_cast<int>(technicalDispersion*3)); // 3sigma
 
-                            m_VectorEllipse.push_back(listEllipse);
+                            m_VectorEllipse.push_back(static_cast<int>(xfab));
+                            m_VectorEllipse.push_back(static_cast<int>(yfab));
+                            m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*9));
+                            m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*3));
 
-                            listEllipse.clear();
+//                            listEllipse.clear();
                         }
                     }
                 }
