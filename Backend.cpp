@@ -401,6 +401,7 @@ void Backend::clearVectorXYColor()
 
     listEllipse.clear();
     m_VectorEllipse.clear();
+    m_FuncElem.clear();
 }
 
 void Backend::initFEoptions()
@@ -613,6 +614,10 @@ void Backend::damageCalculation()
                 m_FuncElem.push_back(FE[i]);
             }
         }
+        for (int i = 1; i < 26; ++i) {
+            qDebug() << FE[i];
+        }
+
 
         solveFE(0);
         m_ColorRLS = "#7FFF00";        

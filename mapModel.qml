@@ -49,7 +49,7 @@ Window {
     }
 
     function colorFuncElement() {
-        if (backend.FuncElem[1] === false) {
+        if (backend.FuncElem[0] === false) {
            objectKP.color = "red"
         }
     }
