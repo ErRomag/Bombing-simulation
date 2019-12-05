@@ -85,11 +85,17 @@ Window {
         //console.log("--------------------------",maxNumberElement)
         var rectEllipse = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
 
-        for (var i = 0; i < 3; i++) {  VectorEllipse
+        for (var i = 0; i < 3; i++) {
 
             var component = rectEllips.createObject(mapWindow);
             component.x = backend.VectorEllipse[0];
             component.y = backend.VectCoordY[i];
+
+
+            // x backend.VectorEllipse.at(i).at(0)
+            // y backend.VectorEllipse.at(i).at(1)
+            // a backend.VectorEllipse.at(i).at(2)
+            // b backend.VectorEllipse.at(i).at(3)
 
             if (backend.VectorColor[i] === 7) {
                 component.color="white"  // если не попал, то зеленый
