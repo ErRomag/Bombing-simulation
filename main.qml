@@ -301,6 +301,7 @@ ApplicationWindow {
 
                         ExclusiveGroup { id: tabPositionGroup }
 
+
                         RadioButton {
                             text: qsTr("ОФАБ-100-120")
                             id: ofab100  // ОФАБ 100

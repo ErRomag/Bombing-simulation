@@ -4,7 +4,11 @@ Rectangle {
     id: ellipse
     height: 5
     width: 5
-    opacity: 0.1
+    opacity: 0.2
     radius: 30
-    color: "yellow"
+    color: "white"
+    border.width: 4
+    border.color: "black"
+    //color: "#49E7DD"
+
 }
