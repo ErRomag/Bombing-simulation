@@ -607,10 +607,10 @@ void Backend::damageCalculation()
 
         if(NumB == 1)
         {
-            QVector<bool> functElem;
+           // QVector<bool> functElem;
             for (int i = 1; i < 26; ++i)
             {
-                functElem.push_back(FE[i]);
+                m_FuncElem.push_back(FE[i]);
             }
         }
 
@@ -620,7 +620,7 @@ void Backend::damageCalculation()
 
     // Тест по графу
     //test();
-    qDebug() << m_VectorEllipse;
+    qDebug() << m_FuncElem;
 
     float res = 10000 * (dukr[0] / numberRealization) / 100;
     W0 = res;

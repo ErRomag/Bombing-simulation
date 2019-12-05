@@ -657,6 +657,7 @@ ApplicationWindow {
                             var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
                             browserWindow.createPole();
                             browserWindow.createEllipse();// Отрисовка поля с бомбами (квадратиками)
+                            browserWindow.colorFuncElement();
                         }
 
                     }

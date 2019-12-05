@@ -48,6 +48,12 @@ Window {
         source: "qrc:/backgroundCanvas.jpg"
     }
 
+    function colorFuncElement() {
+        if (backend.FuncElem[1] === false) {
+           objectKP.color = "red"
+        }
+    }
+
 
     function  createPole(){
         deletBombRect();
@@ -67,13 +73,6 @@ Window {
             } else {
                 component.color="red"
             }
-
-            //console.log(backend.VectorColor[i]);
-            //console.log(list.count);
-
-            //component.x =(component.heigt*i)+20*i;
-            //component.y= (component.width*i)+20*i;
-            //component.color="blue"
             list.append(component);
         }
     }
@@ -86,10 +85,10 @@ Window {
         for (var i = 0; i < 3; i++) {
 
             var component = rectEllipse.createObject(mapWindow);
-            component.x = backend.VectorEllipse[i][0];
-            component.y = backend.VectorEllipse[i][1];
-            component.width = backend.VectorEllipse[i][2];
-            component.height = backend.VectorEllipse[i][3];
+//            component.x = backend.VectorEllipse[i].at(0);
+//            component.y = backend.VectorEllipse[i].at(1);
+//            component.width = backend.VectorEllipse[i].at(2);
+//            component.height = backend.VectorEllipse[i].at(3);
             console.log(component.x, component.y)
 
 
@@ -118,7 +117,7 @@ Window {
     }
 
     function deletEllipse() {
-        console.log("start deletEllipse()()")
+        console.log("start deletEllipse()")
         for (var n = 0; n < listEllipse.count; n++) {
             listEllipse.get(n).destroy();
         }

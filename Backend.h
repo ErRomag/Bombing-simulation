@@ -80,6 +80,9 @@ class Backend : public QObject
 
     Q_PROPERTY(QVector<QList<int>> VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
 
+
+   Q_PROPERTY(QVector<bool> FuncElem READ FuncElem WRITE setFuncElem NOTIFY FuncElemChanged)
+
     Q_PROPERTY(QString ColorRLS READ ColorRLS WRITE setColorRLS NOTIFY ColorRLSChanged)
 
 public:
@@ -147,6 +150,11 @@ public:
         return m_VectorEllipse;
     }
 
+    QVector<bool> FuncElem() const
+    {
+        return m_FuncElem;
+    }
+
 signals:
 
     void aimDispersionTextFieldChanged(QString aimDispersionTextField);                  // Функция изменения параметра "Прицельного рассеивания"
@@ -190,6 +198,8 @@ signals:
     void ColorRLSChanged(QString ColorRLS);
 
     void VectorEllipseChanged(QVector<QList<int>> VectorEllipse);
+
+    void FuncElemChanged(QVector<bool> FuncElem);
 
 public slots:
 
@@ -268,6 +278,15 @@ public slots:
 
         m_VectorEllipse = VectorEllipse;
         emit VectorEllipseChanged(m_VectorEllipse);
+    }
+
+    void setFuncElem(QVector<bool> FuncElem)
+    {
+        if (m_FuncElem == FuncElem)
+            return;
+
+        m_FuncElem = FuncElem;
+        emit FuncElemChanged(m_FuncElem);
     }
 
 private:
@@ -356,6 +375,7 @@ private:
     //QVector<QList<int>> m_VectorEllipse;
     QString m_ColorRLS;
     QVector<QList<int>> m_VectorEllipse;
+    QVector<bool> m_FuncElem;
 };
 
 #endif // BACKEND_H
