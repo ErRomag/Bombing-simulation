@@ -86,7 +86,6 @@ Window {
             //component.color="blue"
             list.append(component);
         }
-        console.log(list.count);
     }
 
 

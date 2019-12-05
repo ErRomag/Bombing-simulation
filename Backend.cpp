@@ -512,6 +512,7 @@ void Backend::damageCalculation()
                         // !!!!!!!!!!!!!!!!!!!!!!ammunitionDispersion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         RBK[k][1] = Zalp_X + udX(randomGenerator); //Ребро квадрата
                         RBK[k][2] = Zalp_Y + udY(randomGenerator);
+                        bool flag = true;
                         for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
                         {
                             if(Destroy(RBK[k][1],RBK[k][2],
@@ -525,33 +526,30 @@ void Backend::damageCalculation()
                                        DEA[N_FE][8])) //  Если попал
                             {
                                 FE[N_FE] = false;
-
-                                if(NumB == 1)
-                                {
-                                    m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
-                                    m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
-                                    m_VectorColor.push_back(Qt::red);
-                                }
-
-                            } else //  Если не попал
-                            {
-                                if(NumB == 1)
-                                {
-                                    m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
-                                    m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
-                                    m_VectorColor.push_back(Qt::green);
-                                }
+                                flag = false;
                             }
+                        }
+                        if(NumB==1)
+                        {
+                            m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
+                            m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
+                            if(!flag)
+                                m_VectorColor.push_back(Qt::red);
+                            else
+                                m_VectorColor.push_back(Qt::green);
                         }
                     }
                 } else // если ОФАБ
                 {
 
-                    std::normal_distribution<float> ndX(Zalp_X, 0.004*bombingAltitude), ndY(Zalp_Y, 0.004*bombingAltitude);
+                    // std::normal_distribution<float> ndX(Zalp_X, 0.004*bombingAltitude), ndY(Zalp_Y, 0.004*bombingAltitude);
+                    std::normal_distribution<float> ndX(Zalp_X, technicalDispersion), ndY(Zalp_Y, technicalDispersion);
                     xfab = ndX(randomGenerator);
                     yfab = ndY(randomGenerator);
+                    bool flag = true;
                     for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
                     {
+
                         if(Destroy(xfab, yfab,
                                    DEA[N_FE][1],
                                    DEA[N_FE][2],
@@ -563,26 +561,21 @@ void Backend::damageCalculation()
                                    DEA[N_FE][8])) // если попал
                         {
                             FE[N_FE] = false;
-                            if(NumB==1)
-                            {
-                                m_VectCoordX.push_back(static_cast<int>(xfab));
-                                m_VectCoordY.push_back(static_cast<int>(yfab));
-                                m_VectorColor.push_back(Qt::red);
-                            }
-                        } else // если не попал
-                        {
-                            if(NumB==1)
-                            {
-                                m_VectCoordX.push_back(static_cast<int>(xfab));
-                                m_VectCoordY.push_back(static_cast<int>(yfab));
-                                m_VectorColor.push_back(Qt::green);
-                            }
+                            flag = false;
                         }
+                    }
+                    if(NumB==1)
+                    {
+                        m_VectCoordX.push_back(static_cast<int>(xfab));
+                        m_VectCoordY.push_back(static_cast<int>(yfab));
+                        if(!flag)
+                            m_VectorColor.push_back(Qt::red);
+                        else
+                            m_VectorColor.push_back(Qt::green);
                     }
                 }
             }
         }
-        // Romero
 
         if(NumB == 1)
         {
@@ -590,22 +583,11 @@ void Backend::damageCalculation()
             for (int i = 1; i < 26; ++i)
             {
                 functElem.push_back(FE[i]);
-                qDebug() << functElem.at(i-1);
             }
         }
-        // risovalka(забирай functElem скорей увози на сто морей);
-
-        // Romero
 
         solveFE(0);
-        m_ColorRLS = "#7FFF00";
-        qDebug() << m_VectorColor;
-        qDebug() << m_VectorColor.count();
-        for (int i = 1; i < 26; ++i) {
-             qDebug() << FE[i];
-        }
-
-        //qDebug() << m_VectCoordX.count();
+        m_ColorRLS = "#7FFF00";        
     }
 
     // Тест по графу
