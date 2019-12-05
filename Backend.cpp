@@ -479,14 +479,14 @@ void Backend::damageCalculation()
 //    aimPoint[4][1] = 96 - rangeToTraverse  + intervalSeries;
 //    aimPoint[4][2] = combatRouteCenterPair - intervalRegime;
 
-    aimPoint[1][1] = 300 - rangeToTraverse;
-    aimPoint[1][2] = 350 - combatRouteCenterPair + intervalRegime;
-    aimPoint[2][1] = 300 - rangeToTraverse  + intervalSeries;
-    aimPoint[2][2] = 350 - combatRouteCenterPair + intervalRegime;
-    aimPoint[3][1] = 300 - rangeToTraverse;
-    aimPoint[3][2] = 350 - combatRouteCenterPair - intervalRegime;
-    aimPoint[4][1] = 300 - rangeToTraverse  + intervalSeries;
-    aimPoint[4][2] = 350 - combatRouteCenterPair - intervalRegime;
+    aimPoint[1][1] = 350 - rangeToTraverse;
+    aimPoint[1][2] = 300 - combatRouteCenterPair + intervalRegime;
+    aimPoint[2][1] = 350 - rangeToTraverse  + intervalSeries;
+    aimPoint[2][2] = 300 - combatRouteCenterPair + intervalRegime;
+    aimPoint[3][1] = 350 - rangeToTraverse;
+    aimPoint[3][2] = 300 - combatRouteCenterPair - intervalRegime;
+    aimPoint[4][1] = 350 - rangeToTraverse  + intervalSeries;
+    aimPoint[4][2] = 300 - combatRouteCenterPair - intervalRegime;
 
     std::mt19937 randomGenerator(time(0));
     for (int NumB = 1; NumB <= numberRealization; ++NumB) //Перебор всех бомбометаний по ЗРК
