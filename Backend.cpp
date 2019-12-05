@@ -398,10 +398,10 @@ void Backend::clearVectorXYColor()
     m_VectCoordX.clear();
     m_VectCoordY.clear();
     m_VectorColor.clear();
+    m_FuncElem.clear();
 
     listEllipse.clear();
     m_VectorEllipse.clear();
-    m_FuncElem.clear();
 }
 
 void Backend::initFEoptions()

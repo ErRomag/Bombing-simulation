@@ -103,6 +103,7 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                    text: qsTr("40")
 
                     onTextChanged: backend.setAimDispersionTextField(text)
                 }
@@ -118,6 +119,7 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                    text: qsTr("40")
 
                     onTextChanged: backend.setTechnicalDispersionTextField(text)
                 }
@@ -133,6 +135,7 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                    text: qsTr("40")
 
                     onTextChanged: backend.setAmmunitionDispersionTextField(text)
                 }
@@ -154,6 +157,7 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                    text: qsTr("130")
 
                     onTextChanged: backend.setCombatRouteCenterPairTextField(text)
                 }
@@ -169,6 +173,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
+
+                    text: qsTr("100")
 
                     onTextChanged: backend.setRangeToTraverseTextField(text)
                 }
@@ -204,6 +210,8 @@ ApplicationWindow {
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
+                    text: qsTr("100")
+
                     onTextChanged: backend.setIntervalSeriesTextField(text)
                 }
 
@@ -233,6 +241,8 @@ ApplicationWindow {
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+/}
 
+                    text: qsTr("20")
+
                     //text: backend.numberASPTextField
                     onTextChanged: backend.setNumberASPTextField(text)
                 }
@@ -248,6 +258,8 @@ ApplicationWindow {
                     width: 250
                     maximumLength: maximumLenghtTextField
                     validator: RegExpValidator {regExp: /\d+/}
+
+                    text: qsTr("10")
 
                     onTextChanged: backend.setNumberAmmunitionTextField(text)
                 }
@@ -655,8 +667,8 @@ ApplicationWindow {
                             backend.initialization();                                // Инициализация переменных с формы
                             var component = Qt.createComponent("mapModel.qml");      // Создание модели карты
                             var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
-                            browserWindow.createPole();
-                            browserWindow.createEllipse();// Отрисовка поля с бомбами (квадратиками)
+                            browserWindow.createEllipse();                           // Отрисовка эллипса
+                            browserWindow.createPole();                              // Отрисовка поля с бомбами (квадратиками)
                             browserWindow.colorFuncElement();
                         }
 

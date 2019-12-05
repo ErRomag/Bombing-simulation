@@ -52,6 +52,27 @@ Window {
         if (backend.FuncElem[0] === false) {
            objectKP.color = "red"
         }
+        if (backend.FuncElem[1] === false) {
+           objectKP1.color = "red"
+        }
+        if (backend.FuncElem[2] === false) {
+           objectKP2.color = "red"
+        }
+        if (backend.FuncElem[3] === false) {
+            objectRLS.color = "red"
+        }
+        if (backend.FuncElem[4] === false) {
+            objectRLV.color = "red"
+        }
+        if (backend.FuncElem[5] === false) {
+            objectSU1.color = "red"
+        }
+        if (backend.FuncElem[6] === false) {
+            objectSU2.color = "red"
+        }
+        if (backend.FuncElem[7] === false) {
+            objectSU3.color = "red"
+        }
     }
 
 
@@ -77,72 +98,72 @@ Window {
         }
     }
 
-    function createEllipse() {
-        deletEllipse()
-
-        var rectEllipse = Qt.createComponent("qrc:/Ellipse.qml"); // элемент - эллипс
-
-
-        var component = rectEllipse.createObject(mapWindow);
-        component.x = backend.VectorEllipse[0]
-        component.y = backend.VectorEllipse[1]
-        component.width = backend.VectorEllipse[2];
-        component.height = backend.VectorEllipse[3];
-
-        var component2 = rectEllipse.createObject(mapWindow);
-        component2.x = backend.VectorEllipse[4]
-        component2.y = backend.VectorEllipse[5]
-        component2.width = backend.VectorEllipse[6];
-        component2.height = backend.VectorEllipse[7];
-
-        var component3 = rectEllipse.createObject(mapWindow);
-        component3.x = backend.VectorEllipse[8]
-        component3.y = backend.VectorEllipse[9]
-        component3.width = backend.VectorEllipse[10];
-        component3.height = backend.VectorEllipse[11];
-
-        var component4 = rectEllipse.createObject(mapWindow);
-        component4.x = backend.VectorEllipse[12]
-        component4.y = backend.VectorEllipse[13]
-        component4.width = backend.VectorEllipse[14];
-        component4.height = backend.VectorEllipse[15];
-
-//        console.log(component.x, component.y);
-
-
-
-
-        // x backend.VectorEllipse.at(i).at(0)
-        // y backend.VectorEllipse.at(i).at(1)
-        // a backend.VectorEllipse.at(i).at(2)
-        // b backend.VectorEllipse.at(i).at(3)
-
-        //console.log(backend.VectorColor[i]);
-        //console.log(list.count);
-
-        //component.x =(component.heigt*i)+20*i;
-        //component.y= (component.width*i)+20*i;
-        //component.color="blue"
-        listEllipse.append(component);
-
-    }
-
-
     function deletBombRect() {
-        console.log("start deletBombRect()")
+        //console.log("start deletBombRect()")
         for (var k = 0; k < list.count; k++) {
             list.get(k).destroy();
         }
         list.clear();
     }
 
+    function createEllipse() {
+        deletEllipse()
+
+        var rectEllipse = Qt.createComponent("qrc:/Ellipse.qml"); // элемент - эллипс
+
+        var component1 = rectEllipse.createObject(mapWindow);
+        component1.x = backend.VectorEllipse[0]
+        component1.y = backend.VectorEllipse[1]
+        component1.width = backend.VectorEllipse[2];
+        component1.height = backend.VectorEllipse[3];
+        component1.color="blue"
+        component1.radius = component1.width / 2
+        listEllipse.append(component1);
+
+        var component2 = rectEllipse.createObject(mapWindow);
+        component2.x = backend.VectorEllipse[4]
+        component2.y = backend.VectorEllipse[5]
+        component2.width = backend.VectorEllipse[6];
+        component2.height = backend.VectorEllipse[7];
+        component2.color="blue"
+        component2.radius = component2.width / 2
+        listEllipse.append(component2);
+
+        var component3 = rectEllipse.createObject(mapWindow);
+        component3.x = backend.VectorEllipse[8]
+        component3.y = backend.VectorEllipse[9]
+        component3.width = backend.VectorEllipse[10];
+        component3.height = backend.VectorEllipse[11];
+        component3.color="blue"
+        component3.radius = component3.width / 2
+        listEllipse.append(component3);
+
+        var component4 = rectEllipse.createObject(mapWindow);
+        component4.x = backend.VectorEllipse[12]
+        component4.y = backend.VectorEllipse[13]
+        component4.width = backend.VectorEllipse[14];
+        component4.height = backend.VectorEllipse[15];
+        component4.color="blue"
+        component4.radius = component4.width / 2
+        listEllipse.append(component4)
+
+        console.log(listEllipse.count)
+    }
+
+
     function deletEllipse() {
-        console.log("start deletEllipse()")
+
+        //console.log("start deletEllipse()")
         for (var n = 0; n < listEllipse.count; n++) {
             listEllipse.get(n).destroy();
         }
         listEllipse.clear();
+
     }
+
+
+
+
 
     // -------------------  Отрисовка кабелей между ФЭ ЗРК  -------------------
 
@@ -535,59 +556,6 @@ Window {
         text: qsTr("ЭГ-2")
         font.pixelSize: 14
     }
-
-
-    //    Rectangle {
-    //        id: line
-    //        property real x1: 10
-    //        property real y1: 220
-
-    //        property real x2: 170
-    //        property real y2: 50
-
-    //        color: "#FFFFF0"
-    //        height: 1
-    //        smooth: true;
-
-    //        x: x1
-    //        y: y1
-
-    //        transformOrigin: Item.Left;
-
-    //        width: getWidth(x1, y1, x2, y2);
-    //        rotation: getSlope(x1, y1, x2, y2);
-
-    //        function getWidth(sx1, sy1, sx2, sy2)
-    //        {
-    //            var w = Math.sqrt(Math.pow((sx2 - sx1), 2) + Math.pow((sy2 - sy1), 2));
-    //            return w;
-    //        }
-
-    //        function getSlope(sx1,sy1,sx2,sy2)
-    //        {
-    //            var a, m, d;
-    //            var b = sx2 - sx1;
-    //            if (b === 0) {
-    //                x = x + height
-    //                return 90;
-    //            }
-    //            a = sy2 - sy1;
-    //            m = a / b;
-    //            d = Math.atan(m) * 180 / Math.PI;
-
-    //            if (a < 0 && b < 0)
-    //                return d + 180;
-    //            else if (a >= 0 && b >= 0)
-    //                return d;
-    //            else if (a < 0 && b >= 0)
-    //                return d;
-    //            else if (a >= 0 && b < 0)
-    //                return d + 180;
-    //            else
-    //                return 0;
-    //        }
-
-    //    }
 
 }
 
