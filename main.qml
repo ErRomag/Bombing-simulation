@@ -655,7 +655,8 @@ ApplicationWindow {
                             backend.initialization();                                // Инициализация переменных с формы
                             var component = Qt.createComponent("mapModel.qml");      // Создание модели карты
                             var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
-                            browserWindow.createPole();                              // Отрисовка поля с бомбами (квадратиками)
+                            browserWindow.createPole();
+                            browserWindow.createEllipse();// Отрисовка поля с бомбами (квадратиками)
                         }
 
                     }

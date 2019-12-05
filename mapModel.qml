@@ -79,17 +79,18 @@ Window {
     }
 
     function createEllipse() {
-        //deletBombRect();
+        deletEllipse()
 
-        //clearVectorXYColor();
-        //console.log("--------------------------",maxNumberElement)
-        var rectEllipse = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
+        var rectEllipse = Qt.createComponent("qrc:/Ellipse.qml"); // элемент - эллипс
 
         for (var i = 0; i < 3; i++) {
 
-            var component = rectEllips.createObject(mapWindow);
-            component.x = backend.VectorEllipse[0];
-            component.y = backend.VectCoordY[i];
+            var component = rectEllipse.createObject(mapWindow);
+            component.x = backend.VectorEllipse[i][0];
+            component.y = backend.VectorEllipse[i][1];
+            component.width = backend.VectorEllipse[i][2];
+            component.height = backend.VectorEllipse[i][3];
+            console.log(component.x, component.y)
 
 
             // x backend.VectorEllipse.at(i).at(0)
@@ -97,19 +98,13 @@ Window {
             // a backend.VectorEllipse.at(i).at(2)
             // b backend.VectorEllipse.at(i).at(3)
 
-            if (backend.VectorColor[i] === 7) {
-                component.color="white"  // если не попал, то зеленый
-            } else {
-                component.color="red"
-            }
-
             //console.log(backend.VectorColor[i]);
             //console.log(list.count);
 
             //component.x =(component.heigt*i)+20*i;
             //component.y= (component.width*i)+20*i;
             //component.color="blue"
-            list.append(component);
+            listEllipse.append(component);
         }
     }
 
@@ -120,6 +115,14 @@ Window {
             list.get(k).destroy();
         }
         list.clear();
+    }
+
+    function deletEllipse() {
+        console.log("start deletEllipse()()")
+        for (var n = 0; n < listEllipse.count; n++) {
+            listEllipse.get(n).destroy();
+        }
+        listEllipse.clear();
     }
 
     // -------------------  Отрисовка кабелей между ФЭ ЗРК  -------------------

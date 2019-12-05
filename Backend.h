@@ -78,7 +78,7 @@ class Backend : public QObject
     Q_PROPERTY(QVector<int> VectCoordY READ VectCoordY WRITE setVectCoordY NOTIFY VectCoordYChanged)
     Q_PROPERTY(QVector<int> VectorColor READ VectorColor WRITE setVectorColor NOTIFY VectorColorChanged)
 
-    Q_PROPERTY(QVector<QList<int>> VectorEllipse VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
+    Q_PROPERTY(QVector<QList<int>> VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
 
     Q_PROPERTY(QString ColorRLS READ ColorRLS WRITE setColorRLS NOTIFY ColorRLSChanged)
 
