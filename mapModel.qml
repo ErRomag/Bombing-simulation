@@ -73,6 +73,58 @@ Window {
         if (backend.FuncElem[7] === false) {
             objectSU3.color = "red"
         }
+        if (backend.FuncElem[8] === false) {
+            objectEGU.color = "red"
+        }
+        if (backend.FuncElem[9] === false) {
+            objectEG1.color = "red"
+        }
+        if (backend.FuncElem[10] === false) {
+            objectEG2.color = "red"
+        }
+        if (backend.FuncElem[11] === false) {
+            cableZvenoToEg.color = "red"
+        }
+        if (backend.FuncElem[12] === false) {
+            cableEGtoCP.color = "red"
+        }
+        if (backend.FuncElem[13] === false) {
+            cableEGtoRLS.color = "red"
+        }
+        if (backend.FuncElem[14] === false) {
+            cableEGtoRLV.color = "red"
+        }
+        if (backend.FuncElem[15] === false) {
+            cableRLStoCP.color = "red"
+        }
+        if (backend.FuncElem[16] === false) {
+            cableRLVtoCP.color = "red"
+        }
+        if (backend.FuncElem[17] === false) {
+            cableCPtoCP1.color = "red"
+        }
+        if (backend.FuncElem[18] === false) {
+            cableCPtoCP2.color = "red"
+        }
+        if (backend.FuncElem[19] === false) {
+            cableCP1toEG1.color = "red"
+        }
+        if (backend.FuncElem[20] === false) {
+            cableCP2toEG2.color = "red"
+        }
+        if (backend.FuncElem[21] === false) {
+            cableCP1toSC1.color = "red"
+        }
+        if (backend.FuncElem[22] === false) {
+            cableSC1toSC2.color = "red"
+        }
+        if (backend.FuncElem[23] === false) {
+            cableSC2toSC3.color = "red"
+        }
+        if (backend.FuncElem[24] === false) {
+            cableSC2toSC3.color = "red"
+        }
+
     }
 
 
@@ -112,34 +164,38 @@ Window {
         var rectEllipse = Qt.createComponent("qrc:/Ellipse.qml"); // элемент - эллипс
 
         var component1 = rectEllipse.createObject(mapWindow);
-        component1.x = backend.VectorEllipse[0]
-        component1.y = backend.VectorEllipse[1]
+
         component1.width = backend.VectorEllipse[2];
         component1.height = backend.VectorEllipse[3];
+        component1.x = backend.VectorEllipse[0] - component1.width / 2
+        component1.y = backend.VectorEllipse[1] - component1.height / 2
         component1.radius = (component1.height / 2)
         listEllipse.append(component1);
 
         var component2 = rectEllipse.createObject(mapWindow);
-        component2.x = backend.VectorEllipse[4]
-        component2.y = backend.VectorEllipse[5]
+
         component2.width = backend.VectorEllipse[6];
         component2.height = backend.VectorEllipse[7];
+        component2.x = backend.VectorEllipse[4] - component2.width / 2
+        component2.y = backend.VectorEllipse[5] - component2.height / 2
         component2.radius = component2.height / 2
         listEllipse.append(component2);
 
         var component3 = rectEllipse.createObject(mapWindow);
-        component3.x = backend.VectorEllipse[8]
-        component3.y = backend.VectorEllipse[9]
+
         component3.width = backend.VectorEllipse[10];
         component3.height = backend.VectorEllipse[11];
+        component3.x = backend.VectorEllipse[8] - component3.width / 2
+        component3.y = backend.VectorEllipse[9] - component3.height / 2
         component3.radius = component3.height / 2
         listEllipse.append(component3);
 
         var component4 = rectEllipse.createObject(mapWindow);
-        component4.x = backend.VectorEllipse[12]
-        component4.y = backend.VectorEllipse[13]
+
         component4.width = backend.VectorEllipse[14];
         component4.height = backend.VectorEllipse[15];
+        component4.x = backend.VectorEllipse[12] - component4.width / 2
+        component4.y = backend.VectorEllipse[13] - component4.height / 2
         component4.radius = component4.height / 2
         listEllipse.append(component4)
 

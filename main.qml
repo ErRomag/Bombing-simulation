@@ -238,10 +238,10 @@ ApplicationWindow {
                     objectName: "numberASP"
                     //readOnly: true
                     width: 250
-                    maximumLength: maximumLenghtTextField
+                    maximumLength: 3  // Не больше трехзначного числа
                     validator: RegExpValidator {regExp: /\d+/}
 
-                    text: qsTr("20")
+                    text: qsTr("10")
 
                     //text: backend.numberASPTextField
                     onTextChanged: backend.setNumberASPTextField(text)
