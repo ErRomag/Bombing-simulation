@@ -122,7 +122,7 @@ Window {
             cableSC2toSC3.color = "red"
         }
         if (backend.FuncElem[24] === false) {
-            cableSC2toSC3.color = "red"
+            cableSC3toCP2.color = "red"
         }
 
     }
@@ -178,7 +178,7 @@ Window {
         component2.height = backend.VectorEllipse[7];
         component2.x = backend.VectorEllipse[4] - component2.width / 2
         component2.y = backend.VectorEllipse[5] - component2.height / 2
-        component2.radius = 200 /*component2.width / component2.height*/
+        component2.radius = 20 /*component2.width / component2.height*/
         listEllipse.append(component2);
 
         var component3 = rectEllipse.createObject(mapWindow);
@@ -187,7 +187,7 @@ Window {
         component3.height = backend.VectorEllipse[11];
         component3.x = backend.VectorEllipse[8] - component3.width / 2
         component3.y = backend.VectorEllipse[9] - component3.height / 2
-        component3.radius = 200 /*component3.width / component3.height*/
+        component3.radius = 20 /*component3.width / component3.height*/
         listEllipse.append(component3);
 
         var component4 = rectEllipse.createObject(mapWindow);
@@ -196,7 +196,7 @@ Window {
         component4.height = backend.VectorEllipse[15];
         component4.x = backend.VectorEllipse[12] - component4.width / 2
         component4.y = backend.VectorEllipse[13] - component4.height / 2
-        component4.radius = 400 /*component4.width / component4.height*/
+        component4.radius = 20 /*component4.width / component4.height*/
         listEllipse.append(component4)
 
         console.log(listEllipse.count)
@@ -219,7 +219,7 @@ Window {
 
     // -------------------  Отрисовка кабелей между ФЭ ЗРК  -------------------
 
-    Rectangle { // Кабель от вышестоящего звена до ЭГ
+    Rectangle { // Кабель от вышестоящего звена до ЭГ (12)
         id: cableZvenoToEg
         x: 0
         y: 280
@@ -229,29 +229,7 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от ЭГ до РЛС
-        id: cableEGtoRLS
-        x: 135
-        y: 65
-        height: 213
-        width: 4
-        color: "#7FFF00"
-        rotation: 20
-        antialiasing: true
-    }
-
-    Rectangle { // Кабель от ЭГ до РЛВ
-        id: cableEGtoRLV
-        x: 118
-        y: 290
-        height: 213
-        width: 4
-        color: "#7FFF00"
-        rotation: -11
-        antialiasing: true
-    }
-
-    Rectangle { // Кабель от ЭГ до КП
+    Rectangle { // Кабель от ЭГ до КП (13)
         id: cableEGtoCP
         x: 115
         y: 285
@@ -262,7 +240,29 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от РЛС до КП
+    Rectangle { // Кабель от ЭГ до РЛС (14)
+        id: cableEGtoRLS
+        x: 135
+        y: 65
+        height: 213
+        width: 4
+        color: "#7FFF00"
+        rotation: 20
+        antialiasing: true
+    }
+
+    Rectangle { // Кабель от ЭГ до РЛВ (15)
+        id: cableEGtoRLV
+        x: 118
+        y: 290
+        height: 213
+        width: 4
+        color: "#7FFF00"
+        rotation: -11
+        antialiasing: true
+    }
+
+    Rectangle { // Кабель от РЛС до КП (16)
         id: cableRLStoCP
         x: 110
         y: 170
@@ -273,7 +273,7 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от РЛВ до КП
+    Rectangle { // Кабель от РЛВ до КП (17)
         id: cableRLVtoCP
         x: 92
         y: 400
@@ -284,7 +284,7 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от КП до КП1
+    Rectangle { // Кабель от КП до КП1 (18)
         id: cableCPtoCP1
         x: 248
         y: 200
@@ -295,51 +295,7 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от КП1 до ЭГ1
-        id: cableCP1toEG1
-        x: 430
-        y: 80
-        height: 4
-        width: 140
-        color: "#7FFF00"
-        rotation: -26
-        antialiasing: true
-    }
-
-    Rectangle { // Кабель от КП1 до ПУ1
-        id: cableCP1toSC1
-        x: 410
-        y: 170
-        height: 4
-        width: 120
-        color: "#7FFF00"
-        rotation: 62
-        antialiasing: true
-    }
-
-    Rectangle { // Кабель от ПУ1 до ПУ2
-        id: cableSC1toSC2
-        x: 410
-        y: 295
-        height: 4
-        width: 120
-        color: "#7FFF00"
-        rotation: 110
-        antialiasing: true
-    }
-
-    Rectangle { // Кабель от ПУ2 до ПУ3
-        id: cableSC2toSC3
-        x: 440
-        y: 400
-        height: 4
-        width: 140
-        color: "#7FFF00"
-        rotation: 42
-        antialiasing: true
-    }
-
-    Rectangle { // Кабель от КП до КП2
+    Rectangle { // Кабель от КП до КП2 (19)
         id: cableCPtoCP2
         x: 190
         y: 380
@@ -350,7 +306,18 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от КП до КП2
+    Rectangle { // Кабель от КП1 до ЭГ1 (20)
+        id: cableCP1toEG1
+        x: 430
+        y: 80
+        height: 4
+        width: 140
+        color: "#7FFF00"
+        rotation: -26
+        antialiasing: true
+    }
+
+    Rectangle { // Кабель от КП2 до ЭГ2 (21)
         id: cableCP2toEG2
         x: 315
         y: 520
@@ -361,8 +328,41 @@ Window {
         antialiasing: true
     }
 
-    Rectangle { // Кабель от КП до КП2
-        id: cableCP2toSU2
+    Rectangle { // Кабель от КП1 до CУ1 (22)
+        id: cableCP1toSC1
+        x: 410
+        y: 170
+        height: 4
+        width: 120
+        color: "#7FFF00"
+        rotation: 62
+        antialiasing: true
+    }
+
+    Rectangle { // Кабель от CУ1 до СУ2 (23)
+        id: cableSC1toSC2
+        x: 410
+        y: 295
+        height: 4
+        width: 120
+        color: "#7FFF00"
+        rotation: 110
+        antialiasing: true
+    }
+
+    Rectangle { // Кабель от СУ2 до СУ3 (24)
+        id: cableSC2toSC3
+        x: 440
+        y: 400
+        height: 4
+        width: 140
+        color: "#7FFF00"
+        rotation: 42
+        antialiasing: true
+    }
+
+    Rectangle { // Кабель от СУ3 до КП2 (25)
+        id: cableSC3toCP2
         x: 315
         y: 470
         height: 4

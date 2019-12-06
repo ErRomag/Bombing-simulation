@@ -425,7 +425,7 @@ void Backend::initFEoptions()
     FEopt[11][1]=490;   FEopt[11][2]=530;   FEopt[11][3]=25;   FEopt[11][4]=25;    FEopt[11][5]=13;   FEopt[11][6]=radiusEG12;
 
     FEopt[12][1]=0;     FEopt[12][2]=280;   FEopt[12][3]=90;    FEopt[12][4]=4;    FEopt[12][5]=0;    FEopt[12][6]=radiusCable;
-    FEopt[13][1]=90;    FEopt[13][2]=270;   FEopt[13][3]=213;    FEopt[13][4]=4;   FEopt[13][5]=20;   FEopt[13][6]=radiusCable;
+    FEopt[13][1]=90;    FEopt[13][2]=270;   FEopt[13][3]=221;    FEopt[13][4]=4;   FEopt[13][5]=80;   FEopt[13][6]=radiusCable;
     FEopt[14][1]=118;   FEopt[14][2]=290;   FEopt[14][3]=213;    FEopt[14][4]=4;   FEopt[14][5]=-11;  FEopt[14][6]=radiusCable;
     FEopt[15][1]=115;   FEopt[15][2]=285;   FEopt[15][3]=180;    FEopt[15][4]=4;   FEopt[15][5]=2;    FEopt[15][6]=radiusCable;
     FEopt[16][1]=110;   FEopt[16][2]=170;   FEopt[16][3]=250;    FEopt[16][4]=4;   FEopt[16][5]=66;   FEopt[16][6]=radiusCable;
@@ -618,16 +618,17 @@ void Backend::damageCalculation()
 
         if(NumB == 1)
         {
-           // QVector<bool> functElem;
             for (int i = 1; i < 26; ++i)
             {
                 m_FuncElem.push_back(FE[i]);
             }
         }
+        qDebug() << m_FuncElem;
 
 
         solveFE(0);
-        m_ColorRLS = "#7FFF00";        
+        m_ColorRLS = "#7FFF00";
+
     }
 
     // Тест по графу
