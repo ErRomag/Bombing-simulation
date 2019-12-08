@@ -416,28 +416,35 @@ void Backend::initFEoptions()
     FEopt[4][1]=170;    FEopt[4][2]=50;     FEopt[4][3]=25;    FEopt[4][4]=25;     FEopt[4][5]=35;    FEopt[4][6]=radiusRLSV;
     FEopt[5][1]=130;    FEopt[5][2]=500;    FEopt[5][3]=25;    FEopt[5][4]=25;     FEopt[5][5]=81;    FEopt[5][6]=radiusRLSV;
 
-    FEopt[6][1]=480;    FEopt[6][2]=220;    FEopt[6][3]=25;    FEopt[6][4]=25;     FEopt[6][5]=20;    FEopt[6][6]=radiusSC123;
+    FEopt[6][1]=480;    FEopt[6][2]=220;    FEopt[6][3]=25;    FEopt[6][4]=25;     FEopt[6][5]=0;    FEopt[6][6]=radiusSC123;
     FEopt[7][1]=440;    FEopt[7][2]=350;    FEopt[7][3]=25;    FEopt[7][4]=25;     FEopt[7][5]=0;     FEopt[7][6]=radiusSC123;
     FEopt[8][1]=550;    FEopt[8][2]=440;    FEopt[8][3]=25;    FEopt[8][4]=25;     FEopt[8][5]=130;   FEopt[8][6]=radiusSC123;
 
     FEopt[9][1]=90;     FEopt[9][2]=270;    FEopt[9][3]=25;    FEopt[9][4]=25;     FEopt[9][5]=0;     FEopt[9][6]=radiusEG12;
-    FEopt[10][1]=540;   FEopt[10][2]=40;    FEopt[10][3]=25;   FEopt[10][4]=25;    FEopt[10][5]=32;   FEopt[10][6]=radiusEG12;
-    FEopt[11][1]=490;   FEopt[11][2]=530;   FEopt[11][3]=25;   FEopt[11][4]=25;    FEopt[11][5]=13;   FEopt[11][6]=radiusEG12;
+    FEopt[10][1]=540;   FEopt[10][2]=40;    FEopt[10][3]=25;     FEopt[10][4]=25;    FEopt[10][5]=32;   FEopt[10][6]=radiusEG12;
+    FEopt[11][1]=490;   FEopt[11][2]=530;   FEopt[11][3]=25;     FEopt[11][4]=25;    FEopt[11][5]=13;   FEopt[11][6]=radiusEG12;
 
-    FEopt[12][1]=0;     FEopt[12][2]=280;   FEopt[12][3]=90;    FEopt[12][4]=4;    FEopt[12][5]=0;    FEopt[12][6]=radiusCable;
-    FEopt[13][1]=90;    FEopt[13][2]=270;   FEopt[13][3]=221;    FEopt[13][4]=4;   FEopt[13][5]=80;   FEopt[13][6]=radiusCable;
-    FEopt[14][1]=118;   FEopt[14][2]=290;   FEopt[14][3]=213;    FEopt[14][4]=4;   FEopt[14][5]=-11;  FEopt[14][6]=radiusCable;
-    FEopt[15][1]=115;   FEopt[15][2]=285;   FEopt[15][3]=180;    FEopt[15][4]=4;   FEopt[15][5]=2;    FEopt[15][6]=radiusCable;
-    FEopt[16][1]=110;   FEopt[16][2]=170;   FEopt[16][3]=250;    FEopt[16][4]=4;   FEopt[16][5]=66;   FEopt[16][6]=radiusCable;
-    FEopt[17][1]=92;    FEopt[17][2]=400;   FEopt[17][3]=250;    FEopt[17][4]=4;   FEopt[17][5]=-59;  FEopt[17][6]=radiusCable;
-    FEopt[18][1]=248;   FEopt[18][2]=200;   FEopt[18][3]=230;    FEopt[18][4]=4;   FEopt[18][5]=-45;  FEopt[18][6]=radiusCable;
-    FEopt[19][1]=430;   FEopt[19][2]=80;    FEopt[19][3]=140;    FEopt[19][4]=4;   FEopt[19][5]=-26;  FEopt[19][6]=radiusCable;
-    FEopt[20][1]=410;   FEopt[20][2]=170;   FEopt[20][3]=120;    FEopt[20][4]=4;   FEopt[20][5]=62;   FEopt[20][6]=radiusCable;
-    FEopt[21][1]=410;   FEopt[21][2]=295;   FEopt[21][3]=120;    FEopt[21][4]=4;   FEopt[21][5]=110;  FEopt[21][6]=radiusCable;
-    FEopt[22][1]=440;   FEopt[22][2]=400;   FEopt[22][3]=140;    FEopt[22][4]=4;   FEopt[22][5]=42;   FEopt[22][6]=radiusCable;
-    FEopt[23][1]=190;   FEopt[23][2]=380;   FEopt[23][3]=205;    FEopt[23][4]=4;   FEopt[23][5]=83;   FEopt[23][6]=radiusCable;
-    FEopt[24][1]=315;   FEopt[24][2]=520;   FEopt[24][3]=180;    FEopt[24][4]=4;   FEopt[24][5]=13;   FEopt[24][6]=radiusCable;
-    FEopt[25][1]=315;   FEopt[25][2]=470;   FEopt[25][3]=240;    FEopt[25][4]=4;   FEopt[25][5]=-10;  FEopt[25][6]=radiusCable;
+    FEopt[12][1]=0;     FEopt[12][2]=274;   FEopt[12][3]=90;     FEopt[12][4]=4;    FEopt[12][5]=0;    FEopt[12][6]=radiusCable;
+    FEopt[13][1]=95;   FEopt[14][2]=274;   FEopt[14][3]=175;    FEopt[14][4]=4;   FEopt[14][5]=-5;  FEopt[14][6]=radiusCable;
+    FEopt[14][1]=95;    FEopt[13][2]=274;   FEopt[13][3]=221;    FEopt[13][4]=4;   FEopt[13][5]=70;   FEopt[13][6]=radiusCable;
+    FEopt[15][1]=95;   FEopt[15][2]=274;   FEopt[15][3]=239;    FEopt[15][4]=4;   FEopt[15][5]=-80;    FEopt[15][6]=radiusCable;
+    FEopt[16][1]=190;   FEopt[16][2]=63;   FEopt[16][3]=212;    FEopt[16][4]=4;   FEopt[16][5]=-66;   FEopt[16][6]=radiusCable;
+    FEopt[17][1]=133;    FEopt[17][2]=511;   FEopt[17][3]=235;    FEopt[17][4]=4;   FEopt[17][5]=-120;  FEopt[17][6]=radiusCable;
+
+    FEopt[18][1]=278;   FEopt[18][2]=285;   FEopt[18][3]=219;    FEopt[18][4]=4;   FEopt[18][5]=45;  FEopt[18][6]=radiusCable;
+
+    FEopt[19][1]=278;   FEopt[19][2]=285;    FEopt[19][3]=235;    FEopt[19][4]=4;   FEopt[19][5]=-83;  FEopt[19][6]=radiusCable;
+
+    FEopt[20][1]=418;   FEopt[20][2]=114;   FEopt[20][3]=127;    FEopt[20][4]=4;   FEopt[20][5]=26;   FEopt[20][6]=radiusCable;
+
+    FEopt[21][1]=307;   FEopt[21][2]=497;   FEopt[21][3]=195;    FEopt[21][4]=4;   FEopt[21][5]=-13;  FEopt[21][6]=radiusCable;
+
+    FEopt[22][1]=418;   FEopt[22][2]=114;   FEopt[22][3]=127;    FEopt[22][4]=4;   FEopt[22][5]=-62;   FEopt[22][6]=radiusCable;
+
+    FEopt[23][1]=446;   FEopt[23][2]=348;   FEopt[23][3]=131;    FEopt[23][4]=4;   FEopt[23][5]=-110;   FEopt[23][6]=radiusCable;
+
+    FEopt[24][1]=446;   FEopt[24][2]=348;   FEopt[24][3]=143;    FEopt[24][4]=4;   FEopt[24][5]=42;   FEopt[24][6]=radiusCable;
+    FEopt[25][1]=307;   FEopt[25][2]=497;   FEopt[25][3]=254;    FEopt[25][4]=4;   FEopt[25][5]=11;  FEopt[25][6]=radiusCable;
 
 //    FEopt[12][1]=-70.6;FEopt[12][2]=125;  FEopt[12][3]=200;  FEopt[12][4]=0;FEopt[12][5]=45;   FEopt[12][6]=radiusCable;
 //    FEopt[13][1]=96/2; FEopt[13][2]=237;  FEopt[13][3]=99.5; FEopt[13][4]=0;FEopt[13][5]=15.15;FEopt[13][6]=radiusCable;
@@ -565,7 +572,7 @@ void Backend::damageCalculation()
                             {
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_X));
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_Y));
-                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*9));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*7));
                                 m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*3));
                             }
                         }
