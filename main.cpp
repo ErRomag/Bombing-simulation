@@ -17,8 +17,6 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon(":/bombingIcon.jpg"));
 
     // Регистрируем типы radioButton, checkBox
-    //qmlRegisterType<calculationModel>("CalculationModel",1,0,"CalculationModel");
-
     qmlRegisterType<Backend>("Backend", 1, 0, "Backend");
 
     QQmlApplicationEngine engine;
@@ -29,16 +27,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
-
-//   QObject* root = engine.rootObjects()[0];
-
-
-    //calculationModel *calculationmodel = new calculationModel(root);
-
-
-//    QObject::connect(root, SIGNAL(qmlSignal(QString)),
-//                     calculationmodel, SLOT(cppSlot(QString)));
 
     return app.exec();
 }
