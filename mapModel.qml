@@ -15,8 +15,6 @@ Window {
 
     property int maxNumberElement: backend.maxNumberElementX()
 
-    // property alias listModel: list
-
     width: mapWindowWidth
     minimumWidth:mapWindowWidth
     maximumWidth: mapWindowWidth
@@ -27,7 +25,7 @@ Window {
 
     modality: Qt.ApplicationModal
 
-    x:50
+    x:250
     y:50
 
     title: qsTr("Реализация моделирования")
@@ -214,9 +212,6 @@ Window {
     }
 
 
-
-
-
     // -------------------  Отрисовка кабелей между ФЭ ЗРК  -------------------
 
     Rectangle { // Кабель от вышестоящего звена до ЭГ (12)
@@ -372,7 +367,6 @@ Window {
         antialiasing: true
     }
 
-
     // -------------------  Отрисовка ФЭ ЗРК  -------------------
 
     Rectangle {
@@ -403,9 +397,7 @@ Window {
         y: 50
         width: 25
         height: 25
-        //color: "green"
-        //color: "#7FFF00";
-        color: backend.ColorRLS
+        color: "#7FFF00"
         antialiasing: true
         rotation: 35
     }

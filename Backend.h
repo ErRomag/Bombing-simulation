@@ -83,7 +83,6 @@ class Backend : public QObject
 
    Q_PROPERTY(QVector<bool> FuncElem READ FuncElem WRITE setFuncElem NOTIFY FuncElemChanged)
 
-    Q_PROPERTY(QString ColorRLS READ ColorRLS WRITE setColorRLS NOTIFY ColorRLSChanged)
 
 public:
     explicit Backend(QObject *parent = nullptr);
@@ -140,10 +139,7 @@ public:
         return m_VectorColor;
     }
 
-    QString ColorRLS() const
-    {
-        return m_ColorRLS;
-    }
+
 
     QVector<int> VectorEllipse() const
     {
@@ -195,7 +191,6 @@ signals:
 
     void VectorColorChanged(QVector<int> VectorColor);
 
-    void ColorRLSChanged(QString ColorRLS);
 
     void VectorEllipseChanged(QVector<int> VectorEllipse);
 
@@ -262,14 +257,6 @@ public slots:
         emit VectorColorChanged(VectorColor);
     }
 
-    void setColorRLS(QString ColorRLS)
-    {
-        if (m_ColorRLS == ColorRLS)
-            return;
-
-        m_ColorRLS = ColorRLS;
-        emit ColorRLSChanged(ColorRLS);
-    }
 
     void setVectorEllipse(QVector<int> VectorEllipse)
     {
@@ -373,7 +360,7 @@ private:
     QVector<int> m_VectorColor;
     QList<int> listEllipse;
     //QVector<QList<int>> m_VectorEllipse;
-    QString m_ColorRLS;
+
     QVector<int> m_VectorEllipse;
     QVector<bool> m_FuncElem;
 };
