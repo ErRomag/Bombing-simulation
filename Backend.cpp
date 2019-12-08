@@ -427,7 +427,7 @@ void Backend::initFEoptions()
     FEopt[12][1]=0;       FEopt[12][2]=284;   FEopt[12][3]=95.45;     FEopt[12][4]=4;    FEopt[12][5]=0;    FEopt[12][6]=radiusCable;
 
     FEopt[13][1]=95.45;       FEopt[14][2]=284;   FEopt[14][3]=181;    FEopt[14][4]=4;   FEopt[14][5]=-2;  FEopt[14][6]=radiusCable;
-    FEopt[14][1]=95.45;       FEopt[13][2]=284;   FEopt[13][3]=231.13;    FEopt[13][4]=4;   FEopt[13][5]=70;   FEopt[13][6]=radiusCable;
+    FEopt[14][1]=180;       FEopt[13][2]=170;   FEopt[13][3]=231.13;    FEopt[13][4]=4;   FEopt[13][5]=70;   FEopt[13][6]=radiusCable;
     FEopt[15][1]=95.45;       FEopt[15][2]=284;   FEopt[15][3]=242.9;    FEopt[15][4]=4;   FEopt[15][5]=-80;    FEopt[15][6]=radiusCable;
 //-----------
     FEopt[16][1]=190+25;   FEopt[16][2]=63+10;   FEopt[16][3]=212;    FEopt[16][4]=4;   FEopt[16][5]=-66;   FEopt[16][6]=radiusCable;
