@@ -5,5 +5,7 @@ Rectangle {
     height: 6
     width: 6
     color: "red"
+    border.color: "black"
+    border.width: 1
 }
 

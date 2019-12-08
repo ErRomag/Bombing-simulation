@@ -107,9 +107,9 @@ ApplicationWindow {
                         id: aimDispersion // Прицельное рассеивание
                         objectName: "aimDispersion"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("40")
+                        text: qsTr("90")
 
                         onTextChanged: backend.setAimDispersionTextField(text)
                     }
@@ -123,9 +123,9 @@ ApplicationWindow {
                         id: technicalDispersion // Техническое рассеивание
                         objectName: "technicalDispersion"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("40")
+                        text: qsTr("90")
 
                         onTextChanged: backend.setTechnicalDispersionTextField(text)
                     }
@@ -139,9 +139,9 @@ ApplicationWindow {
                         id: ammunitionDispersion // Рассеивание суббоеприпасов (ammunition)
                         objectName: "ammunitionDispersion"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("40")
+                        text: qsTr("90")
 
                         onTextChanged: backend.setAmmunitionDispersionTextField(text)
                     }
@@ -247,7 +247,7 @@ ApplicationWindow {
                         maximumLength: 3  // Не больше трехзначного числа
                         validator: RegExpValidator {regExp: /\d+/}
 
-                        text: qsTr("10")
+                        text: qsTr("90")
 
                         //text: backend.numberASPTextField
                         onTextChanged: backend.setNumberASPTextField(text)
@@ -262,10 +262,10 @@ ApplicationWindow {
                         id: numberAmmunition // Количество суббоеприпасов СП, [шт]
                         objectName: "numberAmmunition"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+/}
 
-                        text: qsTr("10")
+                        text: qsTr("90")
 
                         onTextChanged: backend.setNumberAmmunitionTextField(text)
                     }

@@ -26,7 +26,7 @@ Window {
     modality: Qt.ApplicationModal
 
     x:250
-    y:50
+    y:150
 
     title: qsTr("Реализация моделирования")
 
@@ -140,9 +140,9 @@ Window {
             component.y = backend.VectCoordY[i];
 
             if (backend.VectorColor[i] === 7) {
-                component.color="white"  // если не попал, то зеленый
+                component.color="white"  // если попал, то белый
             } else {
-                component.color="red"
+                component.color="red" // если не попал, то
             }
             list.append(component);
         }
@@ -379,6 +379,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 0
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
