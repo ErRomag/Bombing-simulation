@@ -80,7 +80,6 @@ class Backend : public QObject
 
     Q_PROPERTY(QVector<int> VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
 
-
    Q_PROPERTY(QVector<bool> FuncElem READ FuncElem WRITE setFuncElem NOTIFY FuncElemChanged)
 
 
@@ -120,6 +119,7 @@ public:
     Q_INVOKABLE int maxNumberElementX();
     Q_INVOKABLE int maxNumberElementY();
     Q_INVOKABLE void clearVectorXYColor();
+    Q_INVOKABLE void onRadioButtonClicked();
 
 
 

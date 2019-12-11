@@ -48,7 +48,8 @@ ApplicationWindow {
               "зенитно-ракетного комплекса.";
 
         informativeText :"Разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А. 2019\n" +
-                         "Иходный код проекта: https://github.com/ErRomag/Bombing-simulation"
+                         "Иходный код проекта: https://github.com/ErRomag/Bombing-simulation" +
+                         "Version 2.0"
 
         icon: StandardIcon.Information
     }
@@ -72,12 +73,13 @@ ApplicationWindow {
         }
     }
 
-    Item {
+    Rectangle {
         id: mainItem
-        width: mainWindow.width
-        height: mainWindow.height
+        anchors.fill: parent
+        color: "#dcdcdc"
 
-        Item {
+
+        Rectangle {
             id:leftItem
             anchors.left:mainItem.left
             anchors.top: mainItem.top
@@ -107,9 +109,9 @@ ApplicationWindow {
                         id: aimDispersion // Прицельное рассеивание
                         objectName: "aimDispersion"
                         width: 250
-                        maximumLength: 3
+                        maximumLength: 2
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("90")
+                        text: qsTr("35")
 
                         onTextChanged: backend.setAimDispersionTextField(text)
                     }
@@ -123,9 +125,9 @@ ApplicationWindow {
                         id: technicalDispersion // Техническое рассеивание
                         objectName: "technicalDispersion"
                         width: 250
-                        maximumLength: 3
+                        maximumLength: 2
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("90")
+                        text: qsTr("10")
 
                         onTextChanged: backend.setTechnicalDispersionTextField(text)
                     }
@@ -139,9 +141,9 @@ ApplicationWindow {
                         id: ammunitionDispersion // Рассеивание суббоеприпасов (ammunition)
                         objectName: "ammunitionDispersion"
                         width: 250
-                        maximumLength: 3
+                        maximumLength: 2
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("90")
+                        text: qsTr("40")
 
                         onTextChanged: backend.setAmmunitionDispersionTextField(text)
                     }
@@ -161,9 +163,9 @@ ApplicationWindow {
                         id: combatRouteCenterPair // Боевой маршрут центра пары
                         objectName: "combatRouteCenterPair"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("130")
+                        text: qsTr("100")
 
                         onTextChanged: backend.setCombatRouteCenterPairTextField(text)
                     }
@@ -177,10 +179,10 @@ ApplicationWindow {
                         id: rangeToTraverse // Дальность до траверза КП
                         objectName: "rangeToTraverse"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
-                        text: qsTr("100")
+                        text: qsTr("50")
 
                         onTextChanged: backend.setRangeToTraverseTextField(text)
                     }
@@ -213,10 +215,10 @@ ApplicationWindow {
                         id: intervalSeries // Интервал серии
                         objectName: "intervalSeries"
                         width: 250
-                        maximumLength: maximumLenghtTextField
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
-                        text: qsTr("100")
+                        text: qsTr("150")
 
                         onTextChanged: backend.setIntervalSeriesTextField(text)
                     }
@@ -247,9 +249,9 @@ ApplicationWindow {
                         maximumLength: 3  // Не больше трехзначного числа
                         validator: RegExpValidator {regExp: /\d+/}
 
-                        text: qsTr("90")
+                        //text: qsTr("20")
 
-                        //text: backend.numberASPTextField
+                        text: backend.numberASPTextField
                         onTextChanged: backend.setNumberASPTextField(text)
                     }
 
@@ -265,7 +267,8 @@ ApplicationWindow {
                         maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+/}
 
-                        text: qsTr("90")
+                        //text: qsTr("48")
+                        text: backend.numberAmmunitionTextField
 
                         onTextChanged: backend.setNumberAmmunitionTextField(text)
                     }
@@ -276,7 +279,7 @@ ApplicationWindow {
 
 
 
-        Item {
+        Rectangle {
             id:centerItem
             anchors.left: leftItem.right
             anchors.top: mainItem.top
@@ -317,6 +320,7 @@ ApplicationWindow {
                                 onClicked: {
                                     indexRadioButtonQML = 1
                                     backend.indexRadioButton = indexRadioButtonQML
+                                    backend.onRadioButtonClicked()
                                     //backend.setIndexRadioButton(1)
                                 }
                             }
@@ -331,6 +335,7 @@ ApplicationWindow {
                                 onClicked: {
                                     indexRadioButtonQML = 2
                                     backend.indexRadioButton = indexRadioButtonQML
+                                    backend.onRadioButtonClicked()
                                     //backend.setIndexRadioButton(2)
                                 }
                             }
@@ -345,6 +350,7 @@ ApplicationWindow {
                                 onClicked: {
                                     indexRadioButtonQML = 3
                                     backend.indexRadioButton = indexRadioButtonQML
+                                    backend.onRadioButtonClicked()
                                     //backend.setIndexRadioButton(3)
                                 }
                             }
@@ -359,6 +365,7 @@ ApplicationWindow {
                                 onClicked: {
                                     indexRadioButtonQML = 4
                                     backend.indexRadioButton = indexRadioButtonQML
+                                    backend.onRadioButtonClicked()
                                     //backend.setIndexRadioButton(4)
                                 }
                             }
@@ -373,6 +380,7 @@ ApplicationWindow {
                                 onClicked: {
                                     indexRadioButtonQML = 5
                                     backend.indexRadioButton = indexRadioButtonQML
+                                    backend.onRadioButtonClicked()
                                     //backend.setIndexRadioButton(5)
                                 }
                             }
@@ -494,9 +502,9 @@ ApplicationWindow {
                         TextField {
                             id: numberRealization// Количество реализаций
                             width: 300
-                            maximumLength: maximumLenghtTextField
+                            maximumLength: 3
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                            text: "1"
+                            text: "100"
 
                             onTextChanged: backend.setNumberRealizationTextField(text)
                         }
@@ -506,7 +514,7 @@ ApplicationWindow {
             } // To MainGroupBox
         } // To Item
 
-        Item {
+        Rectangle {
             id:rightItem
             anchors.left: centerItem.right
             anchors.right: mainItem.right
@@ -659,14 +667,14 @@ ApplicationWindow {
                 id: openMap
                 text: "Моделировать"
                 //Layout.alignment: Qt.AlignCenter
-               // Layout.columnSpan: 2
+                // Layout.columnSpan: 2
 
                 onClicked: {
 
                     if(indexRadioButtonQML === 0 || aimDispersion.text === "" ||   technicalDispersion.text === "" ||
                             ammunitionDispersion.text === "" || combatRouteCenterPair.text === "" ||
                             rangeToTraverse.text === "" ||        intervalSeries.text === "" ||
-                            numberRealization.text === "") {
+                            numberRealization.text === ""  || numberAmmunition.text === "" || numberASP === "") {
 
                         errorNULLTextFieldandRadioButton.open()                  // Диалоговое окно при ошибке
 
@@ -686,7 +694,7 @@ ApplicationWindow {
 
         } // To RightItem
 
-    }  // To MainItem
+    } // To mainItem
 
 }  // To Window
 

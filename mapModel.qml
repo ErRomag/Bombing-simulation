@@ -222,6 +222,8 @@ Window {
         width: 90
         color: "#7FFF00"
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от ЭГ до КП (13)
@@ -233,6 +235,8 @@ Window {
         color: "#7FFF00"
         rotation: 2
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от ЭГ до РЛС (14)
@@ -244,6 +248,8 @@ Window {
         color: "#7FFF00"
         rotation: 20
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от ЭГ до РЛВ (15)
@@ -255,6 +261,8 @@ Window {
         color: "#7FFF00"
         rotation: -11
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от РЛС до КП (16)
@@ -266,6 +274,8 @@ Window {
         color: "#7FFF00"
         rotation: 66
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от РЛВ до КП (17)
@@ -277,6 +287,8 @@ Window {
         color: "#7FFF00"
         rotation: -59
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от КП до КП1 (18)
@@ -288,6 +300,8 @@ Window {
         color: "#7FFF00"
         rotation: -45
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от КП до КП2 (19)
@@ -299,6 +313,8 @@ Window {
         color: "#7FFF00"
         rotation: 83
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от КП1 до ЭГ1 (20)
@@ -310,6 +326,8 @@ Window {
         color: "#7FFF00"
         rotation: -26
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от КП2 до ЭГ2 (21)
@@ -321,6 +339,8 @@ Window {
         color: "#7FFF00"
         rotation: 13
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от КП1 до CУ1 (22)
@@ -332,6 +352,8 @@ Window {
         color: "#7FFF00"
         rotation: 62
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от CУ1 до СУ2 (23)
@@ -343,6 +365,8 @@ Window {
         color: "#7FFF00"
         rotation: 110
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от СУ2 до СУ3 (24)
@@ -354,6 +378,8 @@ Window {
         color: "#7FFF00"
         rotation: 42
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     Rectangle { // Кабель от СУ3 до КП2 (25)
@@ -365,6 +391,8 @@ Window {
         color: "#7FFF00"
         rotation: -10
         antialiasing: true
+        border.color: "black"
+        border.width: 1
     }
 
     // -------------------  Отрисовка ФЭ ЗРК  -------------------
@@ -402,6 +430,8 @@ Window {
         color: "#7FFF00"
         antialiasing: true
         rotation: 35
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -423,6 +453,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 81
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -444,6 +476,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 8
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -465,6 +499,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 32
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -486,6 +522,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 15
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -507,6 +545,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 20
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -529,6 +569,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 0
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -550,6 +592,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 130
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -571,6 +615,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 41
+        border.color: "black"
+        border.width: 1
     }
 
     Text {
@@ -592,6 +638,8 @@ Window {
         color: "#7FFF00";
         antialiasing: true
         rotation: 13
+        border.color: "black"
+        border.width: 1
     }
 
     Text {

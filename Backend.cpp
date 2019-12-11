@@ -404,6 +404,141 @@ void Backend::clearVectorXYColor()
     m_VectorEllipse.clear();
 }
 
+void Backend::onRadioButtonClicked()
+{
+    if (m_indexRadioButton == 1) {
+
+        radiusCP = 23;
+        setRadiusCPTextField(QString::number(radiusCP));
+
+        radiusCP12 = 23;
+        setRadiusCP12TextField(QString::number(radiusCP12));
+
+        radiusSC123 = 23;
+        setRadiusSC123TextField(QString::number(radiusSC123));
+
+        radiusRLSV = 24;
+        setRadiusRLSVTextField(QString::number(radiusRLSV));
+
+        radiusEG12 = 20;
+        setRadiusEG12TextField(QString::number(radiusEG12));
+
+        radiusCable = 3.4;
+        setRadiusCableTextField(QString::number(radiusCable));
+
+        numberASP = 38;
+        setNumberASPTextField(QString::number(numberASP));
+
+        numberAmmunition = 0;
+        setNumberAmmunitionTextField(QString::number(numberAmmunition));
+
+    } else if (m_indexRadioButton == 2) {
+
+        radiusCP = 26;
+        setRadiusCPTextField(QString::number(radiusCP));
+
+        radiusCP12 = 26;
+        setRadiusCP12TextField(QString::number(radiusCP12));
+
+        radiusSC123 = 26;
+        setRadiusSC123TextField(QString::number(radiusSC123));
+
+        radiusRLSV = 27;
+        setRadiusRLSVTextField(QString::number(radiusRLSV));
+
+        radiusEG12 = 22;
+        setRadiusEG12TextField(QString::number(radiusEG12));
+
+        radiusCable = 4.6;
+        setRadiusCableTextField(QString::number(radiusCable));
+
+        numberASP = 16;
+        setNumberASPTextField(QString::number(numberASP));
+
+        numberAmmunition = 0;
+        setNumberAmmunitionTextField(QString::number(numberAmmunition));
+
+    } else if (m_indexRadioButton == 3) {
+
+        radiusCP = 13;
+        setRadiusCPTextField(QString::number(radiusCP));
+
+        radiusCP12 = 13;
+        setRadiusCP12TextField(QString::number(radiusCP12));
+
+        radiusSC123 = 13;
+        setRadiusSC123TextField(QString::number(radiusSC123));
+
+        radiusRLSV = 14;
+        setRadiusRLSVTextField(QString::number(radiusRLSV));
+
+        radiusEG12 = 12;
+        setRadiusEG12TextField(QString::number(radiusEG12));
+
+        radiusCable = 2.4;
+        setRadiusCableTextField(QString::number(radiusCable));
+
+        numberASP = 34;
+        setNumberASPTextField(QString::number(numberASP));
+
+        numberAmmunition = 3;
+        setNumberAmmunitionTextField(QString::number(numberAmmunition));
+
+    } else if (m_indexRadioButton == 4) {
+
+        radiusCP = 0;
+        setRadiusCPTextField(QString::number(radiusCP));
+
+        radiusCP12 = 0;
+        setRadiusCP12TextField(QString::number(radiusCP12));
+
+        radiusSC123 = 0;
+        setRadiusSC123TextField(QString::number(radiusSC123));
+
+        radiusRLSV = 0;
+        setRadiusRLSVTextField(QString::number(radiusRLSV));
+
+        radiusEG12 = 0;
+        setRadiusEG12TextField(QString::number(radiusEG12));
+
+        radiusCable = 0.6;
+        setRadiusCableTextField(QString::number(radiusCable));
+
+        numberASP = 14;
+        setNumberASPTextField(QString::number(numberASP));
+
+        numberAmmunition = 42;
+        setNumberAmmunitionTextField(QString::number(numberAmmunition));
+
+    } else if (m_indexRadioButton == 5) {
+
+        radiusCP = 0;
+        setRadiusCPTextField(QString::number(radiusCP));
+
+        radiusCP12 = 0;
+        setRadiusCP12TextField(QString::number(radiusCP12));
+
+        radiusSC123 = 0;
+        setRadiusSC123TextField(QString::number(radiusSC123));
+
+        radiusRLSV = 0;
+        setRadiusRLSVTextField(QString::number(radiusRLSV));
+
+        radiusEG12 = 0;
+        setRadiusEG12TextField(QString::number(radiusEG12));
+
+        radiusCable = 0.6;
+        setRadiusCableTextField(QString::number(radiusCable));
+
+        numberASP = 8;
+        setNumberASPTextField(QString::number(numberASP));
+
+        numberAmmunition = 56;
+        setNumberAmmunitionTextField(QString::number(numberAmmunition));
+
+    }
+}
+
 void Backend::initFEoptions()
 {
  // ----------------------------------------------- Расположение объектов ------------------------------------------------------
@@ -542,7 +677,7 @@ void Backend::damageCalculation()
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_X));
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_Y));
                                 m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*7));
-                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*3));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*2.5));
                             }
                         }
                     }
@@ -887,25 +1022,6 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
     } else if (m_indexRadioButton == 5) {
         RBKd = true;
     }
-
-    // Например вот так можно передать в поле для радиуса КП значение
-    radiusCP = 0;
-    setRadiusCPTextField(QString::number(radiusCP));
-
-    radiusCP12 = 0;
-    setRadiusCP12TextField(QString::number(radiusCP12));
-
-    radiusSC123 = 0;
-    setRadiusSC123TextField(QString::number(radiusSC123));
-
-    radiusRLSV = 0;
-    setRadiusRLSVTextField(QString::number(radiusRLSV));
-
-    radiusEG12 = 0;
-    setRadiusEG12TextField(QString::number(radiusEG12));
-
-    radiusCable = 0.6;
-    setRadiusCableTextField(QString::number(radiusCable));
 
     numberRealization = m_numberRealizationTextField.toFloat();
 

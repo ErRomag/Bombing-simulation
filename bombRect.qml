@@ -7,5 +7,6 @@ Rectangle {
     color: "red"
     border.color: "black"
     border.width: 1
+    radius: rectangleBomb.width / 2
 }
 
