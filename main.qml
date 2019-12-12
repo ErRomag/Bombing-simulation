@@ -73,10 +73,10 @@ ApplicationWindow {
         }
     }
 
-    Rectangle {
+    RowLayout {
         id: mainItem
         anchors.fill: parent
-        color: "#dcdcdc"
+       // color: "#dcdcdc"
 
 
         Rectangle {
