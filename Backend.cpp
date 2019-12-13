@@ -542,7 +542,7 @@ void Backend::onRadioButtonClicked()
 void Backend::initFEoptions()
 {
  // ----------------------------------------------- Расположение объектов ------------------------------------------------------
- // --- Координата X ------ Координата Y -------- Длина ------------ Ширина ------------- Угол -------------- ООР --------------
+ // -- Координата X ------ Координата Y -------- Длина ------------ Ширина ------------- Угол ---------- Радиус поражения ------
 
     FEopt[1][1]=270;    FEopt[1][2]=280;    FEopt[1][3]=25;     FEopt[1][4]=25;    FEopt[1][5]=8;       FEopt[1][6]=radiusCP;
     FEopt[2][1]=420;    FEopt[2][2]=110;    FEopt[2][3]=25;     FEopt[2][4]=25;    FEopt[2][5]=15;      FEopt[2][6]=radiusCP12;
@@ -575,7 +575,7 @@ void Backend::initFEoptions()
     FEopt[25][1]=420;   FEopt[25][2]=470;   FEopt[25][3]=254;   FEopt[25][4]=4;    FEopt[25][5]=11;     FEopt[25][6]=radiusCable;
 }
 
-void Backend::evalDangerousExplosionsArea()
+void Backend::evalDangerousExplosionsArea() // функция расчёта области опасных разрывов
 {
     float fi_rad, deltaX1, deltaX2, deltaY1, deltaY2;
 
@@ -587,7 +587,7 @@ void Backend::evalDangerousExplosionsArea()
         deltaY1 = (FEopt[i][3] / 2 + FEopt[i][6]) * sin(fi_rad);
         deltaY2 = (FEopt[i][4] / 2 + FEopt[i][6]) * sin(M_PI / 2 - fi_rad);
 
-        //Центры прицельного рассеивания
+        // четыре координаты углов прямоугольника (цели)
         DEA[i][1] = FEopt[i][1] - deltaX1 - deltaX2;
         DEA[i][2] = FEopt[i][2] + deltaY1 - deltaY2;
         DEA[i][3] = FEopt[i][1] + deltaX1 - deltaX2;
@@ -602,10 +602,12 @@ void Backend::evalDangerousExplosionsArea()
 void Backend::damageCalculation()
 {    
     float aimPoint[5][3]; // координаты точки прицеливания
-    float RBK[101][3];     //
-    float Zalp_X, Zalp_Y;
-    float xfab,yfab;
+    float RBK[101][3];    /* координаты точек прицеливания суббоеприпасов
+                           * с учётом рассеивания суббоеприпасов */
+    float Zalp_X, Zalp_Y; // координаты точки, с учётом прицельного рассеивания
+    float xfab,yfab;      // координаты точки, с учётом технического рассеивания
 
+    // сброс состояний системы
     for (int i = 0; i < 7; ++i) {
         dukr[i] = 0;
     }
@@ -620,33 +622,38 @@ void Backend::damageCalculation()
     aimPoint[4][1] = 350 - rangeToTraverse  + intervalSeries;
     aimPoint[4][2] = 300 - combatRouteCenterPair - intervalRegime;
 
-    std::mt19937 randomGenerator(time(0));
-    for (int NumB = 1; NumB <= numberRealization; ++NumB) //Перебор всех бомбометаний по ЗРК
+    std::mt19937 randomGenerator(time(0)); /* инициализация генератора псевдослучайных чисел текущим
+                                            * системным временем */
+    for (int NumB = 1; NumB <= numberRealization; ++NumB) // цикл по реализациям
     {
-        for (int j = 1; j <= 25; ++j) //Формируем массив состояний элементов ЗРК
+        for (int j = 1; j <= 25; ++j) // сброс состояний элементов ЗРК в работоспособные
             FE[j] = true;
 
-        for (int AreaNumber = 1; AreaNumber <= 4; ++AreaNumber) //Перебор 4-х залпов
+        for (int AreaNumber = 1; AreaNumber <= 4; ++AreaNumber) // цикл по четырём залпам
         {
-            //Реализация координат центров залпов (прицельное рассеивание)
+            // нормальное распределение с [МО = точка прицеливания], [СКО = прицельное рассеивание]
             std::normal_distribution<float> ndX(aimPoint[AreaNumber][1], aimDispersion),
                     ndY(aimPoint[AreaNumber][2], aimDispersion);
             Zalp_X = ndX(randomGenerator);
             Zalp_Y = ndY(randomGenerator);
 
-            for (int N_ASP = 1; N_ASP <= round(numberASP/2); ++N_ASP) // номер АСП
+            for (int N_ASP = 1; N_ASP <= round(numberASP/2); ++N_ASP) // цикл по количеству АСП
             {
-                if(RBKd == true) // если не ОФАБ
+                if(RBKd == true)
                 {
-                    for (int k = 1; k <= numberAmmunition; ++k) // рассеивание суббоеприпасов
+                    // если не ОФАБ
+
+                    for (int k = 1; k <= numberAmmunition; ++k) // цикл по количеству суббоеприпасов
                     {
+                        /* равномерное распределение с [a =-3 * рассеивание суббоеприпасов]
+                         * [б =3 * рассеивание суббоеприпасов] (для udX) */
                         std::uniform_real_distribution<float> udX(-3*ammunitionDispersion, 3*ammunitionDispersion),
                                 udY(-ammunitionDispersion, ammunitionDispersion);
-                        // !!!!!!!!!!!!!!!!!!!!!!ammunitionDispersion!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        RBK[k][1] = Zalp_X + udX(randomGenerator); //Ребро квадрата
+                        RBK[k][1] = Zalp_X + udX(randomGenerator);
                         RBK[k][2] = Zalp_Y + udY(randomGenerator);
-                        bool flag = true;
-                        for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
+                        bool flag = true; // флаг для рисования
+
+                        for (int N_FE = 1; N_FE <= 25; ++N_FE) // цикл по ФЭ
                         {
                             if(Destroy(RBK[k][1],RBK[k][2],
                                        DEA[N_FE][1],
@@ -656,23 +663,27 @@ void Backend::damageCalculation()
                                        DEA[N_FE][5],
                                        DEA[N_FE][6],
                                        DEA[N_FE][7],
-                                       DEA[N_FE][8])) //  Если попал
+                                       DEA[N_FE][8]))
                             {
-                                FE[N_FE] = false;
+                                FE[N_FE] = false; // отмечаем элемент, по которому попали
                                 flag = false;
                             }
                         }
-                        if(NumB==1)
+
+                        if(NumB==1) // для рисования используем расчёты только первой реализации
                         {
+                            // заполняем вектор координат попадания
                             m_VectCoordX.push_back(static_cast<int>(RBK[k][1]));
                             m_VectCoordY.push_back(static_cast<int>(RBK[k][2]));
+
+                            // заполняем вектор цветов, для соответствующих координат попадания
                             if(!flag)
                                 m_VectorColor.push_back(Qt::red);
                             else
                                 m_VectorColor.push_back(Qt::green);
 
                             // эллипс рассеивания
-                            if((k == 1) && (N_ASP == 1)) // будет 4 эллипса для каждого залпа по одному
+                            if((k == 1) && (N_ASP == 1)) // будет 4 эллипса (для каждого залпа по одному)
                             {
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_X));
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_Y));
@@ -681,15 +692,17 @@ void Backend::damageCalculation()
                             }
                         }
                     }
-                } else // если ОФАБ
+                } else
                 {
+                    // если ОФАБ
 
-                    // std::normal_distribution<float> ndX(Zalp_X, 0.004*bombingAltitude), ndY(Zalp_Y, 0.004*bombingAltitude);
+                    // нормальное распределение с [МО = точка прицеливания], [СКО = техническое рассеивание]
                     std::normal_distribution<float> ndX(Zalp_X, technicalDispersion), ndY(Zalp_Y, technicalDispersion);
                     xfab = ndX(randomGenerator);
                     yfab = ndY(randomGenerator);
-                    bool flag = true;
-                    for (int N_FE = 1; N_FE <= 25; ++N_FE) // ФЭ
+                    bool flag = true; // флаг для рисования
+
+                    for (int N_FE = 1; N_FE <= 25; ++N_FE) // цикл по ФЭ
                     {
                         if(Destroy(xfab, yfab,
                                    DEA[N_FE][1],
@@ -699,23 +712,27 @@ void Backend::damageCalculation()
                                    DEA[N_FE][5],
                                    DEA[N_FE][6],
                                    DEA[N_FE][7],
-                                   DEA[N_FE][8])) // если попал
+                                   DEA[N_FE][8]))
                         {
-                            FE[N_FE] = false;
+                            FE[N_FE] = false; // отмечаем элемент, по которому попали
                             flag = false;
                         }
                     }
-                    if(NumB==1)
+
+                    if(NumB==1) // для рисования используем расчёты только первой реализации
                     {
+                        // заполняем вектор координат попадания
                         m_VectCoordX.push_back(static_cast<int>(xfab));
                         m_VectCoordY.push_back(static_cast<int>(yfab));
+
+                        // заполняем вектор цветов, для соответствующих координат попадания
                         if(!flag)
                             m_VectorColor.push_back(Qt::red);
                         else
                             m_VectorColor.push_back(Qt::green);
 
                         // эллипс рассеивания
-                        if(N_ASP == 1) // будет 4 эллипса для каждого залпа по одному
+                        if(N_ASP == 1) // будет 4 эллипса (для каждого залпа по одному)
                         {
                             m_VectorEllipse.push_back(static_cast<int>(Zalp_X));
                             m_VectorEllipse.push_back(static_cast<int>(Zalp_Y));
@@ -727,6 +744,7 @@ void Backend::damageCalculation()
             }
         }
 
+        // заполнили вектор состояний ФЭ (для рисования)
         if(NumB == 1)
         {
             for (int i = 1; i < 26; ++i)
@@ -734,15 +752,15 @@ void Backend::damageCalculation()
                 m_FuncElem.push_back(FE[i]);
             }
         }
-        qDebug() << m_FuncElem;
+        // qDebug() << m_FuncElem;
 
-        solveFE(0);
-
+        solveFE(0); // расчёт полного списка состояний ЗРК
     }
 
     // Тест по графу
     //test();
 
+    // вывод расчитанных состояний в процентах
     float res = 10000 * (dukr[0] / numberRealization) / 100;
     W0 = res;
     setW0TextField(QString::number(W0)+'%');

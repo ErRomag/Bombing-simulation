@@ -285,7 +285,7 @@ private:
     float DEA[26][9];   /* массив координат области опасных разрывов (Dangerous Explosion Area)
                          * элементов ЗРК [нулевые элементы не используются] */
     void initFEoptions();
-    void evalDangerousExplosionsArea();
+    void evalDangerousExplosionsArea(); // функция расчёта области опасных разрывов
     void damageCalculation();
 
     bool RBKd;
