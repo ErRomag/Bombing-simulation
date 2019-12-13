@@ -84,10 +84,10 @@ Window {
             cableZvenoToEg.color = "red"
         }
         if (backend.FuncElem[12] === false) {
-            cableEGtoCP.color = "red"
+            cableEGtoRLS.color = "red"
         }
         if (backend.FuncElem[13] === false) {
-            cableEGtoRLS.color = "red"
+            cableEGtoCP.color = "red"
         }
         if (backend.FuncElem[14] === false) {
             cableEGtoRLV.color = "red"
