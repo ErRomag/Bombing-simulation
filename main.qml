@@ -48,7 +48,7 @@ ApplicationWindow {
               "зенитно-ракетного комплекса.";
 
         informativeText :"Разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А. 2019\n" +
-                         "Иходный код проекта: https://github.com/ErRomag/Bombing-simulation\n" +
+                         "Исходный код проекта: https://github.com/ErRomag/Bombing-simulation\n" +
                          "Version 2.0"
 
         icon: StandardIcon.Information
