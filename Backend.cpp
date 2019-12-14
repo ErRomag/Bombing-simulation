@@ -399,8 +399,6 @@ void Backend::clearVectorXYColor()
     m_VectCoordY.clear();
     m_VectorColor.clear();
     m_FuncElem.clear();
-
-    listEllipse.clear();
     m_VectorEllipse.clear();
 }
 
@@ -602,10 +600,12 @@ void Backend::evalDangerousExplosionsArea() // функция расчёта области опасных р
 void Backend::damageCalculation()
 {    
     float aimPoint[5][3]; // координаты точки прицеливания
-    float RBK[101][3];    /* координаты точек прицеливания суббоеприпасов
+    float RBK[static_cast<int>(numberAmmunition+1)][3]; // 14:32 14.12.2019 Vlad used static_cast first time
+    /* координаты точек прицеливания суббоеприпасов
                            * с учётом рассеивания суббоеприпасов */
     float Zalp_X, Zalp_Y; // координаты точки, с учётом прицельного рассеивания
     float xfab,yfab;      // координаты точки, с учётом технического рассеивания
+    bool ellipse = true;
 
     // сброс состояний системы
     for (int i = 0; i < 7; ++i) {
@@ -642,6 +642,7 @@ void Backend::damageCalculation()
                 if(RBKd == true)
                 {
                     // если не ОФАБ
+                    ellipse = false;
 
                     for (int k = 1; k <= numberAmmunition; ++k) // цикл по количеству суббоеприпасов
                     {
@@ -687,7 +688,7 @@ void Backend::damageCalculation()
                             {
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_X));
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_Y));
-                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*7));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*6.3));
                                 m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*2.5));
                             }
                         }
@@ -757,6 +758,7 @@ void Backend::damageCalculation()
         solveFE(0); // расчёт полного списка состояний ЗРК
     }
 
+    m_VectorEllipse.push_back(static_cast<int>(ellipse));
     // Тест по графу
     //test();
 

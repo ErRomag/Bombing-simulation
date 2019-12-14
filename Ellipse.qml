@@ -5,7 +5,7 @@ Rectangle {
     height: 5
     width: 5
     opacity: 0.2
-    radius: 30
+    radius: 0
     color: "white"
     border.width: 4
     border.color: "black"
