@@ -13,12 +13,12 @@ ApplicationWindow {
     id: mainWindow
     visible: true
 
-    property int windowWidth: 714
+    property int windowWidth: 690
     property int windowHeight: 380
 
     property int leftItemWidth: 315
-    property int centerItemWidth: 251
-    property int rightItemWidth: 148
+    property int centerItemWidth: 220
+    property int rightItemWidth: 100
 
     property int indexRadioButtonQML: 0
 
@@ -405,7 +405,7 @@ ApplicationWindow {
                             id: radiusCP // Радиус КП, [м]  (command post)
                             objectName: "radiusCP"
                             readOnly: true
-                            width: 250
+                            width: 100
                             maximumLength: maximumLenghtTextField
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
                             //
@@ -421,7 +421,7 @@ ApplicationWindow {
                             id: radiusCP12 // Радиус КП1, КП2, [м] (command post)
                             objectName: "radiusCP12"
                             readOnly: true
-                            width: 250
+                            width: 100
                             maximumLength: maximumLenghtTextField
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
@@ -437,7 +437,7 @@ ApplicationWindow {
                             id: radiusSC123 // Радиус СУ1, СУ2, СУ3 [м]  (system control)
                             objectName: "radiusSC123"
                             readOnly: true
-                            width: 250
+                            width: 100
                             maximumLength: maximumLenghtTextField
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
@@ -453,7 +453,7 @@ ApplicationWindow {
                             id: radiusRLSV // Радиус РЛС, РЛВ [м]
                             objectName: "radiusRLSV"
                             readOnly: true
-                            width: 250
+                            width: 100
                             maximumLength: maximumLenghtTextField
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
@@ -469,7 +469,7 @@ ApplicationWindow {
                             id: radiusEG12 // Радиус ЭГ1, ЭГ2 РЛВ [м]  (electric generator)
                             objectName: "radiusEG12"
                             readOnly: true
-                            width: 250
+                            width: 100
                             maximumLength: maximumLenghtTextField
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
@@ -485,7 +485,7 @@ ApplicationWindow {
                             id: radiusCable // Радиус кабелей [м]
                             objectName: "radiusCable"
                             readOnly: true
-                            width: 300
+                            width: 150
                             maximumLength: maximumLenghtTextField
                             validator: RegExpValidator {regExp: /\d+\.?\d*/}
 
