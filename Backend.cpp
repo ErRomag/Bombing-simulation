@@ -648,8 +648,8 @@ void Backend::damageCalculation()
                     {
                         /* равномерное распределение с [a =-3 * рассеивание суббоеприпасов]
                          * [б =3 * рассеивание суббоеприпасов] (для udX) */
-                        std::uniform_real_distribution<float> udX(-3*ammunitionDispersion, 3*ammunitionDispersion),
-                                udY(-ammunitionDispersion, ammunitionDispersion);
+                        std::uniform_real_distribution<float> udX(-ammunitionDispersion/2, ammunitionDispersion/2),
+                                udY(-ammunitionDispersion/2, ammunitionDispersion/2);
                         RBK[k][1] = Zalp_X + udX(randomGenerator);
                         RBK[k][2] = Zalp_Y + udY(randomGenerator);
                         bool flag = true; // флаг для рисования
@@ -688,8 +688,8 @@ void Backend::damageCalculation()
                             {
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_X));
                                 m_VectorEllipse.push_back(static_cast<int>(Zalp_Y));
-                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*6.3));
-                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion*2.5));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion));
+                                m_VectorEllipse.push_back(static_cast<int>(ammunitionDispersion));
                             }
                         }
                     }

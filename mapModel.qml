@@ -163,34 +163,34 @@ Window {
 
         var component1 = rectEllipse.createObject(mapWindow);
 
-        component1.width = backend.VectorEllipse[2];
-        component1.height = backend.VectorEllipse[3];
-        component1.x = backend.VectorEllipse[0] - component1.width / 2
-        component1.y = backend.VectorEllipse[1] - component1.height / 2
+        component1.width = backend.VectorEllipse[2] + 15
+        component1.height = backend.VectorEllipse[3] + 15
+        component1.x = backend.VectorEllipse[0] - component1.width / 2 + 3.75
+        component1.y = backend.VectorEllipse[1] - component1.height / 2 + 3.75
 
 
         var component2 = rectEllipse.createObject(mapWindow);
 
-        component2.width = backend.VectorEllipse[6];
-        component2.height = backend.VectorEllipse[7];
-        component2.x = backend.VectorEllipse[4] - component2.width / 2
-        component2.y = backend.VectorEllipse[5] - component2.height / 2
+        component2.width = backend.VectorEllipse[6] + 15
+        component2.height = backend.VectorEllipse[7] + 15
+        component2.x = backend.VectorEllipse[4] - component2.width / 2  + 3.75
+        component2.y = backend.VectorEllipse[5] - component2.height / 2 + 3.75
 
 
         var component3 = rectEllipse.createObject(mapWindow);
 
-        component3.width = backend.VectorEllipse[10];
-        component3.height = backend.VectorEllipse[11];
-        component3.x = backend.VectorEllipse[8] - component3.width / 2
-        component3.y = backend.VectorEllipse[9] - component3.height / 2
+        component3.width = backend.VectorEllipse[10] + 15
+        component3.height = backend.VectorEllipse[11] + 15
+        component3.x = backend.VectorEllipse[8] - component3.width / 2 + 3.75
+        component3.y = backend.VectorEllipse[9] - component3.height / 2 + 3.75
 
 
         var component4 = rectEllipse.createObject(mapWindow);
 
-        component4.width = backend.VectorEllipse[14];
-        component4.height = backend.VectorEllipse[15];
-        component4.x = backend.VectorEllipse[12] - component4.width / 2
-        component4.y = backend.VectorEllipse[13] - component4.height / 2
+        component4.width = backend.VectorEllipse[14] + 15
+        component4.height = backend.VectorEllipse[15] + 15
+        component4.x = backend.VectorEllipse[12] - component4.width / 2 + 3.75
+        component4.y = backend.VectorEllipse[13] - component4.height / 2 + 3.75
 
         if(backend.VectorEllipse[16])
         {

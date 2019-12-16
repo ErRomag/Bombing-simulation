@@ -49,7 +49,7 @@ ApplicationWindow {
 
         informativeText :"Разработали студенты кафедры 703 Зуб В.П. & Эрг Р.А. 2019\n" +
                          "Исходный код проекта: https://github.com/ErRomag/Bombing-simulation\n" +
-                         "Version 2.0"
+                         "Version 2.1"
 
         icon: StandardIcon.Information
     }
@@ -109,7 +109,7 @@ ApplicationWindow {
                         id: aimDispersion // Прицельное рассеивание
                         objectName: "aimDispersion"
                         width: 250
-                        maximumLength: 2
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
                         text: qsTr("35")
 
@@ -125,7 +125,7 @@ ApplicationWindow {
                         id: technicalDispersion // Техническое рассеивание
                         objectName: "technicalDispersion"
                         width: 250
-                        maximumLength: 2
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
                         text: qsTr("10")
 
@@ -141,7 +141,7 @@ ApplicationWindow {
                         id: ammunitionDispersion // Рассеивание суббоеприпасов (ammunition)
                         objectName: "ammunitionDispersion"
                         width: 250
-                        maximumLength: 2
+                        maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
                         text: qsTr("40")
 
@@ -156,15 +156,15 @@ ApplicationWindow {
 
                     Text {
                         Layout.alignment: Qt.AlignCenter
-                        text: qsTr("Боевой маршрут центра пары")
+                        text: qsTr("Боевой маршрут центра пары, [м]")
                     }
 
                     TextField {
                         id: combatRouteCenterPair // Боевой маршрут центра пары
                         objectName: "combatRouteCenterPair"
                         width: 250
-                        maximumLength: 3
-                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                        maximumLength: 4
+                        validator: RegExpValidator {regExp: /^-?\d*\.?\d*$/}
                         text: qsTr("100")
 
                         onTextChanged: backend.setCombatRouteCenterPairTextField(text)
@@ -179,8 +179,8 @@ ApplicationWindow {
                         id: rangeToTraverse // Дальность до траверза КП
                         objectName: "rangeToTraverse"
                         width: 250
-                        maximumLength: 3
-                        validator: RegExpValidator {regExp: /\d+\.?\d*/}
+                        maximumLength: 4
+                        validator: RegExpValidator {regExp: /^-?\d*\.?\d*$/}
 
                         text: qsTr("50")
 
@@ -341,7 +341,7 @@ ApplicationWindow {
                             }
 
                             RadioButton {
-                                text: qsTr("РБС-Ф025-33")
+                                text: qsTr("РБС-100 АО-25-33")
                                 id: rbs  // РБС
                                 objectName: "rbs"
                                 checked: false
@@ -356,7 +356,7 @@ ApplicationWindow {
                             }
 
                             RadioButton {
-                                text: qsTr("РБК-250-А0.25")
+                                text: qsTr("РБК-250 АО-2.5")
                                 id: rbk250  // РБК 250
                                 objectName: "rbk250"
                                 checked: false
@@ -371,7 +371,7 @@ ApplicationWindow {
                             }
 
                             RadioButton {
-                                text: qsTr("РБК-500-А0.25")
+                                text: qsTr("РБК-500 АО-2.5")
                                 id: rbk500  // РБК 500
                                 objectName: "rbk500"
                                 checked: false
@@ -385,13 +385,11 @@ ApplicationWindow {
                                 }
                             }
                         } // To ColumnLayoutRadioButton
-                    } // To GroupBox
-
-
+                    } // To GroupBox             
 
                     Text {
                         Layout.alignment: Qt.AlignCenter
-                        text: qsTr("Радиусы поражения ФЭ")
+                        text: qsTr("Поражения ФЭ")
                     }
 
                     GridLayout {
@@ -400,7 +398,7 @@ ApplicationWindow {
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Радиус КП, [м]")
+                            text: qsTr("КП, [м]")
                         }
 
                         TextField {
@@ -416,7 +414,7 @@ ApplicationWindow {
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Радиус КП1, КП2, [м]")
+                            text: qsTr("КП1, КП2, [м]")
                         }
 
                         TextField {
@@ -432,7 +430,7 @@ ApplicationWindow {
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Радиус СУ1, СУ2, СУ3 [м]")
+                            text: qsTr("СУ1, СУ2, СУ3 [м]")
                         }
 
                         TextField {
@@ -448,7 +446,7 @@ ApplicationWindow {
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Радиус РЛС, РЛВ [м]")
+                            text: qsTr("РЛС, РЛВ [м]")
                         }
 
                         TextField {
@@ -464,7 +462,7 @@ ApplicationWindow {
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Радиус ЭГ1, ЭГ2 [м]")
+                            text: qsTr("ЭГ1, ЭГ2 [м]")
                         }
 
                         TextField {
@@ -480,7 +478,7 @@ ApplicationWindow {
 
                         Text {
                             Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Радиус кабелей [м]")
+                            text: qsTr("Кабели [м]")
                         }
 
                         TextField {
@@ -493,22 +491,6 @@ ApplicationWindow {
 
                             text: backend.radiusCableTextField
                         }
-
-                        Text {
-                            Layout.alignment: Qt.AlignCenter
-                            text: qsTr("Количество реализаций")
-                        }
-
-                        TextField {
-                            id: numberRealization// Количество реализаций
-                            width: 300
-                            maximumLength: 3
-                            validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                            text: "100"
-
-                            onTextChanged: backend.setNumberRealizationTextField(text)
-                        }
-
                     } // To GridLayout
                 } // To ColumnLayout
             } // To MainGroupBox
@@ -535,7 +517,7 @@ ApplicationWindow {
                     Text {
                         Layout.alignment: Qt.AlignCenter
                         Layout.columnSpan: 2
-                        text: qsTr("Частота попадания по ФЭ")
+                        text: qsTr("Вероятности попадания\nЗРК в состояния W0-W6")
                     }
 
                     Text {
@@ -661,9 +643,41 @@ ApplicationWindow {
 
             } // To RightGroupBox
 
+
+            GroupBox {
+                id: rightBottomGroupBox
+                anchors.top: rightGroupBox.bottom
+                anchors.right: rightItem.right
+                anchors.left: rightItem.left
+
+                GridLayout {
+                    id: rightBottomlayout
+                    columns: 1
+
+                    Text {
+                        Layout.alignment: Qt.AlignCenter
+                        text: qsTr("Количество реализаций")
+                    }
+
+                    TextField {
+                        id: numberRealization// Количество реализаций
+                        width: 300
+                        maximumLength: 6
+                        validator: RegExpValidator {regExp: /\d+/}
+                        text: "100"
+                        Layout.alignment: Qt.AlignCenter
+
+                        onTextChanged: backend.setNumberRealizationTextField(text)
+                    }
+                }  // To RightGridLayout
+
+            } // To RightGroupBox*/
+
+
+
             Button {
                 x:30
-                y:245
+                y:320
                 id: openMap
                 text: "Моделировать"
                 //Layout.alignment: Qt.AlignCenter
