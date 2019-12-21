@@ -24,6 +24,9 @@ ApplicationWindow {
 
     property int maximumLenghtTextField: 6  // Максимальная длина символов в поле TextField
 
+    property real valPB2: 0
+    property real valPB3: 0
+
     width: windowWidth
     maximumWidth: windowWidth
     minimumWidth: windowWidth
@@ -76,7 +79,7 @@ ApplicationWindow {
     RowLayout {
         id: mainItem
         anchors.fill: parent
-       // color: "#dcdcdc"
+        // color: "#dcdcdc"
 
 
         Rectangle {
@@ -127,7 +130,7 @@ ApplicationWindow {
                         width: 250
                         maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+\.?\d*/}
-                        text: qsTr("10")
+                        text: backend.technicalDispersionTextField
 
                         onTextChanged: backend.setTechnicalDispersionTextField(text)
                     }
@@ -233,7 +236,11 @@ ApplicationWindow {
                         objectName: "bombingAltitude"
                         model: [ "1000", "1500", "2000" ]
 
-                        onCurrentIndexChanged: backend.setBombingAltitudeComboBox(currentIndex)
+                        onCurrentIndexChanged: {
+                            backend.setBombingAltitudeComboBox(currentIndex)
+                            backend.onChangeAltitude()
+                        }
+                       // onCountChanged: backend.onChangeAltitude()
                     }
 
                     Text {
@@ -385,7 +392,7 @@ ApplicationWindow {
                                 }
                             }
                         } // To ColumnLayoutRadioButton
-                    } // To GroupBox             
+                    } // To GroupBox
 
                     Text {
                         Layout.alignment: Qt.AlignCenter
@@ -685,28 +692,82 @@ ApplicationWindow {
 
                 onClicked: {
 
+
+                    valPB3 = 0
+
                     if(indexRadioButtonQML === 0 || aimDispersion.text === "" ||   technicalDispersion.text === "" ||
                             ammunitionDispersion.text === "" || combatRouteCenterPair.text === "" ||
                             rangeToTraverse.text === "" ||        intervalSeries.text === "" ||
-                            numberRealization.text === ""  || numberAmmunition.text === "" || numberASP === "") {
+                            numberRealization.text === ""  || numberAmmunition.text === "" || numberASP === "")
+                    {
 
                         errorNULLTextFieldandRadioButton.open()                  // Диалоговое окно при ошибке
 
                     } else {
+                        valPB2 = 0
                         backend.clearVectorXYColor();                            // Очищение векторов
                         backend.initialization();                                // Инициализация переменных с формы
+
+
+                        backend.changeValueProgBar()
+                        //                        console.log(valPB2)
+
+
+
+                        //                        while (backend.valueProgreeBar < backend.numberRealizationTextField) {
+
+                        //                        }
+
+
+                        //                        for (var progressChange = 0; progressChange < backend.numberRealizationTextField; progressChange++) {
+                        //                            progressBar.indeterminate = true
+                        //                        }
+
+                        //                        while (backend.valueProgreeBar < backend.numberRealizationTextField) {
+                        //                            valPB2 = backend.valueProgreeBar / backend.numberRealizationTextField
+
+                        //                        }
+
+                        //                        while ( valPB3 < backend.numberRealizationTextField) {
+                        //                            valPB2 = valPB3 / backend.numberRealizationTextField
+                        //                            valPB3++
+                        //                            console.log(backend.numberRealizationTextField)
+                        //                            console.log(valPB2)
+                        //                        }
+
                         var component = Qt.createComponent("mapModel.qml");      // Создание модели карты
                         var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
                         browserWindow.createEllipse();                           // Отрисовка эллипса
                         browserWindow.createPole();                              // Отрисовка поля с бомбами (квадратиками)
                         browserWindow.colorFuncElement();
-                    }
 
+
+                    }
                 }
 
             } // To Button
 
         } // To RightItem
+
+//        ProgressBar {
+//            id: progressBar
+//            anchors.left: mainItem.left
+//            //anchors.top: rightItem.top
+//            anchors.right: mainItem.right
+//            anchors.bottom: mainItem.bottom
+//            value: backend.valueProgreeBar
+//            //   indeterminate : false
+
+//            //            minimumValue: 0
+//            //            maximumValue: backend.numberRealizationTextField
+
+//            //           value: valPB2
+
+//            //            Connections {
+//            //                onProgressChanged: progressBar.value = backend.valueProgreeBar * 0.01
+//            //            }
+
+//        }
 
     } // To mainItem
 

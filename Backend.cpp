@@ -1,5 +1,6 @@
 #include "Backend.h"
 #include <QDebug>
+#include <QTime>
 
 Backend::Backend(QObject *parent) : QObject(parent)
 {
@@ -533,14 +534,40 @@ void Backend::onRadioButtonClicked()
 
         numberAmmunition = 56;
         setNumberAmmunitionTextField(QString::number(numberAmmunition));
-
     }
+}
+
+void Backend::onChangeAltitude()
+{
+    indexBombingAltitude = m_bombingAltitudeComboBox;  // Текущий индекс BombingAltitude
+
+    if (indexBombingAltitude == 0) {
+        bombingAltitude = 1000;
+        technicalDispersion = bombingAltitude * 0.004;
+        setTechnicalDispersionTextField(QString::number(technicalDispersion));
+    }
+    else if (indexBombingAltitude == 1) {
+        bombingAltitude = 1500;
+        technicalDispersion = bombingAltitude * 0.004;
+        setTechnicalDispersionTextField(QString::number(technicalDispersion));
+    }
+    else if (indexBombingAltitude == 2) {
+        bombingAltitude = 2000;
+        technicalDispersion = bombingAltitude * 0.004;
+        setTechnicalDispersionTextField(QString::number(technicalDispersion));
+    }
+}
+
+float Backend::changeValueProgBar()
+{
+    float valuePB = m_valueProgreeBar;
+    return valuePB;
 }
 
 void Backend::initFEoptions()
 {
- // ----------------------------------------------- Расположение объектов ------------------------------------------------------
- // -- Координата X ------ Координата Y -------- Длина ------------ Ширина ------------- Угол ---------- Радиус поражения ------
+    // ----------------------------------------------- Расположение объектов ------------------------------------------------------
+    // -- Координата X ------ Координата Y -------- Длина ------------ Ширина ------------- Угол ---------- Радиус поражения ------
 
     FEopt[1][1]=270;    FEopt[1][2]=280;    FEopt[1][3]=25;     FEopt[1][4]=25;    FEopt[1][5]=8;       FEopt[1][6]=radiusCP;
     FEopt[2][1]=420;    FEopt[2][2]=110;    FEopt[2][3]=25;     FEopt[2][4]=25;    FEopt[2][5]=15;      FEopt[2][6]=radiusCP12;
@@ -624,6 +651,8 @@ void Backend::damageCalculation()
 
     std::mt19937 randomGenerator(time(0)); /* инициализация генератора псевдослучайных чисел текущим
                                             * системным временем */
+    m_valueProgreeBar = 0;
+
     for (int NumB = 1; NumB <= numberRealization; ++NumB) // цикл по реализациям
     {
         for (int j = 1; j <= 25; ++j) // сброс состояний элементов ЗРК в работоспособные
@@ -753,9 +782,14 @@ void Backend::damageCalculation()
                 m_FuncElem.push_back(FE[i]);
             }
         }
-        // qDebug() << m_FuncElem;
 
         solveFE(0); // расчёт полного списка состояний ЗРК
+
+        m_valueProgreeBar++;
+        // float valPB = NumB / numberRealization;
+        // float PB1 = static_cast<float>(valPB);
+        //setValueProgreeBar(PB1);
+        //qDebug() << "ProgressBar = " << m_valueProgreeBar;
     }
 
     m_VectorEllipse.push_back(static_cast<int>(ellipse));
@@ -996,7 +1030,7 @@ void Backend::writeFE(int Nv)
 void Backend::initialization()  // Функция инициализации переменных для вычислений
 {
     aimDispersion = m_aimDispersionTextField.toFloat();
-    technicalDispersion = m_technicalDispersionTextField.toFloat();
+
     ammunitionDispersion = m_ammunitionDispersionTextField.toFloat();
     combatRouteCenterPair = m_combatRouteCenterPairTextField.toFloat();
     rangeToTraverse = m_rangeToTraverseTextField.toFloat();
@@ -1015,20 +1049,6 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
 
     numberASP = m_numberASPTextField.toFloat();
 
-    indexBombingAltitude = m_bombingAltitudeComboBox;  // Текущий индекс BombingAltitude
-
-    if (indexBombingAltitude == 0) {
-        bombingAltitude = 1000;
-    } else if (indexBombingAltitude == 1) {
-        bombingAltitude = 1500;
-    } else if (indexBombingAltitude == 2) {
-        bombingAltitude = 2000;
-    }
-
-    // Например вот так можно передать в поле для количества АСП
-    //numberASP = 10;
-    //setNumberASPTextField(QString::number(numberASP));
-
     numberAmmunition = m_numberAmmunitionTextField.toFloat();
 
     if (m_indexRadioButton == 1) {
@@ -1045,11 +1065,12 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
 
     numberRealization = m_numberRealizationTextField.toFloat();
 
-
     // Основные вычисления
     initFEoptions(); // заполнили массив FEopt
     evalDangerousExplosionsArea(); // заполнили массив DEA
     damageCalculation(); // посчитали урон
+
+    m_valueProgreeBar = 0.7;
 }
 
 

@@ -79,8 +79,9 @@ class Backend : public QObject
     Q_PROPERTY(QVector<int> VectorColor READ VectorColor WRITE setVectorColor NOTIFY VectorColorChanged)
 
     Q_PROPERTY(QVector<int> VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
+    Q_PROPERTY(QVector<bool> FuncElem READ FuncElem WRITE setFuncElem NOTIFY FuncElemChanged)
 
-   Q_PROPERTY(QVector<bool> FuncElem READ FuncElem WRITE setFuncElem NOTIFY FuncElemChanged)
+    Q_PROPERTY(float valueProgreeBar READ valueProgreeBar WRITE setValueProgreeBar NOTIFY valueProgreeBarChanged)
 
 
 public:
@@ -120,6 +121,9 @@ public:
     Q_INVOKABLE int maxNumberElementY();
     Q_INVOKABLE void clearVectorXYColor();
     Q_INVOKABLE void onRadioButtonClicked();
+    Q_INVOKABLE void onChangeAltitude();
+
+    Q_INVOKABLE float changeValueProgBar();
 
 
 
@@ -149,6 +153,11 @@ public:
     QVector<bool> FuncElem() const
     {
         return m_FuncElem;
+    }
+
+    float valueProgreeBar() const
+    {
+        return m_valueProgreeBar;
     }
 
 signals:
@@ -195,6 +204,8 @@ signals:
     void VectorEllipseChanged(QVector<int> VectorEllipse);
 
     void FuncElemChanged(QVector<bool> FuncElem);
+
+    void valueProgreeBarChanged(float valueProgreeBar);
 
 public slots:
 
@@ -274,6 +285,16 @@ public slots:
 
         m_FuncElem = FuncElem;
         emit FuncElemChanged(m_FuncElem);
+    }
+
+    void setValueProgreeBar(float valueProgreeBar)
+    {
+        qWarning("Floating point comparison needs context sanity check");
+        if (qFuzzyCompare(m_valueProgreeBar, valueProgreeBar))
+            return;
+
+        m_valueProgreeBar = valueProgreeBar;
+        emit valueProgreeBarChanged(m_valueProgreeBar);
     }
 
 private:
@@ -360,6 +381,8 @@ private:
     QVector<int> m_VectorColor;
     QVector<int> m_VectorEllipse;
     QVector<bool> m_FuncElem;
+
+    float m_valueProgreeBar;
 };
 
 #endif // BACKEND_H
