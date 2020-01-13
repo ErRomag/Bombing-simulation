@@ -566,23 +566,25 @@ float Backend::changeValueProgBar()
 
 void Backend::initFEoptions()
 {
+    quint8 d = 12;  // смещение для ФЭ с 1 по 11 так как отрисовка происходит не от центра, а от левого верхнегно угла
+
     // ----------------------------------------------- Расположение объектов ------------------------------------------------------
     // -- Координата X ------ Координата Y -------- Длина ------------ Ширина ------------- Угол ---------- Радиус поражения ------
 
-    FEopt[1][1]=270;    FEopt[1][2]=280;    FEopt[1][3]=25;     FEopt[1][4]=25;    FEopt[1][5]=8;       FEopt[1][6]=radiusCP;
-    FEopt[2][1]=420;    FEopt[2][2]=110;    FEopt[2][3]=25;     FEopt[2][4]=25;    FEopt[2][5]=15;      FEopt[2][6]=radiusCP12;
-    FEopt[3][1]=300;    FEopt[3][2]=480;    FEopt[3][3]=25;     FEopt[3][4]=25;    FEopt[3][5]=41;      FEopt[3][6]=radiusCP12;
+    FEopt[1][1]=270+d;    FEopt[1][2]=280+d;    FEopt[1][3]=25;     FEopt[1][4]=25;    FEopt[1][5]=8;       FEopt[1][6]=radiusCP;
+    FEopt[2][1]=420+d;    FEopt[2][2]=110+d;    FEopt[2][3]=25;     FEopt[2][4]=25;    FEopt[2][5]=15;      FEopt[2][6]=radiusCP12;
+    FEopt[3][1]=300+d;    FEopt[3][2]=480+d;    FEopt[3][3]=25;     FEopt[3][4]=25;    FEopt[3][5]=41;      FEopt[3][6]=radiusCP12;
 
-    FEopt[4][1]=170;    FEopt[4][2]=50;     FEopt[4][3]=25;     FEopt[4][4]=25;    FEopt[4][5]=35;      FEopt[4][6]=radiusRLSV;
-    FEopt[5][1]=130;    FEopt[5][2]=500;    FEopt[5][3]=25;     FEopt[5][4]=25;    FEopt[5][5]=81;      FEopt[5][6]=radiusRLSV;
+    FEopt[4][1]=170+d;    FEopt[4][2]=50+d;     FEopt[4][3]=25;     FEopt[4][4]=25;    FEopt[4][5]=35;      FEopt[4][6]=radiusRLSV;
+    FEopt[5][1]=130+d;    FEopt[5][2]=500+d;    FEopt[5][3]=25;     FEopt[5][4]=25;    FEopt[5][5]=81;      FEopt[5][6]=radiusRLSV;
 
-    FEopt[6][1]=480;    FEopt[6][2]=220;    FEopt[6][3]=25;     FEopt[6][4]=25;    FEopt[6][5]=0;       FEopt[6][6]=radiusSC123;
-    FEopt[7][1]=440;    FEopt[7][2]=350;    FEopt[7][3]=25;     FEopt[7][4]=25;    FEopt[7][5]=0;       FEopt[7][6]=radiusSC123;
-    FEopt[8][1]=550;    FEopt[8][2]=440;    FEopt[8][3]=25;     FEopt[8][4]=25;    FEopt[8][5]=130;     FEopt[8][6]=radiusSC123;
+    FEopt[6][1]=480+d;    FEopt[6][2]=220+d;    FEopt[6][3]=25;     FEopt[6][4]=25;    FEopt[6][5]=0;       FEopt[6][6]=radiusSC123;
+    FEopt[7][1]=440+d;    FEopt[7][2]=350+d;    FEopt[7][3]=25;     FEopt[7][4]=25;    FEopt[7][5]=0;       FEopt[7][6]=radiusSC123;
+    FEopt[8][1]=550+d;    FEopt[8][2]=440+d;    FEopt[8][3]=25;     FEopt[8][4]=25;    FEopt[8][5]=130;     FEopt[8][6]=radiusSC123;
 
-    FEopt[9][1]=90;     FEopt[9][2]=270;    FEopt[9][3]=25;     FEopt[9][4]=25;    FEopt[9][5]=0;       FEopt[9][6]=radiusEG12;
-    FEopt[10][1]=540;   FEopt[10][2]=40;    FEopt[10][3]=25;    FEopt[10][4]=25;   FEopt[10][5]=32;     FEopt[10][6]=radiusEG12;
-    FEopt[11][1]=490;   FEopt[11][2]=530;   FEopt[11][3]=25;    FEopt[11][4]=25;   FEopt[11][5]=13;     FEopt[11][6]=radiusEG12;
+    FEopt[9][1]=90+d;     FEopt[9][2]=270+d;    FEopt[9][3]=25;     FEopt[9][4]=25;    FEopt[9][5]=0;       FEopt[9][6]=radiusEG12;
+    FEopt[10][1]=540+d;   FEopt[10][2]=40+d;    FEopt[10][3]=25;    FEopt[10][4]=25;   FEopt[10][5]=32;     FEopt[10][6]=radiusEG12;
+    FEopt[11][1]=490+d;   FEopt[11][2]=530+d;   FEopt[11][3]=25;    FEopt[11][4]=25;   FEopt[11][5]=13;     FEopt[11][6]=radiusEG12;
 
     FEopt[12][1]=0;     FEopt[12][2]=280;   FEopt[12][3]=200;   FEopt[12][4]=4;    FEopt[12][5]=0;      FEopt[12][6]=radiusCable;
     FEopt[13][1]=135;   FEopt[14][2]=280;   FEopt[14][3]=181;   FEopt[14][4]=4;    FEopt[14][5]=-2;     FEopt[14][6]=radiusCable;
@@ -631,7 +633,7 @@ void Backend::damageCalculation()
     /* координаты точек прицеливания суббоеприпасов
                            * с учётом рассеивания суббоеприпасов */
     float Zalp_X, Zalp_Y; // координаты точки, с учётом прицельного рассеивания
-    float xfab,yfab;      // координаты точки, с учётом технического рассеивания
+    float xfab, yfab;     // координаты точки, с учётом технического рассеивания
     bool ellipse = true;
 
     // сброс состояний системы
@@ -640,14 +642,14 @@ void Backend::damageCalculation()
     }
 
     //Вычисляем точки прцеливания
-    aimPoint[1][1] = 350 - rangeToTraverse;
-    aimPoint[1][2] = 300 - combatRouteCenterPair + intervalRegime;
-    aimPoint[2][1] = 350 - rangeToTraverse  + intervalSeries;
-    aimPoint[2][2] = 300 - combatRouteCenterPair + intervalRegime;
-    aimPoint[3][1] = 350 - rangeToTraverse;
-    aimPoint[3][2] = 300 - combatRouteCenterPair - intervalRegime;
-    aimPoint[4][1] = 350 - rangeToTraverse  + intervalSeries;
-    aimPoint[4][2] = 300 - combatRouteCenterPair - intervalRegime;
+    aimPoint[1][1] = FEopt[1][1] - rangeToTraverse;
+    aimPoint[1][2] = 300 - combatRouteCenterPair + intervalRegime / 2;
+    aimPoint[2][1] = FEopt[1][1] - rangeToTraverse  + intervalSeries;
+    aimPoint[2][2] = 300 - combatRouteCenterPair + intervalRegime / 2;
+    aimPoint[3][1] = FEopt[1][1] - rangeToTraverse;
+    aimPoint[3][2] = 300 - combatRouteCenterPair - intervalRegime / 2;
+    aimPoint[4][1] = FEopt[1][1] - rangeToTraverse  + intervalSeries;
+    aimPoint[4][2] = 300 - combatRouteCenterPair - intervalRegime / 2;
 
     std::mt19937 randomGenerator(time(0)); /* инициализация генератора псевдослучайных чисел текущим
                                             * системным временем */
