@@ -9,6 +9,4 @@ Rectangle {
     color: "white"
     border.width: 4
     border.color: "black"
-    //color: "#49E7DD"
-
 }

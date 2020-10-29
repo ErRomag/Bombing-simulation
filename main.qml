@@ -1,5 +1,3 @@
-
-
 import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
@@ -79,8 +77,6 @@ ApplicationWindow {
     RowLayout {
         id: mainItem
         anchors.fill: parent
-        // color: "#dcdcdc"
-
 
         Rectangle {
             id:leftItem
@@ -240,7 +236,6 @@ ApplicationWindow {
                             backend.setBombingAltitudeComboBox(currentIndex)
                             backend.onChangeAltitude()
                         }
-                       // onCountChanged: backend.onChangeAltitude()
                     }
 
                     Text {
@@ -251,13 +246,9 @@ ApplicationWindow {
                     TextField {
                         id: numberASP // Количество АСП
                         objectName: "numberASP"
-                        //readOnly: true
                         width: 250
                         maximumLength: 3  // Не больше трехзначного числа
                         validator: RegExpValidator {regExp: /\d+/}
-
-                        //text: qsTr("20")
-
                         text: backend.numberASPTextField
                         onTextChanged: backend.setNumberASPTextField(text)
                     }
@@ -273,8 +264,6 @@ ApplicationWindow {
                         width: 250
                         maximumLength: 3
                         validator: RegExpValidator {regExp: /\d+/}
-
-                        //text: qsTr("48")
                         text: backend.numberAmmunitionTextField
 
                         onTextChanged: backend.setNumberAmmunitionTextField(text)
@@ -328,7 +317,6 @@ ApplicationWindow {
                                     indexRadioButtonQML = 1
                                     backend.indexRadioButton = indexRadioButtonQML
                                     backend.onRadioButtonClicked()
-                                    //backend.setIndexRadioButton(1)
                                 }
                             }
 
@@ -343,7 +331,6 @@ ApplicationWindow {
                                     indexRadioButtonQML = 2
                                     backend.indexRadioButton = indexRadioButtonQML
                                     backend.onRadioButtonClicked()
-                                    //backend.setIndexRadioButton(2)
                                 }
                             }
 
@@ -358,7 +345,6 @@ ApplicationWindow {
                                     indexRadioButtonQML = 3
                                     backend.indexRadioButton = indexRadioButtonQML
                                     backend.onRadioButtonClicked()
-                                    //backend.setIndexRadioButton(3)
                                 }
                             }
 
@@ -373,7 +359,6 @@ ApplicationWindow {
                                     indexRadioButtonQML = 4
                                     backend.indexRadioButton = indexRadioButtonQML
                                     backend.onRadioButtonClicked()
-                                    //backend.setIndexRadioButton(4)
                                 }
                             }
 
@@ -388,7 +373,6 @@ ApplicationWindow {
                                     indexRadioButtonQML = 5
                                     backend.indexRadioButton = indexRadioButtonQML
                                     backend.onRadioButtonClicked()
-                                    //backend.setIndexRadioButton(5)
                                 }
                             }
                         } // To ColumnLayoutRadioButton
@@ -647,7 +631,6 @@ ApplicationWindow {
                     }
 
                 }  // To RightGridLayout
-
             } // To RightGroupBox
 
 
@@ -677,22 +660,15 @@ ApplicationWindow {
                         onTextChanged: backend.setNumberRealizationTextField(text)
                     }
                 }  // To RightGridLayout
-
-            } // To RightGroupBox*/
-
-
+            } // To RightGroupBox
 
             Button {
                 x:30
                 y:320
                 id: openMap
                 text: "Моделировать"
-                //Layout.alignment: Qt.AlignCenter
-                // Layout.columnSpan: 2
 
                 onClicked: {
-
-
                     valPB3 = 0
 
                     if(indexRadioButtonQML === 0 || aimDispersion.text === "" ||   technicalDispersion.text === "" ||
@@ -708,72 +684,15 @@ ApplicationWindow {
                         backend.clearVectorXYColor();                            // Очищение векторов
                         backend.initialization();                                // Инициализация переменных с формы
 
-
-                        backend.changeValueProgBar()
-                        //                        console.log(valPB2)
-
-
-
-                        //                        while (backend.valueProgreeBar < backend.numberRealizationTextField) {
-
-                        //                        }
-
-
-                        //                        for (var progressChange = 0; progressChange < backend.numberRealizationTextField; progressChange++) {
-                        //                            progressBar.indeterminate = true
-                        //                        }
-
-                        //                        while (backend.valueProgreeBar < backend.numberRealizationTextField) {
-                        //                            valPB2 = backend.valueProgreeBar / backend.numberRealizationTextField
-
-                        //                        }
-
-                        //                        while ( valPB3 < backend.numberRealizationTextField) {
-                        //                            valPB2 = valPB3 / backend.numberRealizationTextField
-                        //                            valPB3++
-                        //                            console.log(backend.numberRealizationTextField)
-                        //                            console.log(valPB2)
-                        //                        }
-
                         var component = Qt.createComponent("mapModel.qml");      // Создание модели карты
                         var browserWindow = component.createObject(mainWindow);  // Отображение модели карты
                         browserWindow.createEllipse();                           // Отрисовка эллипса
                         browserWindow.createPole();                              // Отрисовка поля с бомбами (квадратиками)
                         browserWindow.colorFuncElement();
-
-
                     }
                 }
 
             } // To Button
-
         } // To RightItem
-
-//        ProgressBar {
-//            id: progressBar
-//            anchors.left: mainItem.left
-//            //anchors.top: rightItem.top
-//            anchors.right: mainItem.right
-//            anchors.bottom: mainItem.bottom
-//            value: backend.valueProgreeBar
-//            //   indeterminate : false
-
-//            //            minimumValue: 0
-//            //            maximumValue: backend.numberRealizationTextField
-
-//            //           value: valPB2
-
-//            //            Connections {
-//            //                onProgressChanged: progressBar.value = backend.valueProgreeBar * 0.01
-//            //            }
-
-//        }
-
     } // To mainItem
-
 }  // To Window
-
-
-
-
-

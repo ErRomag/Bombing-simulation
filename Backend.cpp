@@ -10,7 +10,6 @@ Backend::Backend(QObject *parent) : QObject(parent)
 // Описание связки C++ слоя и QML оболочки
 
 // Связь для параметра "Прицельное рассеивание"
-
 QString Backend::aimDispersionTextField() const
 {
     return m_aimDispersionTextField;
@@ -251,7 +250,6 @@ void Backend::setRadiusEG12TextField(QString radiusEG12TextField)
 }
 
 // Связь для параметра "Радиус поражения кабелей"
-
 QString Backend::radiusCableTextField() const
 {
     return m_radiusCableTextField;
@@ -382,15 +380,11 @@ void Backend::setW6TextField(QString W6TextField)
 
 int Backend::maxNumberElementX()
 {
-    //maxNumberX = m_VectCoordX.size();
-    //qDebug()<<m_VectCoordX.count();
     return m_VectCoordX.count();
 }
 
 int Backend::maxNumberElementY()
 {
-    //maxNumberY = m_VectCoordY.size();
-    //qDebug()<<m_VectCoordY.count();
     return m_VectCoordY.count();
 }
 
@@ -558,12 +552,6 @@ void Backend::onChangeAltitude()
     }
 }
 
-float Backend::changeValueProgBar()
-{
-    float valuePB = m_valueProgreeBar;
-    return valuePB;
-}
-
 void Backend::initFEoptions()
 {
     quint8 d = 12;  // смещение для ФЭ с 1 по 11 так как отрисовка происходит не от центра, а от левого верхнегно угла
@@ -653,7 +641,6 @@ void Backend::damageCalculation()
 
     std::mt19937 randomGenerator(time(0)); /* инициализация генератора псевдослучайных чисел текущим
                                             * системным временем */
-    m_valueProgreeBar = 0;
 
     for (int NumB = 1; NumB <= numberRealization; ++NumB) // цикл по реализациям
     {
@@ -786,12 +773,6 @@ void Backend::damageCalculation()
         }
 
         solveFE(0); // расчёт полного списка состояний ЗРК
-
-        m_valueProgreeBar++;
-        // float valPB = NumB / numberRealization;
-        // float PB1 = static_cast<float>(valPB);
-        //setValueProgreeBar(PB1);
-        //qDebug() << "ProgressBar = " << m_valueProgreeBar;
     }
 
     m_VectorEllipse.push_back(static_cast<int>(ellipse));
@@ -822,9 +803,6 @@ void Backend::damageCalculation()
     setW6TextField(QString::number(W6)+'%');
 }
 
-
-
-
 bool Backend::Destroy(float x, float y, float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4)
 {
     int i = 0;
@@ -849,6 +827,7 @@ int Backend::sgn(float val)
         return 0;
     if (val > 0)
         return 1;
+    return 1;
 }
 
 void Backend::test()
@@ -1028,7 +1007,6 @@ void Backend::writeFE(int Nv)
 }
 
 //----------------------------------------------------------
-
 void Backend::initialization()  // Функция инициализации переменных для вычислений
 {
     aimDispersion = m_aimDispersionTextField.toFloat();
@@ -1071,8 +1049,6 @@ void Backend::initialization()  // Функция инициализации переменных для вычислен
     initFEoptions(); // заполнили массив FEopt
     evalDangerousExplosionsArea(); // заполнили массив DEA
     damageCalculation(); // посчитали урон
-
-    m_valueProgreeBar = 0.7;
 }
 
 

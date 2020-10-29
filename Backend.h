@@ -81,9 +81,6 @@ class Backend : public QObject
     Q_PROPERTY(QVector<int> VectorEllipse READ VectorEllipse WRITE setVectorEllipse NOTIFY VectorEllipseChanged)
     Q_PROPERTY(QVector<bool> FuncElem READ FuncElem WRITE setFuncElem NOTIFY FuncElemChanged)
 
-    Q_PROPERTY(float valueProgreeBar READ valueProgreeBar WRITE setValueProgreeBar NOTIFY valueProgreeBarChanged)
-
-
 public:
     explicit Backend(QObject *parent = nullptr);
 
@@ -115,18 +112,13 @@ public:
     QString W5TextField() const;
     QString W6TextField() const;
 
-    Q_INVOKABLE void initialization();               // Функция инициализации переменных для вычислений
+    Q_INVOKABLE void initialization(); // Функция инициализации переменных для вычислений
 
     Q_INVOKABLE int maxNumberElementX();
     Q_INVOKABLE int maxNumberElementY();
     Q_INVOKABLE void clearVectorXYColor();
     Q_INVOKABLE void onRadioButtonClicked();
     Q_INVOKABLE void onChangeAltitude();
-
-    Q_INVOKABLE float changeValueProgBar();
-
-
-
 
     QVector<int> VectCoordX() const
     {
@@ -143,8 +135,6 @@ public:
         return m_VectorColor;
     }
 
-
-
     QVector<int> VectorEllipse() const
     {
         return m_VectorEllipse;
@@ -153,11 +143,6 @@ public:
     QVector<bool> FuncElem() const
     {
         return m_FuncElem;
-    }
-
-    float valueProgreeBar() const
-    {
-        return m_valueProgreeBar;
     }
 
 signals:
@@ -191,21 +176,15 @@ signals:
     void W6TextFieldChanged(QString W6TextField);
 
 
-
-
-
     void VectCoordXChanged(QVector<int> VectCoordX);
 
     void VectCoordYChanged(QVector<int> VectCoordY);
 
     void VectorColorChanged(QVector<int> VectorColor);
 
-
     void VectorEllipseChanged(QVector<int> VectorEllipse);
 
     void FuncElemChanged(QVector<bool> FuncElem);
-
-    void valueProgreeBarChanged(float valueProgreeBar);
 
 public slots:
 
@@ -238,9 +217,6 @@ public slots:
     void setW6TextField(QString W6TextField);
 
 
-
-
-
     void setVectCoordX(QVector<int> VectCoordX)
     {
         if (m_VectCoordX == VectCoordX)
@@ -268,7 +244,6 @@ public slots:
         emit VectorColorChanged(VectorColor);
     }
 
-
     void setVectorEllipse(QVector<int> VectorEllipse)
     {
         if (m_VectorEllipse == VectorEllipse)
@@ -285,16 +260,6 @@ public slots:
 
         m_FuncElem = FuncElem;
         emit FuncElemChanged(m_FuncElem);
-    }
-
-    void setValueProgreeBar(float valueProgreeBar)
-    {
-        qWarning("Floating point comparison needs context sanity check");
-        if (qFuzzyCompare(m_valueProgreeBar, valueProgreeBar))
-            return;
-
-        m_valueProgreeBar = valueProgreeBar;
-        emit valueProgreeBarChanged(m_valueProgreeBar);
     }
 
 private:
@@ -375,14 +340,11 @@ private:
     QString m_W5TextField;
     QString m_W6TextField;
 
-
     QVector<int> m_VectCoordX;
     QVector<int> m_VectCoordY;
     QVector<int> m_VectorColor;
     QVector<int> m_VectorEllipse;
     QVector<bool> m_FuncElem;
-
-    float m_valueProgreeBar;
 };
 
 #endif // BACKEND_H

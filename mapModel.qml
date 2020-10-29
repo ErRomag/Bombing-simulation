@@ -129,8 +129,6 @@ Window {
     function  createPole(){
         deletBombRect();
 
-        //clearVectorXYColor();
-        //console.log("--------------------------",maxNumberElement)
         var rectBomb = Qt.createComponent("qrc:/bombRect.qml"); // элемент - квадрат
 
         for (var i = 0; i < maxNumberElement; i++) {
@@ -149,7 +147,6 @@ Window {
     }
 
     function deletBombRect() {
-        //console.log("start deletBombRect()")
         for (var k = 0; k < list.count; k++) {
             list.get(k).destroy();
         }
@@ -204,14 +201,10 @@ Window {
         listEllipse.append(component2);
         listEllipse.append(component3);
         listEllipse.append(component4)
-
-        //console.log(listEllipse.count)
     }
 
 
     function deletEllipse() {
-
-        //console.log("start deletEllipse()")
         for (var n = 0; n < listEllipse.count; n++) {
             listEllipse.get(n).destroy();
         }
@@ -566,7 +559,6 @@ Window {
         font.pixelSize: 14
     }
 
-
     Rectangle {
         id:objectSU2
         objectName: "objectSU2"
@@ -658,6 +650,4 @@ Window {
         text: qsTr("ЭГ-2")
         font.pixelSize: 14
     }
-
 }
-

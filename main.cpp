@@ -4,9 +4,7 @@
 #include <QQmlEngine>
 
 #include "Backend.h"
-
 #include <QIcon>
-
 #include <QColor>
 
 int main(int argc, char *argv[])
